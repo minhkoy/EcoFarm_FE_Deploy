@@ -1,3 +1,4 @@
+import { Datepicker } from '@/components/ui/datepicker'
 import {
   Form,
   FormField,
@@ -11,6 +12,7 @@ import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { LINK_AUTH } from '@/utils/constants/links'
 import { SO_AccountType } from '@/utils/constants/selectOption'
+import { dateFormat, dateParse } from '@/utils/helpers/DateHelper'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Button,
@@ -21,15 +23,15 @@ import {
   SelectItem,
   cn,
 } from '@nextui-org/react'
-import { capitalize, map } from 'lodash-es'
+import { isValid } from 'date-fns'
+import { capitalize, map, trim } from 'lodash-es'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
 export async function getServerSideProps({ locale }: { locale: string }) {
   return {
     props: {
@@ -45,6 +47,7 @@ export async function getServerSideProps({ locale }: { locale: string }) {
 const SignUpScreen: NextPageWithLayout = () => {
   const { t } = useTranslation()
   const { locale } = useRouter()
+  const [dobInput, setDobInput] = useState('')
   const schema = useMemo(() => createSignUpSchema(t), [t])
   // ==================== React Hook Form ====================
   const rhf = useForm<SignUpSchemaType>({
@@ -60,6 +63,15 @@ const SignUpScreen: NextPageWithLayout = () => {
 
   const onSubmit = (values: SignUpSchemaType) => {
     console.log(values)
+  }
+
+  const handleChangeDate = (value: string) => {
+    const inputVal = trim(value)
+    const toDateInput = dateParse(inputVal, undefined, locale)
+    if (isValid(toDateInput)) {
+      rhf.setValue('dob', toDateInput)
+    } else rhf.setValue('dob', null)
+    setDobInput(inputVal)
   }
 
   return (
@@ -165,6 +177,37 @@ const SignUpScreen: NextPageWithLayout = () => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={rhf.control}
+              name='dob'
+              render={({ field }) => (
+                <FormItem>
+                  <FormInput
+                    {...field}
+                    value={dobInput}
+                    onChange={(e) => handleChangeDate(e.target.value)}
+                    type='text'
+                    variant='flat'
+                    isRequired
+                    fullWidth
+                    label={capitalize(t('auth:field.your-dob'))}
+                    autoComplete={'off'}
+                    endContent={
+                      <Datepicker
+                        placement='top-end'
+                        mode='single'
+                        selected={field.value ?? undefined}
+                        onSelect={(date) => {
+                          if (!date) return
+                          field.onChange(date)
+                          setDobInput(dateFormat(date, 'P', locale))
+                        }}
+                      />
+                    }
+                  />
+                </FormItem>
+              )}
+            />
           </form>
         </Form>
       </CardBody>
@@ -188,7 +231,7 @@ const SignUpScreen: NextPageWithLayout = () => {
           </Link>
         </div>
       </CardFooter>
-      {/* <DevT i18nIsDynamicList placement='bottom-left' control={rhf.control} /> */}
+      {/* <DevTool placement='bottom-left' control={rhf.control}  /> */}
     </>
   )
 }

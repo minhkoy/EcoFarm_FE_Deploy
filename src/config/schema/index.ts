@@ -24,11 +24,12 @@ export const createCommonSchema = <T extends TFunction>(t: T) => {
     .string()
     .min(1, { message: capitalize(t('auth:validation.email.isRequired')) })
     .email({
-      message: capitalize(t('auth:validation.email.isValid')),
+      message: capitalize(t('auth:validation.email.isInValid')),
     })
 
   const dateSchema = z.date({
-    invalid_type_error: capitalize(t('common:validation.date.isValid')),
+    required_error: capitalize(t('common:validation.date.isRequired')),
+    invalid_type_error: capitalize(t('common:validation.date.isInValid')),
   })
 
   return {
@@ -62,7 +63,7 @@ export const createSignUpSchema = <T extends TFunction>(t: T) => {
           t('auth:validation.account-type.isRequired'),
         ),
       }),
-      dob: createCommonSchema(t).dateSchema,
+      dob: createCommonSchema(t).dateSchema.nullable(),
     })
     .refine((data) => data.password === data.confirmPassword, {
       message: capitalize(t('auth:validation.password.notMatch')),

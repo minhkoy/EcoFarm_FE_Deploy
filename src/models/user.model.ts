@@ -18,7 +18,7 @@ export type UserModel = AccountModel & {
   phoneNumber: string
   gender?: keyof typeof GENDER
   dob?: Date
-  addresses?: Address[]
+  addresses?: Array<Address>
 }
 
 export type ReponseUser = ResponseModel<UserModel>

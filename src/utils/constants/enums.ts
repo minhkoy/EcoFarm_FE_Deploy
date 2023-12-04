@@ -19,4 +19,3 @@ export const GENDER = {
   FEMALE: 'FEMALE',
   OTHERS: 'OTHERS',
 } as const
-

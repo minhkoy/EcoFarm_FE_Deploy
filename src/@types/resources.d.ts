@@ -6,6 +6,7 @@ interface Resources {
       "confirm-password": "xác nhận mật khẩu",
       "forgot-password": "quên mật khẩu",
       "remember-me": "ghi nhớ đăng nhập",
+      "your-dob": "field.your-dob",
       "your-email": "email của bạn",
       "your-password": "mật khẩu của bạn",
       "your-username": "tên đăng nhập của bạn"
@@ -20,7 +21,7 @@ interface Resources {
         "isRequired": "loại tài khoản không được để trống"
       },
       "email": {
-        "isInValid": "validation.email.isInValid",
+        "isInValid": "email không hợp lệ",
         "isRequired": "email không được để trống"
       },
       "password": {
@@ -49,7 +50,8 @@ interface Resources {
     "username": "tài khoản",
     "validation": {
       "date": {
-        "isInValid": "validation.date.isInValid"
+        "isInValid": "Ngày không hợp lệ",
+        "isRequired": "validation.date.isRequired"
       }
     }
   },

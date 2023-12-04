@@ -1,41 +1,27 @@
-import { dateFormat } from '@/utils/helpers/DateHelper'
 import {
   Button,
   Popover,
   PopoverContent,
   PopoverTrigger,
-  type ButtonProps,
+  type PopoverProps,
 } from '@nextui-org/react'
 import { CalendarIcon } from 'lucide-react'
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { Calendar, type CalendarProps } from '../calender'
+import { Calendar, type CalendarProps } from '../calendar'
 
 type DatepickerProps = CalendarProps & {
-  size?: ButtonProps['size']
-  variant: ButtonProps['variant']
+  placement: PopoverProps['placement']
 }
 
-export function Datepicker(props: DatepickerProps) {
-  const { size, variant = 'light', mode = 'single' } = props
-  const { t } = useTranslation()
-  const [date, setDate] = useState<Date>()
-  const { locale } = useRouter()
+export function Datepicker({ placement, ...props }: DatepickerProps) {
   return (
-    <Popover placement='right'>
+    <Popover shouldFlip placement={placement}>
       <PopoverTrigger>
-        <Button size={size} variant={variant} color='primary'>
-          <CalendarIcon className='mr-2 h-4 w-4' />
-          {date ? (
-            dateFormat(date, 'PPP', locale)
-          ) : (
-            <span>{t('common:pick-a-date')}</span>
-          )}
+        <Button isIconOnly radius='full' variant='light'>
+          <CalendarIcon className='h-4 w-4' />
         </Button>
       </PopoverTrigger>
       <PopoverContent>
-        <Calendar mode={mode} selected={date} onSelect={setDate} initialFocus />
+        <Calendar {...props} initialFocus />
       </PopoverContent>
     </Popover>
   )

@@ -11,7 +11,8 @@
   "username": "username",
   "validation": {
     "date": {
-      "isInValid": "date is invalid"
+      "isInValid": "date is invalid",
+      "isRequired": "date is required"
     }
   }
 }

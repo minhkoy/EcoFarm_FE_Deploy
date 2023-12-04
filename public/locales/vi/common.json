@@ -11,7 +11,8 @@
   "username": "tài khoản",
   "validation": {
     "date": {
-      "isInValid": "Ngày không hợp lệ"
+      "isInValid": "Định dạng gày không hợp lệ",
+      "isRequired": "Vui lòng nhập ngày"
     }
   }
 }

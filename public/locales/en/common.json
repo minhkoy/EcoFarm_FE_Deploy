@@ -8,5 +8,10 @@
   "reset-password": "reset password",
   "sign-up": "sign up",
   "success": "success",
-  "username": "username"
+  "username": "username",
+  "validation": {
+    "date": {
+      "isInValid": "date is invalid"
+    }
+  }
 }

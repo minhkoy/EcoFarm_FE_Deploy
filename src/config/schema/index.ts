@@ -24,11 +24,11 @@ export const createCommonSchema = <T extends TFunction>(t: T) => {
     .string()
     .min(1, { message: capitalize(t('auth:validation.email.isRequired')) })
     .email({
-      message: capitalize(t('auth:validation.email.isValid')),
+      message: capitalize(t('auth:validation.email.isInValid')),
     })
 
   const dateSchema = z.date({
-    invalid_type_error: capitalize(t('common:validation.date.isValid')),
+    invalid_type_error: capitalize(t('common:validation.date.isInValid')),
   })
 
   return {

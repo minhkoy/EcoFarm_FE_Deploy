@@ -1,3 +1,4 @@
+import { Datepicker } from '@/components/ui/datepicker'
 import {
   Form,
   FormField,
@@ -27,7 +28,7 @@ import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export async function getServerSideProps({ locale }: { locale: string }) {
@@ -45,6 +46,7 @@ export async function getServerSideProps({ locale }: { locale: string }) {
 const SignUpScreen: NextPageWithLayout = () => {
   const { t } = useTranslation()
   const { locale } = useRouter()
+  const [date, setDate] = useState<Date | undefined>(new Date())
   const schema = useMemo(() => createSignUpSchema(t), [t])
   // ==================== React Hook Form ====================
   const rhf = useForm<SignUpSchemaType>({
@@ -165,6 +167,7 @@ const SignUpScreen: NextPageWithLayout = () => {
                 </FormItem>
               )}
             />
+            <Datepicker variant='light' mode='single' />
           </form>
         </Form>
       </CardBody>

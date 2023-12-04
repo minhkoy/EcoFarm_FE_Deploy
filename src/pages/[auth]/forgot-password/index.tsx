@@ -41,7 +41,7 @@ const ForgotPassScreen: NextPageWithLayout = () => {
         message: capitalize(t('auth:validation.email.isRequired')),
       })
       .email({
-        message: capitalize(t('auth:validation.email.isValid')),
+        message: capitalize(t('auth:validation.email.isInValid')),
       }),
   })
   const rhf = useForm<z.infer<typeof schema>>({

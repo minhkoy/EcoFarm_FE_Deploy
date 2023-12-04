@@ -8,5 +8,10 @@
   "reset-password": "Thay đổi mật khẩu",
   "sign-up": "đăng ký",
   "success": "thành công",
-  "username": "tài khoản"
+  "username": "tài khoản",
+  "validation": {
+    "date": {
+      "isInValid": "Ngày không hợp lệ"
+    }
+  }
 }

@@ -9,8 +9,8 @@ export type GetUsersResponse = {
   isSuccess: boolean
   successMessage: string
   correlationId: string
-  errors: string[]
-  validationErrors: ValidationError[]
+  errors: Array<string>
+  validationErrors: Array<ValidationError>
   resultType: number
   message: string
 }

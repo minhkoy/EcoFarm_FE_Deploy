@@ -13,9 +13,8 @@ const config = {
     'plugin:react-hooks/recommended',
   ],
   rules: {
-    '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/consistent-type-definitions': 'off',
-
+    '@typescript-eslint/array-type': ['error', { default: 'generic' }],
     '@typescript-eslint/consistent-type-imports': [
       'warn',
       {

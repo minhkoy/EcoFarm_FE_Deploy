@@ -6,7 +6,6 @@ interface Resources {
       "confirm-password": "xác nhận mật khẩu",
       "forgot-password": "quên mật khẩu",
       "remember-me": "ghi nhớ đăng nhập",
-      "your-dob": "field.your-dob",
       "your-email": "email của bạn",
       "your-password": "mật khẩu của bạn",
       "your-username": "tên đăng nhập của bạn"
@@ -16,6 +15,9 @@ interface Resources {
       "success": "đăng nhập thành công"
     },
     "not-have-account": "chưa có tài khoản",
+    "sign-up": {
+      "success": "đăng ký thành công"
+    },
     "validation": {
       "account-type": {
         "isRequired": "loại tài khoản không được để trống"
@@ -25,6 +27,7 @@ interface Resources {
         "isRequired": "email không được để trống"
       },
       "password": {
+        "invalid": "validation.password.invalid",
         "max": "mật khẩu không được quá {{max}} ký tự",
         "min": "mật khẩu không được ít hơn {{min}} ký tự",
         "notMatch": "nhập lại mật khẩu không khớp"
@@ -39,6 +42,7 @@ interface Resources {
   },
   "common": {
     "and": "và",
+    "error": "Đã xảy ra lỗi",
     "experience": "trải nghiệm",
     "explore": "khám phá",
     "login": "đăng nhập",
@@ -50,8 +54,8 @@ interface Resources {
     "username": "tài khoản",
     "validation": {
       "date": {
-        "isInValid": "Ngày không hợp lệ",
-        "isRequired": "validation.date.isRequired"
+        "isInValid": "Định dạng ngày không hợp lệ",
+        "isRequired": "Vui lòng nhập ngày"
       }
     }
   },
@@ -65,7 +69,6 @@ interface Resources {
       "title": "Đăng nhập hết hạn"
     },
     "default-error": {
-      "description": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
       "title": "Lỗi"
     }
   },

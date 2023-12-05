@@ -1,5 +1,6 @@
 {
   "and": "và",
+  "error": "Đã xảy ra lỗi",
   "experience": "trải nghiệm",
   "explore": "khám phá",
   "login": "đăng nhập",
@@ -11,7 +12,7 @@
   "username": "tài khoản",
   "validation": {
     "date": {
-      "isInValid": "Định dạng gày không hợp lệ",
+      "isInValid": "Định dạng ngày không hợp lệ",
       "isRequired": "Vui lòng nhập ngày"
     }
   }

@@ -42,24 +42,20 @@ axiosClient.interceptors.response.use(
     if (axios.isAxiosError(error)) {
       if (error.response?.status === ERROR_CODES.UNAUTHORIZED) {
         ToastHelper.error(
-          i18n?.t('error:access-expired.title') ?? 'Error',
-          i18n?.t('error:access-expired.description') ?? 'Access expired',
+          i18n?.t('access-expired.title', { ns: 'error' }) ?? 'Error',
+          i18n?.t('access-expired.description', { ns: 'error' }) ??
+            'Access expired',
         )
       }
       if (error.response?.status === ERROR_CODES.FORBIDDEN) {
         ToastHelper.error(
-          i18n?.t('error:access-denied.title') ?? 'Error',
-          i18n?.t('error:access-denied.description') ?? 'Access denied',
+          i18n?.t('access-denied.title', { ns: 'error' }) ?? 'Error',
+          i18n?.t('access-denied.description', { ns: 'error' }) ??
+            'Access denied',
         )
       }
-    } else {
-      ToastHelper.error(
-        i18n?.t('error:default-error.title') ?? 'Error',
-        i18n?.t('error:default-error.description') ??
-          'An unexpected error occurred',
-      )
+      return Promise.reject(error)
     }
-    throw error
   },
 )
 

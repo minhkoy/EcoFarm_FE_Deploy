@@ -1,10 +1,16 @@
 import axiosClient from '@/config/lib/axiosConfig'
-import { type LoginSchemaType } from '@/config/schema'
+import { type LoginSchemaType, type SignUpSchemaType } from '@/config/schema'
 import { type ReponseUser } from '@/models/user.model'
 
-const prefixUrl = '/Authentication/Login'
+const controler = '/Authentication'
 
-const loginApi = async (params: LoginSchemaType) =>
-  axiosClient.post<ReponseUser>(prefixUrl, params)
+export const loginApi = async (params: LoginSchemaType) =>
+  axiosClient.post<ReponseUser>(`${controler}/Login`, params)
 
-export { loginApi }
+export const signupApi = async (params: SignUpSchemaType) =>
+  axiosClient.post<ReponseUser>(
+    `${controler}/${
+      params.accountType === 'Customer' ? 'SignupAsUser' : 'SignupAsEnterprise'
+    }`,
+    params,
+  )

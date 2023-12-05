@@ -1,5 +1,9 @@
 import { Form, FormField, FormInput, FormItem } from '@/components/ui/form'
 import { fontSansStyle } from '@/config/lib/fonts'
+import {
+  createForgotPasswordSchema,
+  type ForgotPasswordSchemaType,
+} from '@/config/schema'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { LINK_AUTH } from '@/utils/constants/links'
@@ -16,17 +20,24 @@ import {
 } from '@nextui-org/react'
 import { capitalize } from 'lodash-es'
 import { ArrowLeftIcon } from 'lucide-react'
+import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
+import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => {
+export const getServerSideProps = async ({
+  locale,
+}: GetServerSidePropsContext) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'auth'], config)),
+      ...(await serverSideTranslations(
+        locale ?? 'vi',
+        ['common', 'auth'],
+        config,
+      )),
     },
   }
 }
@@ -34,17 +45,8 @@ export const getServerSideProps = async ({ locale }: { locale: string }) => {
 const ForgotPassScreen: NextPageWithLayout = () => {
   const router = useRouter()
   const { t } = useTranslation()
-  const schema = z.object({
-    email: z
-      .string()
-      .min(1, {
-        message: capitalize(t('auth:validation.email.isRequired')),
-      })
-      .email({
-        message: capitalize(t('auth:validation.email.isInValid')),
-      }),
-  })
-  const rhf = useForm<z.infer<typeof schema>>({
+  const schema = useMemo(() => createForgotPasswordSchema(t), [t])
+  const rhf = useForm<ForgotPasswordSchemaType>({
     mode: 'all',
     resolver: zodResolver(schema),
     defaultValues: {
@@ -52,7 +54,7 @@ const ForgotPassScreen: NextPageWithLayout = () => {
     },
   })
 
-  const onSubmit = (data: z.infer<typeof schema>) => {
+  const onSubmit = (data: ForgotPasswordSchemaType) => {
     console.log(data)
   }
 

@@ -8,9 +8,6 @@ import i18Config from './next-i18next.config.mjs'
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -18,7 +15,7 @@ const config = {
     return [
       {
         source: '/',
-        destination: '/dashboard/',
+        destination: '/homepage',
         permanent: true,
       },
     ]

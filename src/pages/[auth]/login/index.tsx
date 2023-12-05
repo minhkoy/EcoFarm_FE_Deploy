@@ -22,7 +22,7 @@ import {
   cn,
 } from '@nextui-org/react'
 import { useMutation } from '@tanstack/react-query'
-import { getCookie, setCookie } from 'cookies-next'
+import { setCookie } from 'cookies-next'
 import { capitalize } from 'lodash-es'
 import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -35,27 +35,16 @@ import { useForm } from 'react-hook-form'
 
 export async function getServerSideProps({
   locale,
-  req,
-  res,
 }: GetServerSidePropsContext) {
-  const hasCookie = getCookie(ACCESS_TOKEN, {
-    res,
-    req,
-  })
-  if (hasCookie) {
-    return {
-      redirect: {
-        destination: COMMON_LINK.DASHBOARD,
-        permanent: true,
-      },
-    }
+  return {
+    props: {
+      ...(await serverSideTranslations(
+        locale ?? 'vi',
+        ['common', 'auth'],
+        config,
+      )),
+    },
   }
-  if (locale)
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, ['common', 'auth'], config)),
-      },
-    }
 }
 
 const LoginScreen: NextPageWithLayout = () => {

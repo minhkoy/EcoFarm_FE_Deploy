@@ -72,22 +72,27 @@ const LoginScreen: NextPageWithLayout = () => {
       isRemember: false,
     },
   })
-  const { mutate, isPending } = useMutation({
-    mutationKey: ['auth', 'login'],
-    mutationFn: (params: LoginSchemaType) => loginApi(params),
-    onSuccess: (responseData) => {
-      ToastHelper.success(
-        capitalize(t('common:success')),
-        capitalize(t('auth:login.success')),
-      )
-      setCookie(ACCESS_TOKEN, responseData?.data.value.accessToken)
-      void router.replace(COMMON_LINK.DASHBOARD)
+  const { mutate: loginMutate, isPending } = useMutation({
+    mutationKey: ['login'],
+    mutationFn: loginApi,
+    onSuccess: ({ data }) => {
+      if (data.isSuccess) {
+        ToastHelper.success(
+          t('success', { ns: 'common' }),
+          t('auth:login.success'),
+        )
+        setCookie(ACCESS_TOKEN, data.value.accessToken)
+        void router.replace(COMMON_LINK.DASHBOARD)
+      } else {
+        ToastHelper.error(
+          t('default-error.title', { ns: 'error' }),
+          data.errors.join('. '),
+        )
+      }
     },
   })
 
-  const onSubmit = (data: LoginSchemaType) => {
-    mutate(data)
-  }
+  const onSubmit = (data: LoginSchemaType) => loginMutate(data)
 
   return (
     <>

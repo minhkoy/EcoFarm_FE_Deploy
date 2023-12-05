@@ -39,6 +39,7 @@
     "react-hook-form": "^7.48.2",
     "react-i18next": "^13.5.0",
     "react-redux": "^9.0.0",
+    "redux-logger": "^3.0.6",
     "redux-toolkit": "^1.1.2",
     "sonner": "^1.2.4",
     "zod": "^3.22.4"
@@ -52,6 +53,7 @@
     "@types/node": "^20.10.3",
     "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.15",
+    "@types/redux-logger": "^3.0.12",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "autoprefixer": "^10.4.14",

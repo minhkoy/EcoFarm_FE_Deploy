@@ -20,6 +20,13 @@ export const createCommonSchema = <T extends TFunction>(t: T) => {
         }),
       ),
     })
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(.{8,20})$/g,
+      t('validation.password.invalid', {
+        ns: 'auth',
+      }),
+    )
+
   const emailSchema = z
     .string()
     .min(1, { message: capitalize(t('auth:validation.email.isRequired')) })
@@ -63,7 +70,6 @@ export const createSignUpSchema = <T extends TFunction>(t: T) => {
           t('auth:validation.account-type.isRequired'),
         ),
       }),
-      dob: createCommonSchema(t).dateSchema.nullable(),
     })
     .refine((data) => data.password === data.confirmPassword, {
       message: capitalize(t('auth:validation.password.notMatch')),

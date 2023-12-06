@@ -10,7 +10,7 @@ import { createLoginSchema, type LoginSchemaType } from '@/config/schema'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { ACCESS_TOKEN } from '@/utils/constants/enums'
-import { COMMON_LINK, LINK_AUTH } from '@/utils/constants/links'
+import { LINK_AUTH } from '@/utils/constants/links'
 import { ToastHelper } from '@/utils/helpers/ToastHelper'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -71,7 +71,7 @@ const LoginScreen: NextPageWithLayout = () => {
           t('auth:login.success'),
         )
         setCookie(ACCESS_TOKEN, data.value.accessToken)
-        void router.replace(COMMON_LINK.DASHBOARD)
+        void router.reload()
       } else {
         ToastHelper.error(
           t('default-error.title', { ns: 'error' }),

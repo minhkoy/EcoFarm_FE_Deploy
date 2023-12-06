@@ -11,7 +11,7 @@ import { createSignUpSchema, type SignUpSchemaType } from '@/config/schema'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { LINK_AUTH } from '@/utils/constants/links'
-import { SO_AccountType } from '@/utils/constants/selectOption'
+import { SELECT_ACCOUNT_TYPE } from '@/utils/constants/selectOption'
 import { ToastHelper } from '@/utils/helpers/ToastHelper'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -215,7 +215,7 @@ const SignUpScreen: NextPageWithLayout = () => {
                     {...field}
                     label={capitalize(t('auth:field.account-type'))}
                   >
-                    {map(SO_AccountType, (item) => (
+                    {map(SELECT_ACCOUNT_TYPE, (item) => (
                       <SelectItem
                         style={{
                           ...fontSansStyle,

@@ -39,3 +39,20 @@ export const PACKAGE_TYPE = {
   Multiple: 'Multiple',
   Others: 'Others',
 }
+
+export const PAYMENT_METHOD = {
+  ServicePackage: 'ServicePackage',
+  Service: 'Service',
+  SellingProduct: 'SellingProduct',
+} as const
+
+export const ORDER_STATUS = {
+  WaitingSellerConfirm: 'WaitingSellerConfirm',
+  SellerConfirmed: 'SellerConfirmed',
+  Preparing: 'Preparing',
+  Received: 'Received',
+  Shipping: 'Shipping',
+  Shipped: 'Shipped',
+  RejectedBySeller: 'RejectedBySeller',
+  CancelledByCustomer: 'CancelledByCustomer',
+} as const

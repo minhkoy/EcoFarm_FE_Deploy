@@ -10,7 +10,7 @@ import { createLoginSchema, type LoginSchemaType } from '@/config/schema'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { ACCESS_TOKEN } from '@/utils/constants/enums'
-import { COMMON_LINK, LINK_AUTH } from '@/utils/constants/links'
+import { LINK_AUTH } from '@/utils/constants/links'
 import { ToastHelper } from '@/utils/helpers/ToastHelper'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -22,7 +22,7 @@ import {
   cn,
 } from '@nextui-org/react'
 import { useMutation } from '@tanstack/react-query'
-import { getCookie, setCookie } from 'cookies-next'
+import { setCookie } from 'cookies-next'
 import { capitalize } from 'lodash-es'
 import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -35,27 +35,16 @@ import { useForm } from 'react-hook-form'
 
 export async function getServerSideProps({
   locale,
-  req,
-  res,
 }: GetServerSidePropsContext) {
-  const hasCookie = getCookie(ACCESS_TOKEN, {
-    res,
-    req,
-  })
-  if (hasCookie) {
-    return {
-      redirect: {
-        destination: COMMON_LINK.DASHBOARD,
-        permanent: true,
-      },
-    }
+  return {
+    props: {
+      ...(await serverSideTranslations(
+        locale ?? 'vi',
+        ['common', 'auth'],
+        config,
+      )),
+    },
   }
-  if (locale)
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, ['common', 'auth'], config)),
-      },
-    }
 }
 
 const LoginScreen: NextPageWithLayout = () => {
@@ -82,7 +71,7 @@ const LoginScreen: NextPageWithLayout = () => {
           t('auth:login.success'),
         )
         setCookie(ACCESS_TOKEN, data.value.accessToken)
-        void router.replace(COMMON_LINK.DASHBOARD)
+        void router.reload()
       } else {
         ToastHelper.error(
           t('default-error.title', { ns: 'error' }),

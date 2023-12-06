@@ -26,17 +26,21 @@ import {
 import { useMutation } from '@tanstack/react-query'
 import { capitalize, map } from 'lodash-es'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-export async function getServerSideProps({ locale }: { locale: string }) {
+
+export async function getServerSideProps({
+  locale,
+}: GetServerSidePropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(
-        locale,
+        locale ?? 'vi',
         ['common', 'auth', 'select'],
         config,
       )),

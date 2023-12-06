@@ -1,6 +1,6 @@
 export const COMMON_LINK = {
   DASHBOARD: '/dashboard',
-  MAINPAGE: '/',
+  HOMEPAGE: '/homepage',
 }
 
 export const LINK_AUTH = {

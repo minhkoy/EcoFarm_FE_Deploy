@@ -27,7 +27,7 @@ interface Resources {
         "isRequired": "email không được để trống"
       },
       "password": {
-        "invalid": "validation.password.invalid",
+        "invalid": "mật khẩu phải bam gồm chữ hoa, chữ thường và số",
         "max": "mật khẩu không được quá {{max}} ký tự",
         "min": "mật khẩu không được ít hơn {{min}} ký tự",
         "notMatch": "nhập lại mật khẩu không khớp"
@@ -45,10 +45,13 @@ interface Resources {
     "error": "Đã xảy ra lỗi",
     "experience": "trải nghiệm",
     "explore": "khám phá",
+    "homepage": "trang chủ",
+    "log-out": "log-out",
     "login": "đăng nhập",
     "now": "ngay",
     "or": "hoặc",
     "reset-password": "Thay đổi mật khẩu",
+    "scenario": "kịch bản",
     "sign-up": "đăng ký",
     "success": "thành công",
     "username": "tài khoản",

@@ -18,6 +18,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Image,
   Link,
   cn,
 } from '@nextui-org/react'
@@ -28,7 +29,6 @@ import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'

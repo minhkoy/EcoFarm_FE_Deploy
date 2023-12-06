@@ -14,42 +14,26 @@ export type PackageModel = {
   name: string
   createAt: Date
   createBy: string
-  seller: Pick<EnterpriseModel, 'accountId' | 'taxCode' | 'fullName'>
+  seller: EnterpriseModel
   description: string
-  times: Time
-  price?: number
-  currency: keyof typeof CURRENCY_TYPE
-  currenyName: keyof typeof CURRENCY_TYPE
-  quantity?: Quantity
-  rejectReason?: string
-  servicePackageApprovalStatus: keyof typeof SERVICE_PACKAGE_APPROVAL_STATUS
-  servicePackageType: keyof typeof PACKAGE_TYPE
-  serviceTypeName: string
-  registeredUsers?: Array<
-    Pick<UserModel, 'accountId' | 'username' | 'fullName'> & {
-      registerTime?: Date
-    }
-  >
-  rating?: Rating
-}
-
-type Time = {
   estimateStartTime: Date
   estimateEndTime: Date
   closeRegisterTime: Date
   startTime: Date
   endTime: Date
-}
-
-type Quantity = {
+  price?: number
+  currency: keyof typeof CURRENCY_TYPE
+  currenyName: keyof typeof CURRENCY_TYPE
   quantityTotal: number
   quantityRegister: number
   quantityRemain: number
-}
-
-type Rating = {
-  total: number
-  average: number
+  rejectReason?: string
+  servicePackageApprovalStatus: keyof typeof SERVICE_PACKAGE_APPROVAL_STATUS
+  servicePackageType: keyof typeof PACKAGE_TYPE
+  serviceTypeName: string
+  registeredUsers?: Array<UserModel>
+  numbersOfRating?: number
+  averageRating?: number
 }
 
 export type ResponsePackage = ResponseModel<PackageModel>

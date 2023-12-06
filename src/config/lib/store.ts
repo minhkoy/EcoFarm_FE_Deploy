@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
-import filterReducer from '../reducers/filterReducer'
+import { packageReducer } from '../reducers/packages'
 
 const store = configureStore({
   reducer: {
-    filterParams: filterReducer,
+    package: packageReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(logger),

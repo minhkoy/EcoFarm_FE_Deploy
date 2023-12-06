@@ -1,6 +1,6 @@
 import { type GENDER } from '@/utils/constants/enums'
 import { type AccountModel } from './account.model'
-import { type ResponseModel } from './response.model'
+import { type ResponseModel } from './helpers/response.model'
 
 type Address = {
   id: string

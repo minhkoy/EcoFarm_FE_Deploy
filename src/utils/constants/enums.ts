@@ -19,3 +19,22 @@ export const GENDER = {
   FEMALE: 'FEMALE',
   OTHERS: 'OTHERS',
 } as const
+
+export const CURRENCY_TYPE = {
+  VND: 'VND',
+  USD: 'USD',
+} as const
+
+export const SERVICE_PACKAGE_APPROVAL_STATUS = {
+  Approved: 'Approved',
+  Rejected: 'Rejected',
+  Pending: 'Pending',
+} as const
+
+export const PACKAGE_TYPE = {
+  Tourism: 'Tourism',
+  Farming: 'Farming',
+  PetCare: 'PetCare',
+  Multiple: 'Multiple',
+  Others: 'Others',
+}

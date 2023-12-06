@@ -5,6 +5,8 @@ const config = {
   singleQuote: true,
   jsxSingleQuote: true,
   endOfLine: 'crlf',
+  tabWidth:2,
+  useTabs: false,
 }
 
 export default config

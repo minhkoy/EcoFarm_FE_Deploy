@@ -7,7 +7,7 @@ import { Select, SelectItem } from "@nextui-org/react"
 import { type GetServerSideProps } from "next"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { ChangeEvent, useCallback } from "react"
+import { type ChangeEvent, useCallback } from "react"
 import { type NextPageWithLayout } from "../_app"
 import config from "next-i18next.config.mjs"
 import { toNumber } from "lodash-es"
@@ -62,7 +62,7 @@ const PackagesScreen: NextPageWithLayout = () => {
   }, [appDispatch])
 
   return (
-    <>
+    <div className="">
       <section>
                 
       </section>
@@ -76,7 +76,7 @@ const PackagesScreen: NextPageWithLayout = () => {
       >
         {(fakeFilter) => <SelectItem key={fakeFilter.value}>{fakeFilter.label}</SelectItem>}
       </Select>
-    </>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import { type QueryPackage } from '@/models/package.model'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { cloneDeep, merge } from 'lodash-es'
+import { merge } from 'lodash-es'
 
 const initialState: QueryPackage = {
   keyword: '',
@@ -13,10 +13,7 @@ export const packageSlice = createSlice({
   initialState,
   reducers: {
     setFilterParams: (state, action: PayloadAction<typeof initialState>) => {
-      const previousState = cloneDeep(state)
-      console.log('previousState', merge(previousState, action.payload))
-      state = merge(previousState, action.payload)
-      // state = action.payload
+      state = merge(state, action.payload)
     },
   },
 })

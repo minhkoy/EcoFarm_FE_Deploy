@@ -25,12 +25,13 @@ import {
 import { useMutation } from '@tanstack/react-query'
 import { setCookie } from 'cookies-next'
 import { capitalize } from 'lodash-es'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export async function getServerSideProps({
@@ -48,9 +49,10 @@ export async function getServerSideProps({
 }
 
 const LoginScreen: NextPageWithLayout = () => {
-  const { t } = useTranslation(['common', 'auth', 'error'])
+  const { t } = useTranslation()
   const router = useRouter()
   const schema = useMemo(() => createLoginSchema(t), [t])
+  const [TogglePassword, setTogglePassword] = useState(false)
   // ==================== React Hook Form ====================
   const form = useForm<LoginSchemaType>({
     mode: 'all',
@@ -132,9 +134,19 @@ const LoginScreen: NextPageWithLayout = () => {
                 <FormItem>
                   <FormInput
                     {...field}
-                    type='password'
+                    type={TogglePassword ? 'text' : 'password'}
                     variant='flat'
                     isRequired
+                    endContent={
+                      <Button
+                        variant='light'
+                        isIconOnly
+                        type='button'
+                        onClick={() => setTogglePassword((prev) => !prev)}
+                      >
+                        {TogglePassword ? <EyeOffIcon /> : <EyeIcon />}
+                      </Button>
+                    }
                     label={capitalize(t('auth:field.your-password'))}
                   />
                 </FormItem>

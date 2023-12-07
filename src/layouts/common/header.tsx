@@ -1,4 +1,4 @@
-import { Button, Link, Navbar, NavbarContent, NavbarItem } from "@nextui-org/react"
+import { Button, Divider, Link, Navbar, NavbarContent, NavbarItem } from "@nextui-org/react"
 import { useRouter } from "next/router"
 import { useTranslation } from "next-i18next"
 import { BoxIcon, HomeIcon, PackageIcon } from "lucide-react"
@@ -29,12 +29,12 @@ const Header = () => {
       }
     ], [t])
     return (
-      
+      <div className=" flex flex-col">
         <Navbar>
           <NavbarContent className='hidden gap-4 sm:flex' justify='center'>
             {items.map((item) => (
               <NavbarItem key={item.id} isActive={pathname.includes(item.href)}>
-                <Link color='foreground' href={item.href} className='uppercase'>
+                <Link color='foreground' href={item.href} className='uppercase text-primary'>
                   {item.icon}
                   {item.label}
                 </Link>
@@ -50,6 +50,8 @@ const Header = () => {
             </NavbarItem>
           </NavbarContent>
         </Navbar>
+        <Divider orientation="horizontal" className="my-4" />
+      </div>
     )
 }
 

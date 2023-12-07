@@ -9,6 +9,10 @@ export default function useFetchPackage() {
   const params = useAppSelector((state) => state.package, shallowEqual)
   return useQuery({
     queryKey: [...queryKey, params],
-    queryFn: () => getListPackages(params),
+    queryFn: () => getListPackages({
+      page: params.page ?? 1,
+      limit: params.limit ?? 10,
+      keyword: params.keyword ?? '',
+    }),
   })
 }

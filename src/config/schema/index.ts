@@ -20,12 +20,12 @@ export const createCommonSchema = <T extends TFunction>(t: T) => {
         }),
       ),
     })
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(.{8,20})$/g,
-      t('validation.password.invalid', {
-        ns: 'auth',
-      }),
-    )
+    // .regex(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(.{8,20})$/g,
+    //   t('validation.password.invalid', {
+    //     ns: 'auth',
+    //   }),
+    // )
 
   const emailSchema = z
     .string()

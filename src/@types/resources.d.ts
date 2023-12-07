@@ -27,7 +27,6 @@ interface Resources {
         "isRequired": "email không được để trống"
       },
       "password": {
-        "invalid": "mật khẩu phải bam gồm chữ hoa, chữ thường và số",
         "max": "mật khẩu không được quá {{max}} ký tự",
         "min": "mật khẩu không được ít hơn {{min}} ký tự",
         "notMatch": "nhập lại mật khẩu không khớp"
@@ -50,7 +49,7 @@ interface Resources {
     "login": "đăng nhập",
     "now": "ngay",
     "or": "hoặc",
-    "packages": "packages",
+    "packages": "gói farming",
     "reset-password": "Thay đổi mật khẩu",
     "scenario": "kịch bản",
     "sign-up": "đăng ký",

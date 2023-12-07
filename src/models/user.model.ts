@@ -21,4 +21,4 @@ export type UserModel = AccountModel & {
   addresses?: Array<Address>
 }
 
-export type ReponseUser = ResponseModel<UserModel>
+export type ResponseUser = ResponseModel<UserModel>

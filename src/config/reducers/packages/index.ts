@@ -8,7 +8,7 @@ const initialState: QueryPackage = {
   limit: 10,
 }
 
-export const { actions, reducer } = createSlice({
+export const packageSlice = createSlice({
   name: 'package/slices',
   initialState,
   reducers: {
@@ -21,6 +21,4 @@ export const { actions, reducer } = createSlice({
   },
 })
 
-export const { setFilterParams } = actions
-const packageReducer = reducer
-export default packageReducer
+export const { setFilterParams } = packageSlice.actions

@@ -76,7 +76,7 @@ const SignUpScreen: NextPageWithLayout = () => {
   const { mutate: signUpMutate, isPending } = useMutation({
     mutationKey: ['signUp'],
     mutationFn: signupApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       if (data.isSuccess) {
         ToastHelper.success(
           t('success', { ns: 'common' }),

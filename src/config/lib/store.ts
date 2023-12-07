@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
-import packageReducer from '../reducers/packages'
+import { packageSlice } from '../reducers/packages'
 
 const store = configureStore({
   reducer: {
-    package: packageReducer,
+    package: packageSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 

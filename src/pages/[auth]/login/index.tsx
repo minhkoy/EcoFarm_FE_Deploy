@@ -64,7 +64,7 @@ const LoginScreen: NextPageWithLayout = () => {
   const { mutate: loginMutate, isPending } = useMutation({
     mutationKey: ['login'],
     mutationFn: loginApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       if (data.isSuccess) {
         ToastHelper.success(
           t('success', { ns: 'common' }),

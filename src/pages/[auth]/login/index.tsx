@@ -40,7 +40,7 @@ export async function getServerSideProps({
     props: {
       ...(await serverSideTranslations(
         locale ?? 'vi',
-        ['common', 'auth'],
+        ['common', 'auth', 'error'],
         config,
       )),
     },
@@ -48,7 +48,7 @@ export async function getServerSideProps({
 }
 
 const LoginScreen: NextPageWithLayout = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation(['common', 'auth', 'error'])
   const router = useRouter()
   const schema = useMemo(() => createLoginSchema(t), [t])
   // ==================== React Hook Form ====================
@@ -64,7 +64,7 @@ const LoginScreen: NextPageWithLayout = () => {
   const { mutate: loginMutate, isPending } = useMutation({
     mutationKey: ['login'],
     mutationFn: loginApi,
-    onSuccess: (data) => {
+    onSuccess: ({ data }) => {
       if (data.isSuccess) {
         ToastHelper.success(
           t('success', { ns: 'common' }),

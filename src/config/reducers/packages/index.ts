@@ -9,7 +9,7 @@ const initialState: QueryPackage = {
 }
 
 export const packageSlice = createSlice({
-  name: 'package/slices',
+  name: 'package',
   initialState,
   reducers: {
     setFilterParams: (state, action: PayloadAction<typeof initialState>) => {

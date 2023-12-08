@@ -23,7 +23,7 @@ export type PackageModel = {
   endTime: Date
   price?: number
   currency: keyof typeof CURRENCY_TYPE
-  currenyName: keyof typeof CURRENCY_TYPE
+  currencyName: keyof typeof CURRENCY_TYPE
   quantityTotal: number
   quantityRegister: number
   quantityRemain: number

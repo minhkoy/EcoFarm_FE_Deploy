@@ -1,4 +1,4 @@
-import axiosClient from '@/config/lib/axiosConfig'
+import { axiosClient } from '@/config/lib/axiosConfig'
 import { type QueryPackage, type ResponsePackage } from '@/models/package.model'
 import { type AxiosPromise } from 'axios'
 

@@ -6,9 +6,19 @@ import { getCookie } from 'cookies-next'
 import { i18n } from 'next-i18next'
 import queryString from 'query-string'
 
-const axiosClient = axios.create({
+export const axiosClient = axios.create({
   baseURL: env.NEXT_PUBLIC_API_URL,
   headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json; charset=utf-8',
+  },
+  paramsSerializer: (params) => queryString.stringify(params),
+})
+
+export const axiosClientTaxCode = axios.create({
+  baseURL: env.NEXT_PUBLIC_TAX_CODE_API,
+  headers: {
+    Authorization: `Bearer ${env.NEXT_PUBLIC_TAX_CODE_ACCESS_TOKEN}`,
     Accept: 'application/json',
     'Content-Type': 'application/json; charset=utf-8',
   },
@@ -58,5 +68,3 @@ axiosClient.interceptors.response.use(
     }
   },
 )
-
-export default axiosClient

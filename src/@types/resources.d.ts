@@ -8,7 +8,8 @@ interface Resources {
       "remember-me": "ghi nhớ đăng nhập",
       "your-email": "email của bạn",
       "your-password": "mật khẩu của bạn",
-      "your-username": "tên đăng nhập của bạn"
+      "your-tax-code": "field.your-tax-code",
+      "your-username": "field.your-username"
     },
     "have-account": "đã có tài khoản",
     "login": {
@@ -31,6 +32,9 @@ interface Resources {
         "min": "mật khẩu không được ít hơn {{min}} ký tự",
         "notMatch": "nhập lại mật khẩu không khớp"
       },
+      "taxCode": {
+        "isRequired": "mã số thuế không được để trống"
+      },
       "username": {
         "isRequired": "tên đăng nhập không được để trống"
       },
@@ -51,7 +55,6 @@ interface Resources {
     "or": "hoặc",
     "packages": "gói farming",
     "reset-password": "Thay đổi mật khẩu",
-    "scenario": "kịch bản",
     "sign-up": "đăng ký",
     "success": "thành công",
     "username": "tài khoản",

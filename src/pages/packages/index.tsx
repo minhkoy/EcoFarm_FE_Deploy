@@ -62,7 +62,7 @@ const PackagesScreen: NextPageWithLayout = () => {
         placeholder='Select limit'
         className='max-w-xs'
         isLoading={isLoading}
-        onSelect={onChange}
+        onChange={onChange}
         defaultSelectedKeys={[toString(currentLimit)]}
       >
         {(fakeFilter) => (

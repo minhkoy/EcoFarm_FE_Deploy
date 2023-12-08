@@ -36,6 +36,7 @@ export type PackageModel = {
   averageRating?: number
 }
 
+export type ResponsePackages = ResponseModel<Array<PackageModel>>
 export type ResponsePackage = ResponseModel<PackageModel>
 export type QueryPackage = QueryRequest<{
   enterpriseId?: string
@@ -43,4 +44,9 @@ export type QueryPackage = QueryRequest<{
   priceTo?: number
   isStart?: boolean
   isEnded?: boolean
+}>
+
+export type QuerySinglePackage = QueryRequest<{
+  id?: string
+  code?: string
 }>

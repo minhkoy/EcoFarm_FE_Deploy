@@ -1,0 +1,9 @@
+{
+  "has-price": "has-price",
+  "info": {
+    "farm-package": "thông tin {{total}} gói farming"
+  },
+  "notFound": {
+    "package": "Không tìm thấy gói"
+  }
+}

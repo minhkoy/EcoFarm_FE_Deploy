@@ -1,0 +1,9 @@
+{
+  "has-price": "has-price",
+  "info": {
+    "farm-package": "info.farm-package"
+  },
+  "notFound": {
+    "package": "package not found"
+  }
+}

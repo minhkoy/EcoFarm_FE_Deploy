@@ -51,7 +51,6 @@ interface Resources {
     "or": "hoặc",
     "packages": "gói farming",
     "reset-password": "Thay đổi mật khẩu",
-    "scenario": "kịch bản",
     "sign-up": "đăng ký",
     "success": "thành công",
     "username": "tài khoản",
@@ -73,6 +72,14 @@ interface Resources {
     },
     "default-error": {
       "title": "Lỗi"
+    }
+  },
+  "farm-package": {
+    "info": {
+      "farm-package": "thông tin {{total}} gói farming"
+    },
+    "notFound": {
+      "package": "Không tìm thấy gói"
     }
   },
   "select": {

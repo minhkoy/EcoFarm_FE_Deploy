@@ -14,7 +14,7 @@ export default function Providers({ children }: PropsWithChildren) {
           <main
             className={cn(
               nextFonts,
-              'relative scroll-smooth font-sans text-foreground antialiased selection:bg-primary selection:text-primary-foreground ',
+              'relative scroll-smooth font-sans text-foreground antialiased selection:bg-primary selection:text-primary-foreground bg-background',
             )}
           >
             {children}

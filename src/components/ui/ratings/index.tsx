@@ -1,3 +1,5 @@
+import { range } from "lodash-es";
+
 interface iProps {
     rating: number;
 }
@@ -6,7 +8,7 @@ export const StarRating = (props: iProps) => {
   
     return (
       <div className="flex items-center">
-        {[...Array(maxStars)].map((_, index) => (
+        {range(maxStars).map((_, index) => (
           <svg
             key={index}
             className={`h-6 w-6 fill-current text-${index < props.rating ? 'yellow-500' : 'gray-300'}`}

@@ -3,7 +3,7 @@ import useFetchPackage from '@/hooks/queries/useFetchPackage'
 import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import { useAppSelector } from '@/hooks/redux/useAppSelector'
 import MainLayout from '@/layouts/common/main'
-import { QueryPackages, type PackageModel } from '@/models/package.model'
+import { type QueryPackages, type PackageModel } from '@/models/package.model'
 import {
   Button,
   Card,

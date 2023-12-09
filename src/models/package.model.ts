@@ -38,7 +38,9 @@ export type PackageModel = {
 
 export type ResponsePackages = ResponseModel<Array<PackageModel>>
 export type ResponsePackage = ResponseModel<PackageModel>
-export type QueryPackage = QueryRequest<{
+
+export type QueryPackages = QueryRequest<{
+  keyword?: string
   enterpriseId?: string
   priceFrom?: number
   priceTo?: number
@@ -46,7 +48,7 @@ export type QueryPackage = QueryRequest<{
   isEnded?: boolean
 }>
 
-export type QuerySinglePackage = QueryRequest<{
+export type QuerySinglePackage = {
   id?: string
   code?: string
-}>
+}

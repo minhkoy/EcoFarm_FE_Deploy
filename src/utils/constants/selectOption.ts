@@ -21,3 +21,10 @@ export const SELECT_ORDER_STATUS = [
   { value: ORDER_STATUS.Shipping, label: 'shipping' },
   { value: ORDER_STATUS.WaitingSellerConfirm, label: 'waiting-seller-confirm' },
 ]
+
+export const SELECT_LIMIT = [
+  {value: 10, label: '10'},
+  {value: 20, label: '20'},
+  {value: 30, label: '30'},
+  {value: 50, label: '50'},
+]

@@ -1,8 +1,8 @@
-import { type QueryPackage } from '@/models/package.model'
+import { type QueryPackages } from '@/models/package.model'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { merge } from 'lodash-es'
 
-const initialState: QueryPackage = {
+const initialState: QueryPackages = {
   keyword: '',
   page: 1,
   limit: 10,

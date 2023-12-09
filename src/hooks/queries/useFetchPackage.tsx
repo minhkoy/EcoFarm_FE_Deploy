@@ -11,11 +11,7 @@ export default function useFetchPackage() {
     staleTime: 0, // 0 = always fetch, Infinity = never refetch
     queryKey: [...queryKey, params],
     queryFn: () =>
-      getListPackages({
-        page: params.page ?? 1,
-        limit: params.limit ?? 10,
-        keyword: params.keyword ?? '',
-      }),
+      getListPackages(params),
       select: (data) => {
         if(data.status >= 200 && data.status < 300) {
           return data.data.value

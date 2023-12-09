@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@microsoft/signalr": "7.0.14",
     "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^2.0.1",
     "@t3-oss/env-nextjs": "^0.7.1",

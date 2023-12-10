@@ -7,9 +7,13 @@ export const queryKey = ['package', 'getSinglePackage']
 
 export default function useFetchSinglePackage() {
   const params = useAppSelector((state) => state.singlePackage, shallowEqual)
-  return useQuery({
+  const {data, isLoading} =  useQuery({
     queryKey: [...queryKey, params],
     queryFn: () =>
       getSinglePackage(params),  
+  })
+  return ({
+    packageData: data?.data.value,
+    isLoading: isLoading,
   })
 }

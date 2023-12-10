@@ -8,7 +8,12 @@ import useFetchSinglePackage from '@/hooks/queries/useFetchSinglePackage'
 const PackageDetailScreen: NextPageWithLayout = () => {
   const { query } = useRouter()
   const packageId = useMemo(() => getQueryUrlValue(query, 0), [query])
-  const { data: packageData, isLoading } = useFetchSinglePackage()
+  const { packageData, isLoading } = useFetchSinglePackage()
+  if (isLoading) {
+    return (
+      <div>Loading....</div>
+    )
+  }
   return (
     // {
     //     isLoading ? {

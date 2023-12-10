@@ -20,12 +20,12 @@ export const createCommonSchema = <T extends TFunction>(t: T) => {
         }),
       ),
     })
-    // .regex(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(.{8,20})$/g,
-    //   t('validation.password.invalid', {
-    //     ns: 'auth',
-    //   }),
-    // )
+  // .regex(
+  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(.{8,20})$/g,
+  //   t('validation.password.invalid', {
+  //     ns: 'auth',
+  //   }),
+  // )
 
   const emailSchema = z
     .string()
@@ -59,22 +59,55 @@ export const createLoginSchema = <T extends TFunction>(t: T) => {
 export const createSignUpSchema = <T extends TFunction>(t: T) => {
   return z
     .object({
-      username: z.string().min(1, {
-        message: capitalize(t('auth:validation.username.isRequired')),
-      }),
+      username: z.string(),
+      taxCode: z.string(),
       email: createCommonSchema(t).emailSchema,
       password: createCommonSchema(t).passwordSchema,
       confirmPassword: createCommonSchema(t).passwordSchema,
       accountType: z.nativeEnum(omit(ACCOUNT_TYPE, ['ADMIN', 'SA']), {
-        required_error: capitalize(
-          t('auth:validation.account-type.isRequired'),
-        ),
+        errorMap: (issue) => {
+          switch (issue.code) {
+            case 'invalid_enum_value':
+            case 'invalid_type':
+              return {
+                message: capitalize(
+                  t('validation.account-type.isRequired', { ns: 'auth' }),
+                ),
+              }
+            default:
+              return {
+                message: issue.message ?? '',
+              }
+          }
+        },
       }),
     })
     .refine((data) => data.password === data.confirmPassword, {
       message: capitalize(t('auth:validation.password.notMatch')),
       path: ['confirmPassword'],
     })
+    .refine(
+      ({ accountType, taxCode }) => {
+        if (accountType !== ACCOUNT_TYPE.SELLER) return true
+        return taxCode && taxCode.length > 0
+      },
+      {
+        path: ['taxCode'],
+        message: capitalize(t('validation.taxCode.isRequired', { ns: 'auth' })),
+      },
+    )
+    .refine(
+      ({ accountType, username }) => {
+        if (accountType !== ACCOUNT_TYPE.CUSTOMER) return true
+        return username && username.length > 0
+      },
+      {
+        path: ['username'],
+        message: capitalize(
+          t('validation.username.isRequired', { ns: 'auth' }),
+        ),
+      },
+    )
 }
 
 export const createForgotPasswordSchema = <T extends TFunction>(t: T) => {

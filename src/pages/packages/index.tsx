@@ -1,33 +1,27 @@
 import { setFilterParams } from '@/config/reducers/packages'
 import useFetchPackage from '@/hooks/queries/useFetchPackage'
 import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
-import { useAppSelector } from '@/hooks/redux/useAppSelector'
 import MainLayout from '@/layouts/common/main'
-import { type QueryPackages, type PackageModel } from '@/models/package.model'
+import { type QueryPackages } from '@/models/package.model'
+import { splitDigits } from '@/utils/helpers/CommonHelper'
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
+  Checkbox,
   Image,
-  Input,
-  Select,
-  SelectItem,
-  Switch,
-  cn,
+  Input
 } from '@nextui-org/react'
-import { capitalize, isEmpty, toNumber, toString } from 'lodash-es'
+import { capitalize, isEmpty, toNumber } from 'lodash-es'
+import { StarIcon } from 'lucide-react'
 import { type GetServerSideProps } from 'next'
+import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useCallback, type ChangeEvent, useState } from 'react'
-import { type NextPageWithLayout } from '../_app'
-import { useTranslation } from 'next-i18next'
-import ecoFarmLogo from '@/../public/assets/brands/EcoFarm.svg' // => đọc lại cách import image của nextjs, như này sai rồi
 import { useRouter } from 'next/navigation'
-import { Star, StarIcon } from 'lucide-react'
-import { splitDigits } from '@/utils/helpers/CommonHelper'
-import { SELECT_LIMIT } from '@/utils/constants/selectOption'
+import { useState } from 'react'
+import { type NextPageWithLayout } from '../_app'
 //import Image from 'next/image'
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
@@ -43,23 +37,24 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 }
 
 const PackagesScreen: NextPageWithLayout = () => {
-  const [filters, setFilterParams] = useState<QueryPackages>({
+  const [filters, setFilters] = useState<QueryPackages>({
     limit: 10,
     page: 1,
     keyword: '',
     priceFrom: undefined,
     priceTo: undefined,
-    enterpriseId: '',    
-    isEnded: false,
+    enterpriseId: '',
+    isStart: undefined,
+    isEnded: undefined,
   })
   const appDispatch = useAppDispatch()
   const { t } = useTranslation()
   const router = useRouter()
-  const { data: packageData, isLoading } = useFetchPackage()
-  
+  const { packageData, isLoading } = useFetchPackage()
+  //const packageData = useMemo(() => queryResult?.data.value, [queryResult])
   // const onChange = useCallback(
   //   (e: ChangeEvent<HTMLSelectElement>) => {
-  //   setFilterParams(prev => ({
+  //   setFilters(prev => ({
   //     ...prev,
   //     limit: toNumber(e.target.value)
   //   }))
@@ -67,18 +62,22 @@ const PackagesScreen: NextPageWithLayout = () => {
   //   [],
   // )
 
+  if (isLoading) {
+    return (
+      <div>Loading....</div>
+    )
+  }
   return (
     <div className=' grid grid-cols-3 gap-4'>
       <div className='col-span-3 flex flex-col bg-primary p-4 sm:col-span-1'>
         <div className='mb-4'>
-          <Input 
+          <Input
             type='text'
             placeholder='Tên gói farming ...'
             onChange={(e) => {
-              setFilterParams({
-                ...filters,
-                keyword: e.target.value,
-              })            
+              appDispatch(setFilterParams({
+                keyword: e.target.value
+              }));
             }}
           />
         </div>
@@ -90,43 +89,43 @@ const PackagesScreen: NextPageWithLayout = () => {
               //pattern='[0-9]*'
               placeholder='Từ giá ...'
               onChange={(e) => {
-                setFilterParams({
+                setFilters({
                   ...filters,
                   priceFrom: toNumber(e.target.value),
-                })                
+                })
               }}
             />
-            <Input type='number' placeholder='Đến giá ...' 
+            <Input type='number' placeholder='Đến giá ...'
               onChange={(e) => {
-                setFilterParams({
+                setFilters({
                   ...filters,
                   priceTo: toNumber(e.target.value),
-                })                
+                })
               }}
             />
           </div>
         </div>
         <div className='mb-4'>
-          <Switch
+          <Checkbox
             onChange={(e) => {
-              setFilterParams({
+              setFilters({
                 ...filters,
-                isStart: e.target.checked,
+                isStart: e.target.checked ? true : undefined,
               })
             }}
           >Đã bắt đầu
-          </Switch>
+          </Checkbox>
         </div>
         <div className='mb-4'>
-          <Switch
+          <Checkbox
             onChange={(e) => {
-              setFilterParams({
+              setFilters({
                 ...filters,
-                isEnded: e.target.checked,
+                isEnded: e.target.checked ? true : undefined,
               })
             }}
           >Đã kết thúc
-          </Switch>
+          </Checkbox>
         </div>
         <div className='mb-4 object-center'>
           <Button

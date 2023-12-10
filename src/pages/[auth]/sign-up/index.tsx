@@ -7,7 +7,11 @@ import {
 } from '@/components/ui/form'
 import { signupApi } from '@/config/apis/authentication'
 import { fontSansStyle } from '@/config/lib/fonts'
+import { setTaxCode } from '@/config/reducers/auth'
 import { createSignUpSchema, type SignUpSchemaType } from '@/config/schema'
+import useCheckTaxCode from '@/hooks/queries/useCheckTaxCode'
+import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
+import { useAppSelector } from '@/hooks/redux/useAppSelector'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { LINK_AUTH } from '@/utils/constants/links'
@@ -24,14 +28,20 @@ import {
   cn,
 } from '@nextui-org/react'
 import { useMutation } from '@tanstack/react-query'
-import { capitalize, map } from 'lodash-es'
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import { capitalize, isEmpty, map } from 'lodash-es'
+import {
+  CheckIcon,
+  EyeIcon,
+  EyeOffIcon,
+  Loader2Icon,
+  XIcon,
+} from 'lucide-react'
 import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export async function getServerSideProps({
@@ -56,7 +66,8 @@ const defaultValues = {
 const SignUpScreen: NextPageWithLayout = () => {
   const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(defaultValues)
-
+  const dispatch = useAppDispatch()
+  const taxCode = useAppSelector((s) => s.auth.taxCode)
   const toggleVisibility = (type: keyof typeof defaultValues) =>
     setIsVisible((prev) => ({ ...prev, [type]: !prev[type] }))
 
@@ -67,9 +78,11 @@ const SignUpScreen: NextPageWithLayout = () => {
     mode: 'all',
     defaultValues: {
       email: '',
+      taxCode: '',
       password: '',
       username: '',
       confirmPassword: '',
+      accountType: 'Seller',
     },
   })
 
@@ -91,7 +104,26 @@ const SignUpScreen: NextPageWithLayout = () => {
     },
   })
 
+  const {
+    data: taxData,
+    isGettingTaxCode,
+    errorText,
+    isError,
+  } = useCheckTaxCode(1000)
+
   const onSubmit = (values: SignUpSchemaType) => signUpMutate(values)
+
+  useEffect(() => {
+    if (taxCode) {
+      rhf.setValue('taxCode', taxCode)
+    }
+  }, [rhf, taxCode])
+
+  useEffect(() => {
+    if (!isEmpty(taxData)) {
+      rhf.setValue('email', taxData.email ?? '')
+    }
+  }, [rhf, taxData])
 
   return (
     <>
@@ -108,16 +140,44 @@ const SignUpScreen: NextPageWithLayout = () => {
           <form onSubmit={rhf.handleSubmit(onSubmit)} className='space-y-8'>
             <FormField
               control={rhf.control}
-              name='username'
-              render={({ field }) => (
+              name={
+                rhf.getValues('accountType') === 'Customer'
+                  ? 'username'
+                  : 'taxCode'
+              }
+              render={({ field, fieldState }) => (
                 <FormItem>
                   <FormInput
                     {...field}
+                    defaultValue={field.value}
                     type='text'
                     variant='flat'
                     isRequired
-                    label={capitalize(t('auth:field.your-username'))}
+                    label={
+                      rhf.getValues('accountType') === 'Customer'
+                        ? capitalize(t('field.your-username', { ns: 'auth' }))
+                        : capitalize(t('field.your-tax-code', { ns: 'auth' }))
+                    }
                     autoComplete={'off'}
+                    endContent={
+                      isGettingTaxCode ? (
+                        <Loader2Icon className='pointer-events-none h-5 w-5 animate-spinner-ease-spin' />
+                      ) : isError ? (
+                        <XIcon className='pointer-events-none h-5 w-5 text-danger' />
+                      ) : !isEmpty(taxData) ? (
+                        <CheckIcon className='pointer-events-none h-5 w-5 text-success' />
+                      ) : null
+                    }
+                    onBlur={() => {
+                      field.onBlur()
+                      dispatch(setTaxCode(field.value))
+                    }}
+                    isInvalid={
+                      (fieldState.error && fieldState.isTouched) ?? isError
+                    }
+                    errorMessage={
+                      fieldState.error?.message ?? isError ? errorText : ''
+                    }
                   />
                 </FormItem>
               )}
@@ -213,6 +273,8 @@ const SignUpScreen: NextPageWithLayout = () => {
                 <FormItem>
                   <FormSelect
                     {...field}
+                    defaultSelectedKeys={[field.value]}
+                    selectionMode='single'
                     label={capitalize(t('auth:field.account-type'))}
                   >
                     {map(SELECT_ACCOUNT_TYPE, (item) => (

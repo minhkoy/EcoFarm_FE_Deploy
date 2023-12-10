@@ -3,6 +3,11 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { merge } from 'lodash-es'
 
 const initialState: QueryPackages = {
+  enterpriseId: '',
+  isEnded: undefined,
+  isStart: undefined,
+  priceFrom: 0,
+  priceTo: 0,
   keyword: '',
   page: 1,
   limit: 10,

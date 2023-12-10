@@ -41,6 +41,7 @@ import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -65,6 +66,7 @@ const defaultValues = {
 
 const SignUpScreen: NextPageWithLayout = () => {
   const { t } = useTranslation()
+  const router = useRouter()
   const [isVisible, setIsVisible] = useState(defaultValues)
   const dispatch = useAppDispatch()
   const taxCode = useAppSelector((s) => s.auth.taxCode)
@@ -95,6 +97,7 @@ const SignUpScreen: NextPageWithLayout = () => {
           t('success', { ns: 'common' }),
           capitalize(t('sign-up.success', { ns: 'auth' })),
         )
+        void router.push(LINK_AUTH.LOGIN)
       } else {
         ToastHelper.error(
           t('error', { ns: 'common' }),
@@ -170,7 +173,8 @@ const SignUpScreen: NextPageWithLayout = () => {
                     }
                     onBlur={() => {
                       field.onBlur()
-                      dispatch(setTaxCode(field.value))
+                      if (rhf.getValues('accountType') === 'Seller')
+                        dispatch(setTaxCode(field.value))
                     }}
                     isInvalid={
                       (fieldState.error && fieldState.isTouched) ?? isError

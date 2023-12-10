@@ -5,13 +5,11 @@ import {
   FormInput,
   FormItem,
 } from '@/components/ui/form'
-import { loginApi } from '@/config/apis/authentication'
 import { createLoginSchema, type LoginSchemaType } from '@/config/schema'
+import useSignIn from '@/hooks/mutations/useSignin'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
-import { ACCESS_TOKEN } from '@/utils/constants/enums'
 import { LINK_AUTH } from '@/utils/constants/links'
-import { ToastHelper } from '@/utils/helpers/ToastHelper'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Button,
@@ -22,15 +20,12 @@ import {
   Link,
   cn,
 } from '@nextui-org/react'
-import { useMutation } from '@tanstack/react-query'
-import { setCookie } from 'cookies-next'
 import { capitalize } from 'lodash-es'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -50,7 +45,6 @@ export async function getServerSideProps({
 
 const LoginScreen: NextPageWithLayout = () => {
   const { t } = useTranslation()
-  const router = useRouter()
   const schema = useMemo(() => createLoginSchema(t), [t])
   const [TogglePassword, setTogglePassword] = useState(false)
   // ==================== React Hook Form ====================
@@ -63,25 +57,7 @@ const LoginScreen: NextPageWithLayout = () => {
       isRemember: false,
     },
   })
-  const { mutate: loginMutate, isPending } = useMutation({
-    mutationKey: ['login'],
-    mutationFn: loginApi,
-    onSuccess: ({ data }) => {
-      if (data.isSuccess) {
-        ToastHelper.success(
-          t('success', { ns: 'common' }),
-          t('auth:login.success'),
-        )
-        setCookie(ACCESS_TOKEN, data.value.accessToken)
-        void router.reload()
-      } else {
-        ToastHelper.error(
-          t('default-error.title', { ns: 'error' }),
-          data.errors.join('. '),
-        )
-      }
-    },
-  })
+  const { mutate: loginMutate, isPending } = useSignIn()
 
   const onSubmit = (data: LoginSchemaType) => loginMutate(data)
 

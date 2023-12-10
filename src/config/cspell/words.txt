@@ -1,6 +1,8 @@
 Datepicker
+lucide
 nextjs
 nextui
+Notif
 reduxjs
 Roboto
 runtimes

@@ -1,22 +1,29 @@
 {
   "and": "và",
+  "empty": {
+    "notification": "không có thông báo nào"
+  },
   "error": "Đã xảy ra lỗi",
   "experience": "trải nghiệm",
   "explore": "khám phá",
   "homepage": "trang chủ",
   "log-out": "đăng xuất",
   "login": "đăng nhập",
+  "notification": "thông báo",
   "now": "ngay",
   "or": "hoặc",
   "packages": "gói farming",
+  "profile": "tài khoản",
   "reset-password": "Thay đổi mật khẩu",
   "sign-up": "đăng ký",
   "success": "thành công",
+  "switch-to": "chuyển sang {{value}}",
   "username": "tài khoản",
   "validation": {
     "date": {
       "isInValid": "Định dạng ngày không hợp lệ",
       "isRequired": "Vui lòng nhập ngày"
     }
-  }
+  },
+  "welcome": "Xin chào, {{name}}"
 }

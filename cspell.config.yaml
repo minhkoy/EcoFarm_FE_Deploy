@@ -1,32 +1,37 @@
 $schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
 version: "0.2"
 ignorePaths:
-  - "node_modules/**"
-  - "public/locales/**"
-  - "src/@types/**"
+  - "public/assets/**"
+  - "./src/@types/**"
+
+showStatus: true
+
+maxDuplicateProblems: 1
+
+readonly: true
+
 dictionaryDefinitions:
   - name: words
     path: ./src/config/cspell/words.txt
     description: custom dictionary
     addWords: true
+
 dictionaries: ["words"]
-language: "en, vi"
+language: "en,vi"
 files:
   - "./src/**/*.{js,jsx,ts,tsx,json,md,mdx,html,css,scss,less}"
+
 cache:
-  cacheFormat: universal
-  cacheStrategy: content
+  cacheFormat: legacy
+  cacheStrategy: metadata
   useCache: true
+  cacheLocation: ".cspellcache"
 
 languageSettings:
   - allowCompoundWords: false
     caseSensitive: false
     enabled: true
-    languageId: "typescript"
-  - allowCompoundWords: false
-    caseSensitive: false
-    enabled: true
-    languageId: "typescriptreact"
+    languageId: "typescript, typescriptreact, javascript, javascriptreact"
   - allowCompoundWords: false
     caseSensitive: true
     enabled: true

@@ -173,7 +173,8 @@ const SignUpScreen: NextPageWithLayout = () => {
                     }
                     onBlur={() => {
                       field.onBlur()
-                      dispatch(setTaxCode(field.value))
+                      if (rhf.getValues('accountType') === 'Seller')
+                        dispatch(setTaxCode(field.value))
                     }}
                     isInvalid={
                       (fieldState.error && fieldState.isTouched) ?? isError

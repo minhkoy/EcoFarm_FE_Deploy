@@ -15,7 +15,7 @@ export const dateFormat: DateFunction = (date, formatStr = 'P', locale) =>
   format(date, formatStr, {
     locale: whichLocale(locale),
   })
-
+  
 export const dateFormatDistance: DistanceFunction = (from, to, locale) =>
   formatDistance(from, to, {
     locale: whichLocale(locale),

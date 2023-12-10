@@ -5,7 +5,7 @@ import { type AxiosPromise } from 'axios'
 const controller = '/FarmingPackage'
 
 export const getListPackages = async (
-  params: QueryPackages,
+  params: QueryPackages
 ): AxiosPromise<ResponsePackages> =>
   axiosClient.get(`${controller}/GetList`, { params })
 

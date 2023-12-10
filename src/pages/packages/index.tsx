@@ -62,14 +62,21 @@ const PackagesScreen: NextPageWithLayout = () => {
   //   [],
   // )
 
+  const onSubmitSearch = () => appDispatch(setFilterParams(filters));
+
   if (isLoading) {
     return (
       <div>Loading....</div>
     )
   }
   return (
-    <div className=' grid grid-cols-3 gap-4'>
-      <div className='col-span-3 flex flex-col bg-primary p-4 sm:col-span-1'>
+    <div className='grid grid-cols-3 gap-4'>
+      <form className='col-span-3 flex flex-col bg-primary p-4 sm:col-span-1'
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onSubmitSearch();
+        }}}
+      >
         <div className='mb-4'>
           <Input
             type='text'
@@ -86,8 +93,14 @@ const PackagesScreen: NextPageWithLayout = () => {
           <div className=' flex flex-row justify-center gap-3'>
             <Input
               type='number'
-              //pattern='[0-9]*'
+              pattern='[0-9]'
+              min={0}
               placeholder='Từ giá ...'
+              onKeyDown={(e) => {
+                if (e.key === '.') {
+                  e.preventDefault();
+                }
+              }}
               onChange={(e) => {
                 setFilters({
                   ...filters,
@@ -107,10 +120,12 @@ const PackagesScreen: NextPageWithLayout = () => {
         </div>
         <div className='mb-4'>
           <Checkbox
-            onChange={(e) => {
+            isSelected={filters.isStart}
+            onValueChange={(e) => {
+              console.log(e)
               setFilters({
                 ...filters,
-                isStart: e.target.checked ? true : undefined,
+                isStart: e,
               })
             }}
           >Đã bắt đầu
@@ -118,10 +133,11 @@ const PackagesScreen: NextPageWithLayout = () => {
         </div>
         <div className='mb-4'>
           <Checkbox
-            onChange={(e) => {
+            isSelected={filters.isEnded}
+            onValueChange={(e) => {
               setFilters({
                 ...filters,
-                isEnded: e.target.checked ? true : undefined,
+                isEnded: e,
               })
             }}
           >Đã kết thúc
@@ -130,14 +146,12 @@ const PackagesScreen: NextPageWithLayout = () => {
         <div className='mb-4 object-center'>
           <Button
             color='primary'
-            onClick={() => {
-              appDispatch(setFilterParams(filters));
-            }}
+            onClick={onSubmitSearch}
           >
             Tìm kiếm
           </Button>
         </div>
-      </div>
+      </form>
 
       <div className='col-span-3 bg-primary p-4 sm:col-span-2'>
         <p>Column 2 Content</p>

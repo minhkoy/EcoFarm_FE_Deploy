@@ -10,11 +10,11 @@ export const singlePackageSlice = createSlice({
   name: 'singlePackage',
   initialState,
   reducers: {
-    setPackgageId: (state, action: PayloadAction<string>) => { 
+    setPackageId: (state, action: PayloadAction<string>) => { 
       state.id = action.payload
       state.code = action.payload
     }
   }
 })
 
-export const { setPackgageId } = singlePackageSlice.actions
+export const { setPackageId } = singlePackageSlice.actions

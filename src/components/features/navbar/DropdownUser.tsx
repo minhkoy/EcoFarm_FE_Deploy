@@ -1,13 +1,11 @@
-import { ACCESS_TOKEN } from '@/utils/constants/enums'
+import NextUiDropdown from '@/components/ui/dropdown'
 import { signOut } from '@/utils/helpers/AuthHelper'
 import {
   Avatar,
-  Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from '@nextui-org/react'
-import { getCookie } from 'cookies-next'
 import { capitalize, upperFirst } from 'lodash-es'
 import { LogOutIcon, UserCog2Icon } from 'lucide-react'
 import { useTranslation } from 'next-i18next'
@@ -15,10 +13,10 @@ import { useState } from 'react'
 
 export default function DropdownUser() {
   const { t } = useTranslation(['common'])
-  const token = getCookie(ACCESS_TOKEN)
+  // const token = getCookie(ACCESS_TOKEN)
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <Dropdown
+    <NextUiDropdown
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       closeOnSelect={false}
@@ -73,6 +71,6 @@ export default function DropdownUser() {
           )}
         </DropdownItem>
       </DropdownMenu>
-    </Dropdown>
+    </NextUiDropdown>
   )
 }

@@ -68,7 +68,7 @@ const Header = () => {
         <p className='font-bold text-inherit'>Eco Farm</p>
       </NavbarBrand>
       {/* Center menu */}
-      <NavbarContent className='hidden gap-4 sm:flex' justify='center'>
+      <NavbarContent className='hidden gap-unit-lg sm:flex' justify='center'>
         {items.map((item) => (
           <NavbarItem key={item.id} isActive={pathname.includes(item.href)}>
             <Link

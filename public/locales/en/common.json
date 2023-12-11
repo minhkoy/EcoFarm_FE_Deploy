@@ -1,22 +1,29 @@
 {
   "and": "and",
+  "empty": {
+    "notification": "No notification"
+  },
   "error": "Error occured",
   "experience": "experience",
   "explore": "explore",
   "homepage": "homepage",
   "log-out": "logout",
   "login": "login",
+  "notification": "notification",
   "now": "now",
   "or": "or",
   "packages": "farming packages",
+  "profile": "profile",
   "reset-password": "reset password",
   "sign-up": "sign up",
   "success": "success",
+  "switch-to": "switch to {{value}}",
   "username": "username",
   "validation": {
     "date": {
       "isInValid": "date is invalid",
       "isRequired": "date is required"
     }
-  }
+  },
+  "welcome": "welcome {{name}}"
 }

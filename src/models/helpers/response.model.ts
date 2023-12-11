@@ -1,16 +1,19 @@
-export type ResponseModel<T> = {
+type BaseResponse = Readonly<{
   status: number
   isSuccess: boolean
   successMessage: string
   correlationId: string
-  errors: Array<string>
-  validationErrors: Array<ValidationError>
+  errors: ReadonlyArray<string>
+  validationErrors: ReadonlyArray<ValidationError>
   resultType: number
   message: string
-  value: T
-}
+}>
 
 type ValidationError = {
   identifier: string
   errorMessage: string
+}
+
+export type ResponseModel<T> = BaseResponse & {
+  value: T
 }

@@ -8,8 +8,8 @@ interface Resources {
       "remember-me": "ghi nhớ đăng nhập",
       "your-email": "email của bạn",
       "your-password": "mật khẩu của bạn",
-      "your-tax-code": "field.your-tax-code",
-      "your-username": "field.your-username"
+      "your-tax-code": "mã số thuế",
+      "your-username": "tên đăng nhập của bạn"
     },
     "have-account": "đã có tài khoản",
     "login": {
@@ -45,25 +45,32 @@ interface Resources {
   },
   "common": {
     "and": "và",
+    "empty": {
+      "notification": "không có thông báo nào"
+    },
     "error": "Đã xảy ra lỗi",
     "experience": "trải nghiệm",
     "explore": "khám phá",
     "homepage": "trang chủ",
     "log-out": "đăng xuất",
     "login": "đăng nhập",
+    "notification": "notification",
     "now": "ngay",
     "or": "hoặc",
     "packages": "gói farming",
+    "profile": "profile",
     "reset-password": "Thay đổi mật khẩu",
     "sign-up": "đăng ký",
     "success": "thành công",
+    "switch-to": "chuyển sang {{value}}",
     "username": "tài khoản",
     "validation": {
       "date": {
         "isInValid": "Định dạng ngày không hợp lệ",
         "isRequired": "Vui lòng nhập ngày"
       }
-    }
+    },
+    "welcome": "Xin chào, {{name}}"
   },
   "error": {
     "access-denied": {

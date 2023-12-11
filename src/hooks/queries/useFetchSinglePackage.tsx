@@ -2,8 +2,6 @@ import { getSinglePackage } from '@/config/apis/packages'
 import { useQuery } from '@tanstack/react-query'
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from '../redux/useAppSelector'
-import { useAppDispatch } from '../redux/useAppDispatch'
-import { setPackageId } from '@/config/reducers/package'
 
 export const queryKey = ['package', 'getSinglePackage']
 

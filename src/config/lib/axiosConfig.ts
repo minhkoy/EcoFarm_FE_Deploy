@@ -50,19 +50,30 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     if (axios.isAxiosError(error)) {
-      if (error.response?.status === ERROR_CODES.UNAUTHORIZED) {
-        ToastHelper.error(
-          i18n?.t('access-expired.title', { ns: 'error' }) ?? 'Error',
-          i18n?.t('access-expired.description', { ns: 'error' }) ??
-            'Access expired',
-        )
-      }
-      if (error.response?.status === ERROR_CODES.FORBIDDEN) {
-        ToastHelper.error(
-          i18n?.t('access-denied.title', { ns: 'error' }) ?? 'Error',
-          i18n?.t('access-denied.description', { ns: 'error' }) ??
-            'Access denied',
-        )
+      debugger
+      switch (error.response?.status) {
+        case ERROR_CODES.UNAUTHORIZED:
+          ToastHelper.error(
+            i18n?.t('access-expired.title', { ns: 'error' }) ?? 'Error',
+            i18n?.t('access-expired.description', { ns: 'error' }) ??
+              'Access expired',
+          )
+          break
+        case ERROR_CODES.FORBIDDEN:
+          ToastHelper.error(
+            i18n?.t('access-denied.title', { ns: 'error' }) ?? 'Error',
+            i18n?.t('access-denied.description', { ns: 'error' }) ??
+              'Access denied',
+          )
+          break
+        case ERROR_CODES.BAD_REQUEST:
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          const message = error.response?.data?.errors as string
+          ToastHelper.error(
+            i18n?.t('default-error.title', { ns: 'error' }) ?? 'Error',
+            message,
+          )
+          break
       }
       return Promise.reject(error)
     }

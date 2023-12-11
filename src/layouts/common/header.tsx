@@ -1,16 +1,21 @@
-import { signOut } from '@/utils/helpers/AuthHelper'
+import DropdownUser from '@/components/features/navbar/DropdownUser'
+import Notification from '@/components/features/navbar/Notification'
+import { SwitchTheme } from '@/components/ui/switch/SwitchTheme'
 import {
-  Button,
-  Divider,
   Link,
   Navbar,
+  NavbarBrand,
   NavbarContent,
   NavbarItem,
+  NavbarMenuToggle,
 } from '@nextui-org/react'
+import { capitalize } from 'lodash-es'
 import { HomeIcon, PackageIcon } from 'lucide-react'
 import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
+import SidebarMenu from './component/SidebarMenu'
 
 const Header = () => {
   const { pathname } = useRouter()
@@ -21,7 +26,7 @@ const Header = () => {
         id: 'homepage',
         label: t('homepage'),
         href: '/homepage',
-        icon: <HomeIcon />,
+        icon: <HomeIcon className='' />,
       },
       {
         id: 'packages',
@@ -33,33 +38,59 @@ const Header = () => {
     [t],
   )
   return (
-    <div className=' flex flex-col'>
-      <Navbar>
-        <NavbarContent className='hidden gap-4 sm:flex' justify='center'>
-          {items.map((item) => (
-            <NavbarItem key={item.id} isActive={pathname.includes(item.href)}>
-              <Link
-                color='foreground'
-                href={item.href}
-                className='uppercase text-primary'
-              >
-                {item.icon}
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
-        </NavbarContent>
-
-        <NavbarContent as='div' justify='end'>
-          <NavbarItem>
-            <Button onClick={() => signOut()} className='uppercase'>
-              {t('log-out')}
-            </Button>
+    <Navbar
+      isBordered
+      classNames={{
+        item: [
+          'flex',
+          'relative',
+          'h-full',
+          'items-center',
+          "data-[active=true]:after:content-['']",
+          'data-[active=true]:after:absolute',
+          'data-[active=true]:after:bottom-0',
+          'data-[active=true]:after:left-0',
+          'data-[active=true]:after:right-0',
+          'data-[active=true]:after:h-[2px]',
+          'data-[active=true]:after:rounded-[2px]',
+          'data-[active=true]:after:bg-primary',
+        ],
+      }}
+    >
+      <NavbarMenuToggle className='sm:hidden' />
+      <NavbarBrand>
+        <Image
+          src={'/assets/brands/EcoFarm.svg'}
+          alt='Logo-brand'
+          width={45}
+          height={45}
+        />
+        <p className='font-bold text-inherit'>Eco Farm</p>
+      </NavbarBrand>
+      {/* Center menu */}
+      <NavbarContent className='hidden gap-unit-lg sm:flex' justify='center'>
+        {items.map((item) => (
+          <NavbarItem key={item.id} isActive={pathname.includes(item.href)}>
+            <Link
+              color={pathname.includes(item.href) ? 'primary' : 'foreground'}
+              href={item.href}
+              className='inline-flex'
+            >
+              {item.icon}
+              <span>{capitalize(item.label)}</span>
+            </Link>
           </NavbarItem>
-        </NavbarContent>
-      </Navbar>
-      <Divider orientation='horizontal' className='my-4' />
-    </div>
+        ))}
+      </NavbarContent>
+      {/* Left menu */}
+      <NavbarContent justify='end'>
+        <Notification />
+        <SwitchTheme />
+        <DropdownUser />
+      </NavbarContent>
+      {/* Sidebar */}
+      <SidebarMenu />
+    </Navbar>
   )
 }
 

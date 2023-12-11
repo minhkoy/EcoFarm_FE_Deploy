@@ -13,7 +13,7 @@
     "i18n:interface": "i18next-resources-for-ts interface -i ./public/locales -o ./src/@types/resources.d.ts",
     "i18n:sync": "pnpm run i18n:extract && pnpm run i18n:interface",
     "prepare": "husky install",
-    "cspell": "cspell --show-suggestions --show-context --config ./cspell.config.yaml"
+    "cspell": "cspell --unique --show-suggestions --show-context --config ./cspell.config.yaml"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",

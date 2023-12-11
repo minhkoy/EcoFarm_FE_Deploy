@@ -11,12 +11,15 @@ maxDuplicateProblems: 1
 readonly: true
 
 dictionaryDefinitions:
-  - name: words
-    path: ./src/config/cspell/words.txt
-    description: custom dictionary
+  - name: en-words
+    path: ./src/config/cspell/en/words.txt
+    description: custom dictionary for english words
     addWords: true
-
-dictionaries: ["words"]
+  - name: vi-words
+    path: ./src/config/cspell/vi/words.txt
+    description: custom dictionary for vietnamese words
+    addWords: true
+dictionaries: ["en-words", "vi-words"]
 language: "en,vi"
 files:
   - "./src/**/*.{js,jsx,ts,tsx,json,md,mdx,html,css,scss,less}"

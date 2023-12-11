@@ -7,6 +7,7 @@ import {
   keepPreviousData,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import axios from 'axios'
 import { useState, type ReactNode } from 'react'
 
 export default function ReactQueryProvider({
@@ -26,11 +27,15 @@ export default function ReactQueryProvider({
         },
         queryCache: new QueryCache({
           onError: (err) => {
+            debugger
+            if (axios.isAxiosError(err)) return // Ignore axios error
             ToastHelper.error(err.name, err.message)
           },
         }),
         mutationCache: new MutationCache({
           onError: (err) => {
+            debugger
+            if (axios.isAxiosError(err)) return // Ignore axios error
             ToastHelper.error(err.name, err.message)
           },
         }),

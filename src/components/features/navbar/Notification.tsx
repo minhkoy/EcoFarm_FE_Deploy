@@ -1,9 +1,5 @@
-import {
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@nextui-org/react'
+import NextUiPopover from '@/components/ui/popover'
+import { Button, PopoverContent, PopoverTrigger } from '@nextui-org/react'
 import { capitalize } from 'lodash-es'
 import { BellIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -14,18 +10,19 @@ export default function Notification() {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <Popover isOpen={isOpen} onOpenChange={setIsOpen} placement='bottom-end'>
+    <NextUiPopover isOpen={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger>
         <Button isIconOnly variant='light' color='primary'>
           <BellIcon />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='relative h-52 w-40'>
+      <PopoverContent className='relative h-52'>
         <figure>
           <Image
             src={'/assets/icons/empty-notif.svg'}
             alt='empty notification'
-            fill
+            width={200}
+            height={200}
           />
         </figure>
         <p className='absolute bottom-0 -translate-y-8'>
@@ -36,6 +33,6 @@ export default function Notification() {
           )}
         </p>
       </PopoverContent>
-    </Popover>
+    </NextUiPopover>
   )
 }

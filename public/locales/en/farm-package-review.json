@@ -1,0 +1,9 @@
+{
+    "title": "Review farming package",
+    "success": "Reviewing successful",
+    "error": {
+        "default": "Reviewing failed",
+        "not_found": "Farming package is not found",
+        "rating_out_of_range": "Rating points must vary from {{fromRating}} to {{toRating}}"
+    }
+}

@@ -10,7 +10,7 @@ import {
   NavbarMenuToggle,
 } from '@nextui-org/react'
 import { capitalize } from 'lodash-es'
-import { HomeIcon, PackageIcon } from 'lucide-react'
+import { HomeIcon, PackageIcon, VeganIcon } from 'lucide-react'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -34,6 +34,12 @@ const Header = () => {
         href: '/packages',
         icon: <PackageIcon />,
       },
+      {
+        id: 'products',
+        label: 'Sản phẩm', //XXX
+        href: '/products',
+        icon: <VeganIcon />,
+      }
     ],
     [t],
   )

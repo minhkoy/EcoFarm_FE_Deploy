@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
 const PackagesScreen: NextPageWithLayout = () => {
   const [filters, setFilters] = useState<QueryPackages>({
-    limit: 10,
+    limit: 1,
     page: 1,
     keyword: '',
     priceFrom: undefined,

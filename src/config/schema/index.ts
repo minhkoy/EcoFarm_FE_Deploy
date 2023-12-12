@@ -116,8 +116,25 @@ export const createForgotPasswordSchema = <T extends TFunction>(t: T) => {
   })
 }
 
+export const createNewPackageReviewSchema = <T extends TFunction>(t: T) => {
+  return z.object({
+    packageId: z.string(),
+    rating: z.number()
+      
+      .min(1, t('error.rating_out_of_range', {
+        ns: 'farm-package-review',
+        fromRating: 1,
+        toRating: 5,
+      }))
+      .max(5),
+    content: z.string(),
+  })
+}
+
 export type LoginSchemaType = z.infer<ReturnType<typeof createLoginSchema>>
 export type SignUpSchemaType = z.infer<ReturnType<typeof createSignUpSchema>>
 export type ForgotPasswordSchemaType = z.infer<
   ReturnType<typeof createForgotPasswordSchema>
 >
+
+export type CreatePackageReviewSchemaType = z.infer<ReturnType<typeof createNewPackageReviewSchema>>

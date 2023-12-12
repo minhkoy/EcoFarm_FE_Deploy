@@ -10,7 +10,7 @@ const initialState: QueryPackages = {
   priceTo: 0,
   keyword: '',
   page: 1,
-  limit: 10,
+  limit: 1,
 }
 
 export const packageSlice = createSlice({

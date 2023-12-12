@@ -2,21 +2,33 @@ import { useRouter } from 'next/router'
 import MainLayout from '@/layouts/common/main'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { getQueryUrlValue, splitDigits } from '@/utils/helpers/CommonHelper'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import useFetchSinglePackage from '@/hooks/queries/useFetchSinglePackage'
 import { dateFormat } from '@/utils/helpers/DateHelper'
 import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import { setPackageId } from '@/config/reducers/package'
-import { Button, Card, Image, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
+import { Button, Card, Image, Select, SelectItem, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea } from '@nextui-org/react'
 import { Star } from 'lucide-react'
 import useFetchPackageReviews from '@/hooks/queries/useFetchPackageReviews'
 import { setFilterParams } from '@/config/reducers/packageReviews'
 import { useAppSelector } from '@/hooks/redux/useAppSelector'
+import Link from 'next/link'
+import { FormInput } from '@/components/ui/form'
+import { set } from 'date-fns'
+import { StarRating } from '@/components/ui/ratings'
+import { type CreatePackageReviewSchemaType } from '@/config/schema'
+import useCreatePackageReview from '@/hooks/mutations/useCreatePackageReview'
 
 
 const PackageDetailScreen: NextPageWithLayout = () => {
-  const { query, route: router } = useRouter()
+  const { query } = useRouter()
+  const [isAddingNewReview, setIsAddingNewReview] = useState(false);
   const packageId = useMemo(() => getQueryUrlValue(query, 0), [query])
+  const [newReview, setNewReview] = useState<CreatePackageReviewSchemaType>({
+    rating: 0,
+    content: '',
+    packageId: packageId!,
+  });
   const appDispatch = useAppDispatch()
   appDispatch(setPackageId(packageId!))
   const { packageData, isLoading } = useFetchSinglePackage()
@@ -41,7 +53,10 @@ const PackageDetailScreen: NextPageWithLayout = () => {
       <Button color='primary' className='w-full mt-2'>Đăng ký</Button>
     )
   }
-  console.log(packageData?.isRegisteredByCurrentUser)
+  
+  const { mutate: createPackageReviewMutate, isPending} = useCreatePackageReview()
+  const addingNewReview = () => createPackageReviewMutate(newReview)
+
   if (isLoading) {
     return (
       <div>Loading....</div>
@@ -134,7 +149,10 @@ const PackageDetailScreen: NextPageWithLayout = () => {
           <div className='flex justify-between'>
             <p className='flex-1 mr-auto text-primary-400 font-bold text-xl'>Đánh giá ({packageReviewsData?.length})</p>
             <Button className='flex-1 w-1/4' fullWidth={false} color='primary'
-            isDisabled={!(packageData?.isRegisteredByCurrentUser)}>Thêm đánh giá</Button>
+            isDisabled={!(packageData?.isRegisteredByCurrentUser)}
+            onClick={() => {
+              setIsAddingNewReview(true)
+            }}>Thêm đánh giá</Button>
           </div>          
         </div>
         <div className='flex flex-col gap-3 mt-3'>
@@ -143,8 +161,8 @@ const PackageDetailScreen: NextPageWithLayout = () => {
               <Card key={review.reviewId} className='flex flex-col gap-3 p-3'>
                 <div className='flex gap-3'>
                   <div className='flex flex-col'>
-                    <a className='text-primary-400 font-bold text-lg'
-                      href={`/user/${review.userId}`}>{review.userFullname}</a>
+                    <Link className='text-primary-400 font-bold text-lg'
+                      href={`/user/${review.userId}`}>{review.userFullname}</Link>
                     <span className='text-gray-400 text-sm'>{dateFormat(new Date(review.createdAt!), 'P', 'vi')}</span>
                   </div>
                   <div className='flex-1'>
@@ -154,10 +172,58 @@ const PackageDetailScreen: NextPageWithLayout = () => {
                   </div>
                 </div>
                 <div>
-                  <textarea className='w-full h-16 bg-inherit' disabled value={review.content} />
+                  <Textarea className='w-full text-xl bg-inherit' disabled value={review.content} />
+                </div>
+              </Card>              
+            ))
+          }
+          {
+            isAddingNewReview && (
+              <>
+              <Card className='gap-3 p-3'>
+                <div>
+                  <div className=''>
+                    <span className='inline'>Đánh giá  </span>
+                    <Select className='inline w-1/2 font-sans' fullWidth={false}
+                    onChange={(e) => {
+                      setNewReview({
+                        ...newReview,
+                        rating: Number(e.target.value)
+                      })
+                    }}>
+                      <SelectItem key={0} value={0}>Không đánh giá</SelectItem>
+                      <SelectItem key={1} value={1}>1</SelectItem>
+                      <SelectItem key={2} value={2}>2</SelectItem>
+                      <SelectItem key={3} value={3}>3</SelectItem>
+                      <SelectItem key={4} value={4}>4</SelectItem>
+                      <SelectItem key={5} value={5}>5</SelectItem>                      
+                    </Select>
+                  </div>
+                  <Textarea 
+                    placeholder={'Nhập đánh giá của bạn (không bắt buộc)'}
+                    className='w-full text-xl bg-inherit'
+                    onChange={(e) => {
+                      setNewReview({
+                        ...newReview,
+                        content: e.target.value
+                      })
+                    }}
+                  />
                 </div>
               </Card>
-            ))
+              <div className='mr-3 flex flex-row gap-3'>
+                <Button color='primary' onClick={() => {
+                  addingNewReview();
+                  if (!isPending) {
+                    setIsAddingNewReview(false)
+                  }
+                }}>Đăng đánh giá</Button>
+                <Button color='default' onClick={() => {
+                  setIsAddingNewReview(false)
+                }}>Trở về</Button>
+              </div>
+              </>
+            )
           }
         </div>
       </Card>

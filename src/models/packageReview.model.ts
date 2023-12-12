@@ -15,6 +15,7 @@ export type PackageReviewModel = {
 }
 
 export type ResponsePackageReviews = ResponseModel<Array<PackageReviewModel>>
+export type ResponsePackageReview = ResponseModel<PackageReviewModel>
 export type QueryPackageReviews = QueryRequest<{
     packageId?: string;
     rating?: number;

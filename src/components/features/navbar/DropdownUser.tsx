@@ -5,13 +5,17 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  cn,
 } from '@nextui-org/react'
 import { capitalize, upperFirst } from 'lodash-es'
 import { LogOutIcon, UserCog2Icon } from 'lucide-react'
 import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export default function DropdownUser() {
+  const { locale, replace, pathname } = useRouter()
   const { t } = useTranslation(['common'])
   // const token = getCookie(ACCESS_TOKEN)
   const [isOpen, setIsOpen] = useState(false)
@@ -33,7 +37,16 @@ export default function DropdownUser() {
           src='http://placekitten.com/g/200/300'
         />
       </DropdownTrigger>
-      <DropdownMenu variant='flat' color='primary'>
+      <DropdownMenu
+        variant='flat'
+        color='primary'
+        onAction={(key) =>
+          key.toString() === 'locale' &&
+          replace(pathname, undefined, {
+            locale: locale === 'vi' ? 'en' : 'vi',
+          })
+        }
+      >
         <DropdownItem
           showDivider
           key='profile'
@@ -47,6 +60,23 @@ export default function DropdownUser() {
               }),
             )}
           </p>
+        </DropdownItem>
+        <DropdownItem
+          key='locale'
+          endContent={
+            <Image
+              src={
+                locale === 'vi'
+                  ? '/assets/flags/vn.png'
+                  : '/assets/flags/en.png'
+              }
+              alt={cn('logo-', locale)}
+              width={20}
+              height={20}
+            />
+          }
+        >
+          {locale === 'vi' ? 'Tiếng Việt' : 'English'}
         </DropdownItem>
         <DropdownItem
           key='profile'

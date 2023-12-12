@@ -19,7 +19,7 @@ export default function DropdownUser() {
   const { t } = useTranslation(['common'])
   // const token = getCookie(ACCESS_TOKEN)
   const [isOpen, setIsOpen] = useState(false)
-  const { logOut } = useAuth()
+  const { logOut, userInfo } = useAuth()
   return (
     <NextUiDropdown
       isOpen={isOpen}
@@ -32,10 +32,10 @@ export default function DropdownUser() {
           isBordered
           as='button'
           className='transition-transform'
-          name='Jason Hughes'
+          name={userInfo?.fullName ?? userInfo?.username ?? userInfo?.email}
           size='sm'
           color='primary'
-          src='http://placekitten.com/g/200/300'
+          src={userInfo?.avatarUrl ?? 'http://placekitten.com/g/200/300'}
         />
       </DropdownTrigger>
       <DropdownMenu
@@ -50,14 +50,15 @@ export default function DropdownUser() {
       >
         <DropdownItem
           showDivider
-          key='profile'
+          key='welcome-text'
           className='h-14 cursor-default gap-2'
         >
           <p className='font-semibold'>
             {upperFirst(
               t('welcome', {
                 ns: 'common',
-                name: 'Jason Hughes',
+                name:
+                  userInfo?.fullName ?? userInfo?.username ?? userInfo?.email,
               }),
             )}
           </p>

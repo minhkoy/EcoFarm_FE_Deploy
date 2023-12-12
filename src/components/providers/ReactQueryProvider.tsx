@@ -23,6 +23,10 @@ export default function ReactQueryProvider({
             staleTime: 1000 * 60 * 1,
             refetchIntervalInBackground: true,
             placeholderData: keepPreviousData,
+            retryDelay: 2000,
+            retry(failureCount) {
+              return failureCount < 2
+            },
           },
         },
         queryCache: new QueryCache({

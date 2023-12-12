@@ -77,7 +77,7 @@ const Header = () => {
               className='inline-flex'
             >
               {item.icon}
-              <span>{capitalize(item.label)}</span>
+              <span className='ml-2'>{capitalize(item.label)}</span>
             </Link>
           </NavbarItem>
         ))}

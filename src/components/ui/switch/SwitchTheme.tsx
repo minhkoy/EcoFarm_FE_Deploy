@@ -4,11 +4,9 @@ import { MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useMemo, useState } from 'react'
 
-type Props = {
-  variant?: ButtonVariantProps['variant']
-}
+type Props = ButtonVariantProps
 
-export const SwitchTheme = ({ variant }: Props) => {
+export const SwitchTheme = ({ variant, ...props }: Props) => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme()
   const isDark = useMemo(
@@ -30,6 +28,7 @@ export const SwitchTheme = ({ variant }: Props) => {
       variant={variant ?? 'light'}
       color='primary'
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      {...props}
     >
       {isDark ? <MoonIcon /> : <SunIcon />}
     </Button>

@@ -54,15 +54,14 @@ interface Resources {
     "homepage": "trang chủ",
     "log-out": "đăng xuất",
     "login": "đăng nhập",
-    "notification": "notification",
+    "notification": "thông báo",
     "now": "ngay",
     "or": "hoặc",
     "packages": "gói farming",
-    "profile": "profile",
+    "profile": "tài khoản",
     "reset-password": "Thay đổi mật khẩu",
     "sign-up": "đăng ký",
     "success": "thành công",
-    "switch-to": "chuyển sang {{value}}",
     "username": "tài khoản",
     "validation": {
       "date": {
@@ -82,6 +81,7 @@ interface Resources {
       "title": "Đăng nhập hết hạn"
     },
     "default-error": {
+      "description": "default-error.description",
       "title": "Lỗi"
     }
   },

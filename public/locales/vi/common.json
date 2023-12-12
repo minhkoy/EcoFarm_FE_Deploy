@@ -17,7 +17,6 @@
   "reset-password": "Thay đổi mật khẩu",
   "sign-up": "đăng ký",
   "success": "thành công",
-  "switch-to": "chuyển sang {{value}}",
   "username": "tài khoản",
   "validation": {
     "date": {

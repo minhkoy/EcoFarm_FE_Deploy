@@ -8,6 +8,7 @@
     "title": "Access expired"
   },
   "default-error": {
+    "description": "Something went wrong. Please try again later.",
     "title": "Error"
   }
 }

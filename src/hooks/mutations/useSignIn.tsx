@@ -16,7 +16,7 @@ export default function useSignIn() {
       if (data.isSuccess) {
         ToastHelper.success(
           t('success', { ns: 'common' }),
-          t('login.success', {ns: 'auth'}),
+          t('login.success', { ns: 'auth' }),
         )
         setCookie(ACCESS_TOKEN, data.value.accessToken)
         void router.reload()
@@ -28,5 +28,4 @@ export default function useSignIn() {
       }
     },
   })
-
 }

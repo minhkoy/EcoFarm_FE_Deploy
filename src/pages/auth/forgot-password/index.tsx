@@ -4,6 +4,7 @@ import {
   createForgotPasswordSchema,
   type ForgotPasswordSchemaType,
 } from '@/config/schema'
+import useCheckEmail from '@/hooks/mutations/useCheckEmail'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { LINK_AUTH } from '@/utils/constants/links'
@@ -19,7 +20,7 @@ import {
   cn,
 } from '@nextui-org/react'
 import { capitalize } from 'lodash-es'
-import { ArrowLeftIcon } from 'lucide-react'
+import { ArrowLeftIcon, CheckIcon, Loader2Icon, XIcon } from 'lucide-react'
 import { type GetServerSidePropsContext } from 'next'
 import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
@@ -35,7 +36,7 @@ export const getServerSideProps = async ({
     props: {
       ...(await serverSideTranslations(
         locale ?? 'vi',
-        ['common', 'auth'],
+        ['common', 'auth', 'error'],
         config,
       )),
     },
@@ -54,9 +55,13 @@ const ForgotPassScreen: NextPageWithLayout = () => {
     },
   })
 
-  const onSubmit = (data: ForgotPasswordSchemaType) => {
-    console.log(data)
-  }
+  const {
+    mutate: checkEmailMutate,
+    isPending: isEmailChecking,
+    data: emailCheckingResult,
+  } = useCheckEmail()
+
+  const onSubmit = (data: ForgotPasswordSchemaType) => console.log(data)
 
   return (
     <>
@@ -89,13 +94,28 @@ const ForgotPassScreen: NextPageWithLayout = () => {
             <FormField
               control={rhf.control}
               name='email'
-              render={({ field }) => (
+              render={({ field, fieldState }) => (
                 <FormItem>
                   <FormInput
                     {...field}
                     variant={'flat'}
                     isRequired
                     label={capitalize(t('auth:field.your-email'))}
+                    onBlur={() => {
+                      field.onBlur()
+                      checkEmailMutate(field.value)
+                    }}
+                    endContent={
+                      isEmailChecking ? (
+                        <Loader2Icon className='animate-spinner-ease-spin' />
+                      ) : fieldState.isTouched &&
+                        !emailCheckingResult?.isExist ? (
+                        <XIcon className='text-danger' />
+                      ) : fieldState.isTouched &&
+                        emailCheckingResult?.isExist ? (
+                        <CheckIcon className='text-success' />
+                      ) : null
+                    }
                     autoCapitalize={'off'}
                   />
                 </FormItem>

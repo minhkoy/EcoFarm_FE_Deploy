@@ -17,7 +17,6 @@
   "reset-password": "reset password",
   "sign-up": "sign up",
   "success": "success",
-  "switch-to": "switch to {{value}}",
   "username": "username",
   "validation": {
     "date": {

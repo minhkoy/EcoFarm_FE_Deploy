@@ -22,3 +22,5 @@ export type UserModel = AccountModel & {
 }
 
 export type ResponseUser = ResponseModel<UserModel>
+
+export type ResponseEmail = ResponseModel<{ isExist: boolean }>

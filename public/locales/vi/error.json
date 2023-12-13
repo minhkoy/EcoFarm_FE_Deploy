@@ -8,6 +8,7 @@
     "title": "Đăng nhập hết hạn"
   },
   "default-error": {
+    "description": "Đã có lỗi xảy ra, vui lòng thử lại sau",
     "title": "Lỗi"
   }
 }

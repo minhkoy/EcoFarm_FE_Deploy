@@ -60,6 +60,7 @@ interface Resources {
     "packages": "gói farming",
     "profile": "tài khoản",
     "reset-password": "Thay đổi mật khẩu",
+    "search": "Tìm kiếm",
     "sign-up": "đăng ký",
     "success": "thành công",
     "username": "tài khoản",
@@ -81,24 +82,30 @@ interface Resources {
       "title": "Đăng nhập hết hạn"
     },
     "default-error": {
+      "description": "Đã có lỗi xảy ra, vui lòng thử lại sau",
       "title": "Lỗi"
     }
   },
   "farm-package-review": {
-    "title": "Đánh giá gói farming",
-    "success": "Đánh giá thành công",
     "error": {
-      "default": "Đánh giá không thành công",
-      "not_found": "Không tìm thấy gói farming",
       "rating_out_of_range": "Điểm đánh giá chỉ được có giá trị từ {{fromRating}} đến {{toRating}}"
-    }
+    },
+    "success": "Đánh giá thành công"
   },
   "farm-package": {
     "info": {
-      "farm-package": "thông tin {{total}} gói farming"
+      "farm-package": "thông tin {{total}} gói farming",
+      "name": "Tên gói farming"
     },
     "notFound": {
       "package": "Không tìm thấy gói"
+    },
+    "query-param": {
+      "from-price": "giá từ...",
+      "is-ended": "đã kết thúc",
+      "is-started": "đã bắt đầu",
+      "range-price": "khoảng giá",
+      "to-price": "giá đến..."
     }
   },
   "select": {

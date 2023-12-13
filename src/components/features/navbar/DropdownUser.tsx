@@ -1,5 +1,5 @@
 import NextUiDropdown from '@/components/ui/dropdown'
-import { signOut } from '@/utils/helpers/AuthHelper'
+import useAuth from '@/hooks/auth/useAuth'
 import {
   Avatar,
   DropdownItem,
@@ -19,6 +19,7 @@ export default function DropdownUser() {
   const { t } = useTranslation(['common'])
   // const token = getCookie(ACCESS_TOKEN)
   const [isOpen, setIsOpen] = useState(false)
+  const { logOut, userInfo } = useAuth()
   return (
     <NextUiDropdown
       isOpen={isOpen}
@@ -31,10 +32,10 @@ export default function DropdownUser() {
           isBordered
           as='button'
           className='transition-transform'
-          name='Jason Hughes'
+          name={userInfo?.fullName ?? userInfo?.username ?? userInfo?.email}
           size='sm'
           color='primary'
-          src='http://placekitten.com/g/200/300'
+          src={userInfo?.avatarUrl ?? 'http://placekitten.com/g/200/300'}
         />
       </DropdownTrigger>
       <DropdownMenu
@@ -49,14 +50,15 @@ export default function DropdownUser() {
       >
         <DropdownItem
           showDivider
-          key='profile'
+          key='welcome-text'
           className='h-14 cursor-default gap-2'
         >
           <p className='font-semibold'>
             {upperFirst(
               t('welcome', {
                 ns: 'common',
-                name: 'Jason Hughes',
+                name:
+                  userInfo?.fullName ?? userInfo?.username ?? userInfo?.email,
               }),
             )}
           </p>
@@ -67,7 +69,7 @@ export default function DropdownUser() {
             <Image
               src={
                 locale === 'vi'
-                  ? '/assets/flags/vn.png'
+                  ? '/assets/flags/vi.png'
                   : '/assets/flags/en.png'
               }
               alt={cn('logo-', locale)}
@@ -92,7 +94,9 @@ export default function DropdownUser() {
           key='logout'
           color='danger'
           endContent={<LogOutIcon className='h-4 w-4' />}
-          onClick={() => signOut()}
+          onClick={() => {
+            logOut()
+          }}
         >
           {capitalize(
             t('log-out', {

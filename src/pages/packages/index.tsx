@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
 const PackagesScreen: NextPageWithLayout = () => {
   const [filters, setFilters] = useState<QueryPackages>({
-    limit: 1,
+    limit: 10,
     page: 1,
     keyword: '',
     priceFrom: undefined,
@@ -80,7 +80,7 @@ const PackagesScreen: NextPageWithLayout = () => {
         <div className='mb-4'>
           <Input
             type='text'
-            placeholder='Tên gói farming ...'
+            placeholder={capitalize(t("info.name", {ns: "farm-package"}))}
             onChange={(e) => {
               appDispatch(setFilterParams({
                 keyword: e.target.value
@@ -89,13 +89,13 @@ const PackagesScreen: NextPageWithLayout = () => {
           />
         </div>
         <div className='mb-4'>
-          <p>Khoảng giá</p>
+          <p>{capitalize(t('query-param.range-price', {ns: 'farm-package'}))}</p>
           <div className=' flex flex-row justify-center gap-3'>
             <Input
               type='number'
               pattern='[0-9]'
               min={0}
-              placeholder='Từ giá ...'
+              placeholder={capitalize(t('query-param.from-price', {ns: 'farm-package'}))}
               onKeyDown={(e) => {
                 if (e.key === '.') {
                   e.preventDefault();
@@ -108,7 +108,8 @@ const PackagesScreen: NextPageWithLayout = () => {
                 })
               }}
             />
-            <Input type='number' placeholder='Đến giá ...'
+            <Input type='number' 
+              placeholder={capitalize(t('query-param.to-price', {ns: 'farm-package'}))}
               onChange={(e) => {
                 setFilters({
                   ...filters,
@@ -128,7 +129,8 @@ const PackagesScreen: NextPageWithLayout = () => {
                 isStart: e,
               })
             }}
-          >Đã bắt đầu
+          >
+            {capitalize(t('query-param.is-started', {ns: 'farm-package'}))}
           </Checkbox>
         </div>
         <div className='mb-4'>
@@ -140,7 +142,8 @@ const PackagesScreen: NextPageWithLayout = () => {
                 isEnded: e,
               })
             }}
-          >Đã kết thúc
+          >
+            {capitalize(t('query-param.is-ended', {ns: 'farm-package'}))}
           </Checkbox>
         </div>
         <div className='mb-4 object-center'>
@@ -148,13 +151,12 @@ const PackagesScreen: NextPageWithLayout = () => {
             color='primary'
             onClick={onSubmitSearch}
           >
-            Tìm kiếm
+            {t('search', { ns: 'common' })}
           </Button>
         </div>
       </form>
 
       <div className='col-span-3 bg-primary p-4 sm:col-span-2'>
-        <p>Column 2 Content</p>
         {/* <Select
           items={SELECT_LIMIT}
           label='Limit'
@@ -175,7 +177,7 @@ const PackagesScreen: NextPageWithLayout = () => {
             <p>{t('notFound.package', { ns: 'farm-package' })}</p>
           ) : (
             <>
-              <p>
+              <p className='text-primary-600 uppercase font-bold'>
                 {capitalize(
                   t('info.farm-package', {
                     ns: 'farm-package',

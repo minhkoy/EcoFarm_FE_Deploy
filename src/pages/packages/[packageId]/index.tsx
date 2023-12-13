@@ -1,23 +1,18 @@
-import { useRouter } from 'next/router'
+import { setPackageId } from '@/config/reducers/package'
+import { type CreatePackageReviewSchemaType } from '@/config/schema'
+import useCreatePackageReview from '@/hooks/mutations/useCreatePackageReview'
+import useFetchPackageReviews from '@/hooks/queries/useFetchPackageReviews'
+import useFetchSinglePackage from '@/hooks/queries/useFetchSinglePackage'
+import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import MainLayout from '@/layouts/common/main'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { getQueryUrlValue, splitDigits } from '@/utils/helpers/CommonHelper'
-import { useMemo, useState } from 'react'
-import useFetchSinglePackage from '@/hooks/queries/useFetchSinglePackage'
 import { dateFormat } from '@/utils/helpers/DateHelper'
-import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
-import { setPackageId } from '@/config/reducers/package'
 import { Button, Card, Image, Select, SelectItem, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea } from '@nextui-org/react'
 import { Star } from 'lucide-react'
-import useFetchPackageReviews from '@/hooks/queries/useFetchPackageReviews'
-import { setFilterParams } from '@/config/reducers/packageReviews'
-import { useAppSelector } from '@/hooks/redux/useAppSelector'
 import Link from 'next/link'
-import { FormInput } from '@/components/ui/form'
-import { set } from 'date-fns'
-import { StarRating } from '@/components/ui/ratings'
-import { type CreatePackageReviewSchemaType } from '@/config/schema'
-import useCreatePackageReview from '@/hooks/mutations/useCreatePackageReview'
+import { useRouter } from 'next/router'
+import { useMemo, useState } from 'react'
 
 
 const PackageDetailScreen: NextPageWithLayout = () => {
@@ -36,7 +31,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
   // appDispatch(setFilterParams({
   //   packageId: packageId!
   // }))
-  const { packageReviewsData, isLoading: isLoadingReviews} = useFetchPackageReviews(packageId)
+  const { packageReviewsData } = useFetchPackageReviews(packageId)
 
   const loadRegisterButton = () => {
     if (packageData?.isRegisteredByCurrentUser) {
@@ -53,8 +48,8 @@ const PackageDetailScreen: NextPageWithLayout = () => {
       <Button color='primary' className='w-full mt-2'>Đăng ký</Button>
     )
   }
-  
-  const { mutate: createPackageReviewMutate, isPending} = useCreatePackageReview()
+
+  const { mutate: createPackageReviewMutate, isPending } = useCreatePackageReview()
   const addingNewReview = () => createPackageReviewMutate(newReview)
 
   if (isLoading) {
@@ -66,7 +61,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
     <div className='flex flex-col gap-3 mb-5'>
       <Card className=' grid grid-cols-3 gap-3 ml-3 mr-3 p-4'>
         <div className=''>
-          <Image 
+          <Image
             height={1000}
             src='/assets/test/Carrot-farming.jpg'
             className=''
@@ -74,7 +69,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
             width={500}
           />
           {
-            loadRegisterButton()         
+            loadRegisterButton()
           }
         </div>
         <div className='col-span-2'>
@@ -88,7 +83,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
               <TableRow key={1}>
                 <TableCell>Mã gói farming</TableCell>
                 <TableCell>{packageData?.code}</TableCell>
-              </TableRow>              
+              </TableRow>
               <TableRow key={2}>
                 <TableCell>Giá gói farming</TableCell>
                 <TableCell className='text-primary-400'>{splitDigits(packageData!.price!)} VND</TableCell>
@@ -120,7 +115,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
               </TableRow>
             </TableBody>
           </Table>
-        </div>        
+        </div>
       </Card>
       <Card className='grid grid-cols-4 ml-3 mr-3 p-4'>
         <div className='col-span-3'>
@@ -149,11 +144,11 @@ const PackageDetailScreen: NextPageWithLayout = () => {
           <div className='flex justify-between'>
             <p className='flex-1 mr-auto text-primary-400 font-bold text-xl'>Đánh giá ({packageReviewsData?.length})</p>
             <Button className='flex-1 w-1/4' fullWidth={false} color='primary'
-            isDisabled={!(packageData?.isRegisteredByCurrentUser)}
-            onClick={() => {
-              setIsAddingNewReview(true)
-            }}>Thêm đánh giá</Button>
-          </div>          
+              isDisabled={!(packageData?.isRegisteredByCurrentUser)}
+              onClick={() => {
+                setIsAddingNewReview(true)
+              }}>Thêm đánh giá</Button>
+          </div>
         </div>
         <div className='flex flex-col gap-3 mt-3'>
           {
@@ -174,60 +169,60 @@ const PackageDetailScreen: NextPageWithLayout = () => {
                 <div>
                   <Textarea className='w-full text-xl bg-inherit' disabled value={review.content} />
                 </div>
-              </Card>              
+              </Card>
             ))
           }
           {
             isAddingNewReview && (
               <>
-              <Card className='gap-3 p-3'>
-                <div>
-                  <div className=''>
-                    <span className='inline'>Đánh giá  </span>
-                    <Select className='inline w-1/2 font-sans' fullWidth={false}
-                    onChange={(e) => {
-                      setNewReview({
-                        ...newReview,
-                        rating: Number(e.target.value)
-                      })
-                    }}>
-                      <SelectItem key={0} value={0}>Không đánh giá</SelectItem>
-                      <SelectItem key={1} value={1}>1</SelectItem>
-                      <SelectItem key={2} value={2}>2</SelectItem>
-                      <SelectItem key={3} value={3}>3</SelectItem>
-                      <SelectItem key={4} value={4}>4</SelectItem>
-                      <SelectItem key={5} value={5}>5</SelectItem>                      
-                    </Select>
+                <Card className='gap-3 p-3'>
+                  <div>
+                    <div className=''>
+                      <span className='inline'>Đánh giá  </span>
+                      <Select className='inline w-1/2 font-sans' fullWidth={false}
+                        onChange={(e) => {
+                          setNewReview({
+                            ...newReview,
+                            rating: Number(e.target.value)
+                          })
+                        }}>
+                        <SelectItem key={0} value={0}>Không đánh giá</SelectItem>
+                        <SelectItem key={1} value={1}>1</SelectItem>
+                        <SelectItem key={2} value={2}>2</SelectItem>
+                        <SelectItem key={3} value={3}>3</SelectItem>
+                        <SelectItem key={4} value={4}>4</SelectItem>
+                        <SelectItem key={5} value={5}>5</SelectItem>
+                      </Select>
+                    </div>
+                    <Textarea
+                      placeholder={'Nhập đánh giá của bạn (không bắt buộc)'}
+                      className='w-full text-xl bg-inherit'
+                      onChange={(e) => {
+                        setNewReview({
+                          ...newReview,
+                          content: e.target.value
+                        })
+                      }}
+                    />
                   </div>
-                  <Textarea 
-                    placeholder={'Nhập đánh giá của bạn (không bắt buộc)'}
-                    className='w-full text-xl bg-inherit'
-                    onChange={(e) => {
-                      setNewReview({
-                        ...newReview,
-                        content: e.target.value
-                      })
-                    }}
-                  />
-                </div>
-              </Card>
-              <div className='mr-3 flex flex-row gap-3'>
-                <Button color='primary' onClick={() => {
-                  addingNewReview();
-                  if (!isPending) {
+                </Card>
+                <div className='mr-3 flex flex-row gap-3'>
+                  <Button color='primary' onClick={() => {
+                    addingNewReview();
+                    if (!isPending) {
+                      setIsAddingNewReview(false)
+                    }
+                  }}>Đăng đánh giá</Button>
+                  <Button color='default' onClick={() => {
                     setIsAddingNewReview(false)
-                  }
-                }}>Đăng đánh giá</Button>
-                <Button color='default' onClick={() => {
-                  setIsAddingNewReview(false)
-                }}>Trở về</Button>
-              </div>
+                  }}>Trở về</Button>
+                </div>
               </>
             )
           }
         </div>
       </Card>
-    </div>    
+    </div>
   )
 }
 

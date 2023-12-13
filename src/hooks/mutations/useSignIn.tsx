@@ -1,5 +1,6 @@
 import { loginApi } from '@/config/apis/authentication'
 import { ACCESS_TOKEN } from '@/utils/constants/enums'
+import { COMMON_LINK } from '@/utils/constants/links'
 import { ToastHelper } from '@/utils/helpers/ToastHelper'
 import { useMutation } from '@tanstack/react-query'
 import { setCookie } from 'cookies-next'
@@ -16,10 +17,12 @@ export default function useSignIn() {
       if (data.isSuccess) {
         ToastHelper.success(
           t('success', { ns: 'common' }),
-          t('login.success', {ns: 'auth'}),
+          t('login.success', { ns: 'auth' }),
         )
         setCookie(ACCESS_TOKEN, data.value.accessToken)
-        void router.reload()
+        void router.replace(COMMON_LINK.HOMEPAGE, undefined, {
+          locale: router.locale,
+        })
       } else {
         ToastHelper.error(
           t('default-error.title', { ns: 'error' }),
@@ -28,5 +31,4 @@ export default function useSignIn() {
       }
     },
   })
-
 }

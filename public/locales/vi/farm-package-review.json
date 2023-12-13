@@ -1,9 +1,6 @@
 {
-    "title": "Đánh giá gói farming",
-    "success": "Đánh giá thành công",
-    "error": {
-        "default": "Đánh giá không thành công",
-        "not_found": "Không tìm thấy gói farming",
-        "rating_out_of_range": "Điểm đánh giá chỉ được có giá trị từ {{fromRating}} đến {{toRating}}"
-    }
+  "error": {
+    "rating_out_of_range": "Điểm đánh giá chỉ được có giá trị từ {{fromRating}} đến {{toRating}}"
+  },
+  "success": "Đánh giá thành công"
 }

@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import { type ReactNode } from 'react'
 
 export default function UiProvider({ children }: { children: ReactNode }) {
-  const navigate = useRouter()
+  const { push, locale } = useRouter()
   return (
-    <NextUIProvider navigate={navigate.push}>
+    <NextUIProvider navigate={push} locale={locale}>
       <ThemeProvider
         attribute='class'
         storageKey='eco-farm-theme'

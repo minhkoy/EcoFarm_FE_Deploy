@@ -6,7 +6,7 @@ import {
   FormItem,
 } from '@/components/ui/form'
 import { createLoginSchema, type LoginSchemaType } from '@/config/schema'
-import useSignIn from '@/hooks/mutations/useSignin'
+import useSignIn from '@/hooks/mutations/useSignIn'
 import AuthLayout from '@/layouts/auth'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { LINK_AUTH } from '@/utils/constants/links'

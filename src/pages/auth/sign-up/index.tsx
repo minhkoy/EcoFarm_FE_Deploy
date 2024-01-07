@@ -56,6 +56,7 @@ export async function getServerSideProps({
         config,
       )),
     },
+
   }
 }
 
@@ -80,6 +81,7 @@ const SignUpScreen: NextPageWithLayout = () => {
     mode: 'all',
     defaultValues: {
       email: '',
+      name: '',
       taxCode: '',
       password: '',
       username: '',
@@ -94,7 +96,7 @@ const SignUpScreen: NextPageWithLayout = () => {
     onSuccess: ({ data }) => {
       if (data.isSuccess) {
         ToastHelper.success(
-          t('success', { ns: 'common' }),
+          'Thành công',
           capitalize(t('sign-up.success', { ns: 'auth' })),
         )
         void router.push(LINK_AUTH.LOGIN)
@@ -182,6 +184,38 @@ const SignUpScreen: NextPageWithLayout = () => {
                     errorMessage={
                       fieldState.error?.message ?? isError ? errorText : ''
                     }
+                  />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={rhf.control}
+              name='username'
+              render={({ field }) => (
+                <FormItem>
+                  <FormInput
+                    {...field}
+                    type='text'
+                    variant='flat'
+                    isRequired
+                    label={capitalize(t('auth:field.your-username'))}
+                    autoComplete={'off'}
+                  />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={rhf.control}
+              name='name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormInput
+                    {...field}
+                    type='text'
+                    variant='flat'
+                    isRequired
+                    label={capitalize(t('auth:field.your-name'))}
+                    autoComplete={'off'}
                   />
                 </FormItem>
               )}

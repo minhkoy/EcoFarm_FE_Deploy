@@ -1,13 +1,9 @@
 {
   "and": "and",
-  "empty": {
-    "notification": "No notification"
-  },
   "error": "Error occured",
   "experience": "experience",
   "explore": "explore",
   "homepage": "homepage",
-  "log-out": "logout",
   "login": "login",
   "notification": "notification",
   "now": "now",
@@ -17,13 +13,11 @@
   "reset-password": "reset password",
   "search": "Search",
   "sign-up": "sign up",
-  "success": "success",
   "username": "username",
   "validation": {
     "date": {
       "isInValid": "date is invalid",
       "isRequired": "date is required"
     }
-  },
-  "welcome": "welcome {{name}}"
+  }
 }

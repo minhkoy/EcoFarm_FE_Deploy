@@ -1,0 +1,177 @@
+"filename", "language", "TypeScript", "JSON with Comments", "CSS", "TypeScript JSX", "JavaScript", "JSON", "Markdown", "XML", "YAML", "comment", "blank", "total"
+"d:\ReactProjects\EcoFarm_FE\.eslintrc.cjs", "JavaScript", 0, 0, 0, 0, 34, 0, 0, 0, 0, 1, 2, 37
+"d:\ReactProjects\EcoFarm_FE\README.md", "Markdown", 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 4, 19
+"d:\ReactProjects\EcoFarm_FE\cspell.config.yaml", "YAML", 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 3, 38
+"d:\ReactProjects\EcoFarm_FE\i18next-parser.config.js", "JavaScript", 0, 0, 0, 0, 42, 0, 0, 0, 0, 57, 25, 124
+"d:\ReactProjects\EcoFarm_FE\next-i18next.config.mjs", "JavaScript", 0, 0, 0, 0, 16, 0, 0, 0, 0, 1, 2, 19
+"d:\ReactProjects\EcoFarm_FE\next.config.mjs", "JavaScript", 0, 0, 0, 0, 19, 0, 0, 0, 0, 5, 3, 27
+"d:\ReactProjects\EcoFarm_FE\package.json", "JSON", 0, 0, 0, 0, 0, 88, 0, 0, 0, 0, 1, 89
+"d:\ReactProjects\EcoFarm_FE\pnpm-lock.yaml", "YAML", 0, 0, 0, 0, 0, 0, 0, 0, 6389, 0, 809, 7198
+"d:\ReactProjects\EcoFarm_FE\postcss.config.cjs", "JavaScript", 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 2, 19
+"d:\ReactProjects\EcoFarm_FE\prettier.config.js", "JavaScript", 0, 0, 0, 0, 11, 0, 0, 0, 0, 1, 2, 14
+"d:\ReactProjects\EcoFarm_FE\public\assets\brands\EcoFarm.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 1, 27
+"d:\ReactProjects\EcoFarm_FE\public\assets\icons\empty-notif.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 5855, 0, 1, 45, 5901
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\auth.json", "JSON", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 1, 46
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\common.json", "JSON", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 1, 24
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\error.json", "JSON", 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 1, 12
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\farm-package-review.json", "JSON", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 1, 7
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\farm-package.json", "JSON", 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 1, 17
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\product.json", "JSON", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 4
+"d:\ReactProjects\EcoFarm_FE\public\locales\en\select.json", "JSON", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 1, 9
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\auth.json", "JSON", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 1, 46
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\common.json", "JSON", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 1, 24
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\error.json", "JSON", 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 1, 12
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\farm-package-review.json", "JSON", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 1, 7
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\farm-package.json", "JSON", 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 1, 17
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\product.json", "JSON", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 4
+"d:\ReactProjects\EcoFarm_FE\public\locales\vi\select.json", "JSON", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 1, 9
+"d:\ReactProjects\EcoFarm_FE\src\@types\i18next.d.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"d:\ReactProjects\EcoFarm_FE\src\@types\index.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1
+"d:\ReactProjects\EcoFarm_FE\src\@types\resources.d.ts", "TypeScript", 115, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 117
+"d:\ReactProjects\EcoFarm_FE\src\components\features\navbar\DropdownUser.tsx", "TypeScript JSX", 0, 0, 0, 114, 0, 0, 0, 0, 0, 16, 2, 132
+"d:\ReactProjects\EcoFarm_FE\src\components\features\navbar\MessageUser.tsx", "TypeScript JSX", 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 2, 11
+"d:\ReactProjects\EcoFarm_FE\src\components\features\navbar\Notification.tsx", "TypeScript JSX", 0, 0, 0, 35, 0, 0, 0, 0, 0, 3, 2, 40
+"d:\ReactProjects\EcoFarm_FE\src\components\providers\ReactQueryProvider.tsx", "TypeScript JSX", 0, 0, 0, 55, 0, 0, 0, 0, 0, 0, 2, 57
+"d:\ReactProjects\EcoFarm_FE\src\components\providers\ReduxProvider.tsx", "TypeScript JSX", 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 2, 8
+"d:\ReactProjects\EcoFarm_FE\src\components\providers\SignalRProvider.tsx", "TypeScript JSX", 0, 0, 0, 34, 0, 0, 0, 0, 0, 10, 4, 48
+"d:\ReactProjects\EcoFarm_FE\src\components\providers\ToastProvider.tsx", "TypeScript JSX", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 2, 16
+"d:\ReactProjects\EcoFarm_FE\src\components\providers\UiProvider.tsx", "TypeScript JSX", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 2, 21
+"d:\ReactProjects\EcoFarm_FE\src\components\providers\index.tsx", "TypeScript JSX", 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 2, 28
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\calendar\index.tsx", "TypeScript JSX", 0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 4, 85
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\datepicker\index.tsx", "TypeScript JSX", 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 3, 29
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\dropdown\index.tsx", "TypeScript JSX", 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 3, 21
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\form\index.tsx", "TypeScript JSX", 0, 0, 0, 180, 0, 0, 0, 0, 0, 0, 14, 194
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\overlay\DefaultOverlay.tsx", "TypeScript JSX", 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 2, 14
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\personalInfo\UserInfo.tsx", "TypeScript JSX", 0, 0, 0, 38, 0, 0, 0, 0, 0, 30, 5, 73
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\popover\index.tsx", "TypeScript JSX", 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 3, 18
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\ratings\index.tsx", "TypeScript JSX", 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 2, 25
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\switch\SwitchLocale.tsx", "TypeScript JSX", 0, 0, 0, 27, 0, 0, 0, 0, 0, 1, 3, 31
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\switch\SwitchTheme.tsx", "TypeScript JSX", 0, 0, 0, 30, 0, 0, 0, 0, 0, 2, 5, 37
+"d:\ReactProjects\EcoFarm_FE\src\components\ui\texts\TextTitle.tsx", "TypeScript JSX", 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 2, 9
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\account\index.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 14
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\activity\index.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\address\index.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 25
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\authentication\index.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 33
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\cart\index.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\orders\index.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\packageReviews\index.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\packages\index.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 49
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\products\index.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
+"d:\ReactProjects\EcoFarm_FE\src\config\apis\user\index.tsx", "TypeScript JSX", 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 3, 9
+"d:\ReactProjects\EcoFarm_FE\src\config\lib\axiosConfig.ts", "TypeScript", 74, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 89
+"d:\ReactProjects\EcoFarm_FE\src\config\lib\fonts.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 21
+"d:\ReactProjects\EcoFarm_FE\src\config\lib\signalRConfig.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 8, 3, 34
+"d:\ReactProjects\EcoFarm_FE\src\config\lib\store.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 20
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\activity\index.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 25
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\address\index.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 23
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\auth\index.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\index.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 24
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\orders\index.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 26
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\packageReviews\index.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 21
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\package\index.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 22
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\packages\index.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 27
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\products\index.ts", "TypeScript", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 29
+"d:\ReactProjects\EcoFarm_FE\src\config\reducers\signalr\index.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 8
+"d:\ReactProjects\EcoFarm_FE\src\config\schema\address.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 16
+"d:\ReactProjects\EcoFarm_FE\src\config\schema\cart.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 2, 7
+"d:\ReactProjects\EcoFarm_FE\src\config\schema\index.ts", "TypeScript", 177, 0, 0, 0, 0, 0, 0, 0, 0, 11, 16, 204
+"d:\ReactProjects\EcoFarm_FE\src\config\schema\order.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"d:\ReactProjects\EcoFarm_FE\src\config\schema\product.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 25
+"d:\ReactProjects\EcoFarm_FE\src\env.js", "JavaScript", 0, 0, 0, 0, 21, 0, 0, 0, 0, 21, 4, 46
+"d:\ReactProjects\EcoFarm_FE\src\hooks\auth\useAuth.tsx", "TypeScript JSX", 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 4, 20
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\activities\useCreateActivity.tsx", "TypeScript JSX", 0, 0, 0, 29, 0, 0, 0, 0, 0, 0, 1, 30
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\address\useCreateAddress.tsx", "TypeScript JSX", 0, 0, 0, 30, 0, 0, 0, 0, 0, 1, 1, 32
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\address\useDeleteAddress.tsx", "TypeScript JSX", 0, 0, 0, 30, 0, 0, 0, 0, 0, 1, 1, 32
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\cart\useAddNewProduct.tsx", "TypeScript JSX", 0, 0, 0, 24, 0, 0, 0, 0, 0, 1, 2, 27
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\cart\useRemoveFromCart.tsx", "TypeScript JSX", 0, 0, 0, 20, 0, 0, 0, 0, 0, 5, 2, 27
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\orders\useApproveOrder.tsx", "TypeScript JSX", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\orders\useCreateOrder.tsx", "TypeScript JSX", 0, 0, 0, 27, 0, 0, 0, 0, 0, 2, 2, 31
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\packages\useCloseRegisterPackage.tsx", "TypeScript JSX", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\packages\useCreatePackage.tsx", "TypeScript JSX", 0, 0, 0, 26, 0, 0, 0, 0, 0, 2, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\packages\useEndPackage.tsx", "TypeScript JSX", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\packages\useRegisterPackage.tsx", "TypeScript JSX", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\packages\useStartPackage.tsx", "TypeScript JSX", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\packages\useUpdatePackage.tsx", "TypeScript JSX", 0, 0, 0, 26, 0, 0, 0, 0, 0, 2, 1, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\products\useCreateProduct.tsx", "TypeScript JSX", 0, 0, 0, 32, 0, 0, 0, 0, 0, 1, 1, 34
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\useCheckEmail.tsx", "TypeScript JSX", 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 2, 15
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\useCreatePackageReview.tsx", "TypeScript JSX", 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 1, 28
+"d:\ReactProjects\EcoFarm_FE\src\hooks\mutations\useSignIn.tsx", "TypeScript JSX", 0, 0, 0, 58, 0, 0, 0, 0, 0, 8, 6, 72
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useCheckTaxCode.tsx", "TypeScript JSX", 0, 0, 0, 31, 0, 0, 0, 0, 0, 0, 5, 36
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchActivities.tsx", "TypeScript JSX", 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 5, 26
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchAddresses.tsx", "TypeScript JSX", 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 4, 26
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchOrders.tsx", "TypeScript JSX", 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 4, 25
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchPackage.tsx", "TypeScript JSX", 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 5, 26
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchPackageReviews.tsx", "TypeScript JSX", 0, 0, 0, 26, 0, 0, 0, 0, 0, 1, 4, 31
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchProducts.tsx", "TypeScript JSX", 0, 0, 0, 22, 0, 0, 0, 0, 0, 2, 5, 29
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useFetchSinglePackage.tsx", "TypeScript JSX", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 2, 21
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useGetMyAccountInfo.tsx", "TypeScript JSX", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 2, 13
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useGetMyShoppingCart.tsx", "TypeScript JSX", 0, 0, 0, 13, 0, 0, 0, 0, 0, 1, 3, 17
+"d:\ReactProjects\EcoFarm_FE\src\hooks\queries\useGetUserInfo.tsx", "TypeScript JSX", 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 3, 13
+"d:\ReactProjects\EcoFarm_FE\src\hooks\redux\useAppDispatch.tsx", "TypeScript JSX", 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2, 5
+"d:\ReactProjects\EcoFarm_FE\src\hooks\redux\useAppSelector.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 2, 7
+"d:\ReactProjects\EcoFarm_FE\src\hooks\signalr\useNotificationHubConnection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 10
+"d:\ReactProjects\EcoFarm_FE\src\layouts\auth\index.tsx", "TypeScript JSX", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 2, 19
+"d:\ReactProjects\EcoFarm_FE\src\layouts\common\component\SidebarMenu.tsx", "TypeScript JSX", 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 2, 58
+"d:\ReactProjects\EcoFarm_FE\src\layouts\common\header.tsx", "TypeScript JSX", 0, 0, 0, 104, 0, 0, 0, 0, 0, 3, 3, 110
+"d:\ReactProjects\EcoFarm_FE\src\layouts\common\main.tsx", "TypeScript JSX", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 3, 17
+"d:\ReactProjects\EcoFarm_FE\src\layouts\seller\header.tsx", "TypeScript JSX", 0, 0, 0, 116, 0, 0, 0, 0, 0, 3, 3, 122
+"d:\ReactProjects\EcoFarm_FE\src\layouts\seller\sellerLayout.tsx", "TypeScript JSX", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 3, 17
+"d:\ReactProjects\EcoFarm_FE\src\middleware.ts", "TypeScript", 49, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 54
+"d:\ReactProjects\EcoFarm_FE\src\models\account.model.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
+"d:\ReactProjects\EcoFarm_FE\src\models\activity.model.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 32
+"d:\ReactProjects\EcoFarm_FE\src\models\address.model.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 20
+"d:\ReactProjects\EcoFarm_FE\src\models\cart.model.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 21
+"d:\ReactProjects\EcoFarm_FE\src\models\common.model.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"d:\ReactProjects\EcoFarm_FE\src\models\enterprise.model.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"d:\ReactProjects\EcoFarm_FE\src\models\helpers\personal-tax.model.ts", "TypeScript", 47, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 53
+"d:\ReactProjects\EcoFarm_FE\src\models\helpers\query.model.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8
+"d:\ReactProjects\EcoFarm_FE\src\models\helpers\response.model.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 20
+"d:\ReactProjects\EcoFarm_FE\src\models\order.model.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 47
+"d:\ReactProjects\EcoFarm_FE\src\models\package.model.ts", "TypeScript", 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 67
+"d:\ReactProjects\EcoFarm_FE\src\models\packageReview.model.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 22
+"d:\ReactProjects\EcoFarm_FE\src\models\product.model.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 45
+"d:\ReactProjects\EcoFarm_FE\src\models\user.model.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 27
+"d:\ReactProjects\EcoFarm_FE\src\pages\_app.tsx", "TypeScript JSX", 0, 0, 0, 33, 0, 0, 0, 0, 0, 1, 5, 39
+"d:\ReactProjects\EcoFarm_FE\src\pages\auth\forgot-password\index.tsx", "TypeScript JSX", 0, 0, 0, 147, 0, 0, 0, 0, 0, 0, 10, 157
+"d:\ReactProjects\EcoFarm_FE\src\pages\auth\login\index.tsx", "TypeScript JSX", 0, 0, 0, 172, 0, 0, 0, 0, 0, 1, 7, 180
+"d:\ReactProjects\EcoFarm_FE\src\pages\auth\sign-up\index.tsx", "TypeScript JSX", 0, 0, 0, 355, 0, 0, 0, 0, 0, 2, 15, 372
+"d:\ReactProjects\EcoFarm_FE\src\pages\cart\index.tsx", "TypeScript JSX", 0, 0, 0, 251, 0, 0, 0, 0, 0, 9, 8, 268
+"d:\ReactProjects\EcoFarm_FE\src\pages\chat\index.tsx", "TypeScript JSX", 0, 0, 0, 74, 0, 0, 0, 0, 0, 22, 6, 102
+"d:\ReactProjects\EcoFarm_FE\src\pages\enterprise\[enterpriseId].tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"d:\ReactProjects\EcoFarm_FE\src\pages\error\forbidden.tsx", "TypeScript JSX", 0, 0, 0, 19, 0, 0, 0, 0, 0, 1, 2, 22
+"d:\ReactProjects\EcoFarm_FE\src\pages\homepage\index.tsx", "TypeScript JSX", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 6, 25
+"d:\ReactProjects\EcoFarm_FE\src\pages\packages\[packageId]\index.tsx", "TypeScript JSX", 0, 0, 0, 357, 0, 0, 0, 0, 0, 39, 11, 407
+"d:\ReactProjects\EcoFarm_FE\src\pages\packages\index.tsx", "TypeScript JSX", 0, 0, 0, 244, 0, 0, 0, 0, 0, 31, 10, 285
+"d:\ReactProjects\EcoFarm_FE\src\pages\packages\update\[packageId].tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"d:\ReactProjects\EcoFarm_FE\src\pages\products\[productId]\index.tsx", "TypeScript JSX", 0, 0, 0, 243, 0, 0, 0, 0, 0, 108, 9, 360
+"d:\ReactProjects\EcoFarm_FE\src\pages\products\index.tsx", "TypeScript JSX", 0, 0, 0, 213, 0, 0, 0, 0, 0, 29, 7, 249
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\homepage.tsx", "TypeScript JSX", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 3, 20
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\orders\[orderId].tsx", "TypeScript JSX", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 3, 22
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\orders\index.tsx", "TypeScript JSX", 0, 0, 0, 416, 0, 0, 0, 0, 0, 52, 18, 486
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\packages\[packageId]\index.tsx", "TypeScript JSX", 0, 0, 0, 403, 0, 0, 0, 0, 0, 48, 20, 471
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\packages\[packageId]\update\index.tsx", "TypeScript JSX", 0, 0, 0, 206, 0, 0, 0, 0, 0, 4, 8, 218
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\packages\create\index.tsx", "TypeScript JSX", 0, 0, 0, 221, 0, 0, 0, 0, 0, 39, 5, 265
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\packages\index.tsx", "TypeScript JSX", 0, 0, 0, 135, 0, 0, 0, 0, 0, 18, 9, 162
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\products\[productId]\index.tsx", "TypeScript JSX", 0, 0, 0, 124, 0, 0, 0, 0, 0, 121, 7, 252
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\products\create.tsx", "TypeScript JSX", 0, 0, 0, 191, 0, 0, 0, 0, 0, 7, 6, 204
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\products\index.tsx", "TypeScript JSX", 0, 0, 0, 144, 0, 0, 0, 0, 0, 50, 12, 206
+"d:\ReactProjects\EcoFarm_FE\src\pages\seller\stats\index.tsx", "TypeScript JSX", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 4, 23
+"d:\ReactProjects\EcoFarm_FE\src\pages\test\chat\index.tsx", "TypeScript JSX", 0, 0, 0, 56, 0, 0, 0, 0, 0, 14, 2, 72
+"d:\ReactProjects\EcoFarm_FE\src\pages\test\components\BubbleChat.tsx", "TypeScript JSX", 0, 0, 0, 42, 0, 0, 0, 0, 0, 1, 9, 52
+"d:\ReactProjects\EcoFarm_FE\src\pages\user\profile\addresses.tsx", "TypeScript JSX", 0, 0, 0, 177, 0, 0, 0, 0, 0, 1, 6, 184
+"d:\ReactProjects\EcoFarm_FE\src\pages\user\profile\index.tsx", "TypeScript JSX", 0, 0, 0, 45, 0, 0, 0, 0, 0, 7, 5, 57
+"d:\ReactProjects\EcoFarm_FE\src\pages\user\profile\orders.tsx", "TypeScript JSX", 0, 0, 0, 63, 0, 0, 0, 0, 0, 26, 4, 93
+"d:\ReactProjects\EcoFarm_FE\src\pages\user\profile\your-packages.tsx", "TypeScript JSX", 0, 0, 0, 31, 0, 0, 0, 0, 0, 0, 2, 33
+"d:\ReactProjects\EcoFarm_FE\src\signalRMiddleware.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 30
+"d:\ReactProjects\EcoFarm_FE\src\styles\globals.css", "CSS", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"d:\ReactProjects\EcoFarm_FE\src\utils\constants\constants.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6
+"d:\ReactProjects\EcoFarm_FE\src\utils\constants\enums.ts", "TypeScript", 89, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14, 104
+"d:\ReactProjects\EcoFarm_FE\src\utils\constants\links.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"d:\ReactProjects\EcoFarm_FE\src\utils\constants\selectOption.ts", "TypeScript", 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 39
+"d:\ReactProjects\EcoFarm_FE\src\utils\helpers\CommonHelper.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 21
+"d:\ReactProjects\EcoFarm_FE\src\utils\helpers\DateHelper.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 35
+"d:\ReactProjects\EcoFarm_FE\src\utils\helpers\LogHelper.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"d:\ReactProjects\EcoFarm_FE\src\utils\helpers\ToastHelper.ts", "TypeScript", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 26
+"d:\ReactProjects\EcoFarm_FE\tailwind.config.ts", "TypeScript", 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 100
+"d:\ReactProjects\EcoFarm_FE\tsconfig.json", "JSON with Comments", 0, 37, 0, 0, 0, 0, 0, 0, 0, 4, 3, 44
+"Total", "-", 1551, 37, 5, 6254, 160, 312, 15, 5881, 6424, 884, 1525, 23048

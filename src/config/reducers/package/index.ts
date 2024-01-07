@@ -1,5 +1,5 @@
-import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
-import type { QuerySinglePackage } from 'src/models/package.model'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { QuerySinglePackage } from 'src/models/package.model';
 
 const initialState: QuerySinglePackage = {
   id: '',
@@ -10,9 +10,10 @@ export const singlePackageSlice = createSlice({
   name: 'singlePackage',
   initialState,
   reducers: {
-    setPackageId: (state, action: PayloadAction<string>) => { 
+    setPackageId: (state, action: PayloadAction<string>) => {
+      //if (!state.id && !state.code) return;
       state.id = action.payload
-      state.code = action.payload
+      //state.code = action.payload
     }
   }
 })

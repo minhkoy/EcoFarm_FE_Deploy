@@ -10,7 +10,7 @@ import {
   NavbarMenuToggle,
 } from '@nextui-org/react'
 import { capitalize } from 'lodash-es'
-import { HomeIcon, PackageIcon, VeganIcon } from 'lucide-react'
+import { HomeIcon, MessagesSquareIcon, PackageIcon, VeganIcon } from 'lucide-react'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -24,13 +24,13 @@ const Header = () => {
     () => [
       {
         id: 'homepage',
-        label: t('homepage'),
+        label: 'Trang chủ', //t('homepage'),
         href: '/homepage',
         icon: <HomeIcon className='' />,
       },
       {
         id: 'packages',
-        label: t('packages'),
+        label: 'Gói farming',
         href: '/packages',
         icon: <PackageIcon />,
       },
@@ -39,6 +39,12 @@ const Header = () => {
         label: 'Sản phẩm', //XXX
         href: '/products',
         icon: <VeganIcon />,
+      },
+      {
+        id: 'chat',
+        label: 'Trò chuyện',
+        href: '/chat',
+        icon: <MessagesSquareIcon />
       }
     ],
     [t],

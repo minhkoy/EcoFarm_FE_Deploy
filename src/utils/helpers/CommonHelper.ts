@@ -1,7 +1,8 @@
-import { type ParsedUrlQuery } from 'querystring'
 import { isArray, isUndefined } from 'lodash-es'
+import { type ParsedUrlQuery } from 'querystring'
 
-export const splitDigits = (number: number) => {
+export const splitDigits = (number?: number) => {
+  if (!number) return 0
   const numberString = number.toString()
 
   // Use a regular expression to insert commas every three digits

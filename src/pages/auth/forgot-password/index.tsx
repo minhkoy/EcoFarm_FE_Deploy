@@ -40,6 +40,7 @@ export const getServerSideProps = async ({
         config,
       )),
     },
+
   }
 }
 

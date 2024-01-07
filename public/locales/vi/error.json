@@ -1,14 +1,11 @@
 {
   "access-denied": {
-    "description": "Xin lỗi, bạn Không có quyền truy cập",
-    "title": "Truy cập bị từ chối"
+    "description": "Xin lỗi, bạn Không có quyền truy cập"
   },
   "access-expired": {
-    "description": "Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại.",
-    "title": "Đăng nhập hết hạn"
+    "description": "Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại."
   },
   "default-error": {
-    "description": "Đã có lỗi xảy ra, vui lòng thử lại sau",
-    "title": "Lỗi"
+    "description": "Đã có lỗi xảy ra, vui lòng thử lại sau"
   }
 }

@@ -7,6 +7,7 @@ interface Resources {
       "forgot-password": "quên mật khẩu",
       "remember-me": "ghi nhớ đăng nhập",
       "your-email": "email của bạn",
+      "your-name": "tên của bạn",
       "your-password": "mật khẩu của bạn",
       "your-tax-code": "mã số thuế",
       "your-username": "tên đăng nhập của bạn"
@@ -45,14 +46,10 @@ interface Resources {
   },
   "common": {
     "and": "và",
-    "empty": {
-      "notification": "không có thông báo nào"
-    },
     "error": "Đã xảy ra lỗi",
     "experience": "trải nghiệm",
     "explore": "khám phá",
     "homepage": "trang chủ",
-    "log-out": "đăng xuất",
     "login": "đăng nhập",
     "notification": "thông báo",
     "now": "ngay",
@@ -62,28 +59,23 @@ interface Resources {
     "reset-password": "Thay đổi mật khẩu",
     "search": "Tìm kiếm",
     "sign-up": "đăng ký",
-    "success": "thành công",
     "username": "tài khoản",
     "validation": {
       "date": {
         "isInValid": "Định dạng ngày không hợp lệ",
         "isRequired": "Vui lòng nhập ngày"
       }
-    },
-    "welcome": "Xin chào, {{name}}"
+    }
   },
   "error": {
     "access-denied": {
-      "description": "Xin lỗi, bạn Không có quyền truy cập",
-      "title": "Truy cập bị từ chối"
+      "description": "Xin lỗi, bạn Không có quyền truy cập"
     },
     "access-expired": {
-      "description": "Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại.",
-      "title": "Đăng nhập hết hạn"
+      "description": "Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại."
     },
     "default-error": {
-      "description": "Đã có lỗi xảy ra, vui lòng thử lại sau",
-      "title": "Lỗi"
+      "description": "Đã có lỗi xảy ra, vui lòng thử lại sau"
     }
   },
   "farm-package-review": {
@@ -107,6 +99,9 @@ interface Resources {
       "range-price": "khoảng giá",
       "to-price": "giá đến..."
     }
+  },
+  "product": {
+    "info": "Thông tin {{total}} sản phẩm"
   },
   "select": {
     "account-type": {

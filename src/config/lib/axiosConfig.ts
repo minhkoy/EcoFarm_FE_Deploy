@@ -48,32 +48,37 @@ axiosClient.interceptors.response.use(
   (response) => {
     return response
   },
-  (error) => {
+  async (error) => {
     if (axios.isAxiosError(error)) {
       debugger;
       switch (error.response?.status) {
         case ERROR_CODES.UNAUTHORIZED:
           ToastHelper.error(
-            i18n?.t('access-expired.title', { ns: 'error' }) ?? 'Error',
-            i18n?.t('access-expired.description', { ns: 'error' }) ??
-            'Access expired',
+            "Lỗi",//i18n?.t('access-expired.title', { ns: 'error' }) ?? 'Error',
+            //i18n?.t('access-expired.description', { ns: 'error' }) ??
+            'Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại'// 'Access expired',
           )
           break
         case ERROR_CODES.FORBIDDEN:
           ToastHelper.error(
-            i18n!.t('access-denied.title', { ns: 'error' }) ?? 'Error',
-            i18n!.t('access-denied.description', { ns: 'error' }) ??
-            'Access denied',
+            "Lỗi",//i18n!.t('access-denied.title', { ns: 'error' }) ?? 'Error',
+            //i18n!.t('access-denied.description', { ns: 'error' }) ??
+            'Bạn không có quyền truy cập thông tin này'// 'Access denied',
           )
           break
+        case ERROR_CODES.INTERNAL_SERVER_ERROR:
+          ToastHelper.error(
+            "Lỗi",//i18n?.t('server-error.title', { ns: 'error' }) ?? 'Error',
+            "Đã có lỗi xảy ra. Vui lòng thử lại sau"//i18n?.t('server-error.description', { ns: 'error' }) ?? 'Something went wrong'
+          )
         case ERROR_CODES.BAD_REQUEST:
         case ERROR_CODES.NOT_FOUND:
           ToastHelper.error(
-            i18n?.t('default-error.title', { ns: 'error' }) ?? 'Error',
+            "Lỗi",//i18n?.'Lỗi' ?? 'Error',
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
             error.response.data.errors ??
-            i18n?.t('default-error.description', { ns: 'error' }) ??
-            'Something went wrong',
+            //i18n?.t('default-error.description', { ns: 'error' }) ??
+            'Đã có lỗi xảy ra',
           )
           break
       }

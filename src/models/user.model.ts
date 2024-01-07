@@ -17,7 +17,7 @@ export type UserModel = AccountModel & {
   id: string
   phoneNumber: string
   gender?: keyof typeof GENDER
-  dob?: Date
+  dateOfBirth?: Date
   addresses?: Array<Address>
 }
 

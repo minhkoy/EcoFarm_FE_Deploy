@@ -1,9 +1,11 @@
-import { Datepicker } from "@/components/ui/datepicker";
 import { type CreatePackageSchemaType } from "@/config/schema";
 import useCreatePackage from "@/hooks/mutations/packages/useCreatePackage";
-import MainLayout from "@/layouts/common/main";
+import SellerLayout from "@/layouts/seller/sellerLayout";
 import { type NextPageWithLayout } from "@/pages/_app";
+import { FileInput, NumberInput } from "@mantine/core";
+import { DatePickerInput } from "@mantine/dates";
 import { Button, Checkbox, Input, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea } from "@nextui-org/react";
+import { Calendar, Upload } from "lucide-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -18,12 +20,16 @@ const CreatePackageScreen: NextPageWithLayout = () => {
     estimatedEndTime: null,
     estimatedStartTime: null,
     isAutoCloseRegister: false,
-
+    avatar: ''
   })
+  const [avatar, setAvatar] = useState<string>('');
 
   const router = useRouter();
   const { mutate: createPackageMutate, isPending } = useCreatePackage()
-  const onSubmitCreate = () => createPackageMutate(packageRequest);
+  const onSubmitCreate = () => createPackageMutate({
+    ...packageRequest,
+    avatar: avatar ?? ''
+  });
 
   return (
     <div className="flex flex-col justify-between gap-2">
@@ -79,12 +85,14 @@ const CreatePackageScreen: NextPageWithLayout = () => {
           <TableRow>
             <TableCell>Giá</TableCell>
             <TableCell>
-              <Input
+              <NumberInput
+                min={0}
+                thousandSeparator
                 placeholder="Giá"
                 onChange={(e) => {
                   setPackageRequest({
                     ...packageRequest,
-                    price: Number(e.target.value)
+                    price: Number(e)
                   })
                 }}
               />
@@ -126,30 +134,36 @@ const CreatePackageScreen: NextPageWithLayout = () => {
           <TableRow>
             <TableCell>Thời gian bắt đầu dự kiến</TableCell>
             <TableCell>
-              <Datepicker
-                placement="bottom"
-                mode="single"
-                onDayClick={(day) => {
+              <DatePickerInput
+                radius='md'
+                rightSection={<Calendar />}
+                valueFormat="DD-MM-YYYY"
+                onChange={(date) => {
                   setPackageRequest({
                     ...packageRequest,
-                    estimatedStartTime: day
+                    estimatedStartTime: date
                   })
                 }}
+                clearable
+                defaultValue={null}
               />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Thời gian kết thúc dự kiến</TableCell>
             <TableCell>
-              <Datepicker
-                placement="bottom"
-                mode="single"
-                onDayClick={(day) => {
+              <DatePickerInput
+                radius={'md'}
+                rightSection={<Calendar />}
+                valueFormat="DD-MM-YYYY"
+                onChange={(date) => {
                   setPackageRequest({
                     ...packageRequest,
-                    estimatedEndTime: day
+                    estimatedEndTime: date
                   })
                 }}
+                clearable
+                defaultValue={null}
               />
             </TableCell>
           </TableRow>
@@ -168,6 +182,46 @@ const CreatePackageScreen: NextPageWithLayout = () => {
               />
             </TableCell>
           </TableRow>
+          <TableRow>
+            <TableCell>Ảnh đại diện</TableCell>
+            <TableCell>
+              <FileInput
+                accept="image/png, image/jpeg"
+                placeholder="Chọn ảnh đại diện"
+                clearable
+                rightSection={<Upload />}
+                onChange={(file) => {
+                  if (!file) {
+                    return;
+                  }
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    setAvatar(reader.result as string)
+                  }
+                  reader.readAsDataURL(file)
+                  // e?.text()
+                  //   .then((text) => setPackageRequest({
+                  //     ...packageRequest,
+                  //     avatar: text
+
+                  //   }))
+                  //   .catch((err) => console.log(err))
+                }}
+              />
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Các ảnh khác</TableCell>
+            <TableCell>
+              <FileInput
+                accept="image/png, image/jpeg"
+                placeholder="Chọn các ảnh khác"
+                multiple
+                clearable
+                rightSection={<Upload />}
+              />
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
       <div className="flex flex-row justify-center gap-3">
@@ -178,7 +232,6 @@ const CreatePackageScreen: NextPageWithLayout = () => {
             void router.push('/seller/packages')
           }}>Trở về</Button>
       </div>
-      <p>{JSON.stringify(packageRequest)}</p>
     </div>
     // <div className="flex flex-col justify-center gap-3 w-1/2 self-center">
     //     <p className="text-primary-600 uppercase">Thêm mới gói farming</p>
@@ -204,9 +257,9 @@ const CreatePackageScreen: NextPageWithLayout = () => {
 
 CreatePackageScreen.getLayout = function getLayout(page) {
   return (
-    <MainLayout>
+    <SellerLayout>
       {page}
-    </MainLayout>
+    </SellerLayout>
   )
 }
 export default CreatePackageScreen;

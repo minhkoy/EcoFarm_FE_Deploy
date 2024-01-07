@@ -60,6 +60,7 @@ export const createSignUpSchema = <T extends TFunction>(t: T) => {
   return z
     .object({
       username: z.string(),
+      name: z.string(),
       taxCode: z.string(),
       email: createCommonSchema(t).emailSchema,
       password: createCommonSchema(t).passwordSchema,
@@ -120,16 +121,59 @@ export const createForgotPasswordSchema = <T extends TFunction>(t: T) => {
 export const createNewPackageSchema = () => {
   return z.object({
     code: z.string(),
-    name: z.string(),
+    name: z.string()
+      .min(5, { message: 'Tên gói dịch vụ cần có ít nhất 5 ký tự' }),
     description: z.string(),
     estimatedStartTime: z.date().nullable(),
     estimatedEndTime: z.date().nullable(),
-    price: z.number(),
-    quantity: z.number(),
+    price: z.number()
+      .min(0, { message: 'Giá gói farming phải là số dương' }),
+    quantity: z.number()
+      .min(0, { message: 'Số lượng đăng ký phải là số dương' }),
     serviceType: z.number(),
     isAutoCloseRegister: z.boolean(),
+    avatar: z.string()
+    //avatar: z.unknown() as z.ZodType<Blob>,
   })
 
+}
+
+export const updatePackageSchema = () => {
+  return z.object({
+    id: z.string(),
+    code: z.string(),
+    name: z.string()
+      .min(5, { message: 'Tên gói dịch vụ cần có ít nhất 5 ký tự' }),
+    description: z.string(),
+    estimatedStartTime: z.date().nullable(),
+    estimatedEndTime: z.date().nullable(),
+    price: z.number()
+      .min(0, { message: 'Giá gói farming phải là số dương' }),
+    quantityRemain: z.number(),
+    isAutoCloseRegister: z.boolean(),
+    avatar: z.string()
+    //avatar: z.unknown() as z.ZodType<Blob>,
+  })
+}
+
+//Activity
+
+export const createNewActivitySchema = () => {
+  return z.object({
+    code: z.string(),
+    packageId: z.string(),
+    title: z.string()
+      .min(5, { message: 'Tiêu đề hoạt động cần có ít nhất 5 ký tự' })
+      .max(40, { message: 'Tiêu đề hoạt động không được vượt quá 40 ký tự' }),
+    shortDescription: z.string()
+      .min(5, { message: 'Mô tả ngắn hoạt động cần có ít nhất 5 ký tự' })
+      .max(50, { message: 'Mô tả ngắn hoạt động không được vượt quá 50 ký tự' }),
+    content: z.string()
+      .min(5, { message: 'Nội dung hoạt động cần có ít nhất 5 ký tự' }),
+    mainImage: z.string(),
+    medias: z.array(z.string()),
+    images: z.array(z.string()),
+  })
 }
 
 // Package review
@@ -155,4 +199,6 @@ export type ForgotPasswordSchemaType = z.infer<
 >
 
 export type CreatePackageSchemaType = z.infer<ReturnType<typeof createNewPackageSchema>>
-export type CreatePackageReviewSchemaType = z.infer<ReturnType<typeof createNewPackageReviewSchema>>
+export type UpdatePackageSchemaType = z.infer<ReturnType<typeof updatePackageSchema>>
+export type CreatePackageReviewSchemaType = z.infer<ReturnType<typeof createNewPackageReviewSchema>>;
+export type CreateActivitySchemaType = z.infer<ReturnType<typeof createNewActivitySchema>>;

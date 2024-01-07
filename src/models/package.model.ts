@@ -1,11 +1,14 @@
 import {
   type CURRENCY_TYPE,
+  type PACKAGE_REGISTER_STATUS,
+  type PACKAGE_STATUS,
   type PACKAGE_TYPE,
   type SERVICE_PACKAGE_APPROVAL_STATUS,
 } from '@/utils/constants/enums'
 import { type EnterpriseModel } from './enterprise.model'
 import { type QueryRequest } from './helpers/query.model'
 import { type ResponseModel } from './helpers/response.model'
+import { type PackageReviewModel } from './packageReview.model'
 import { type UserModel } from './user.model'
 
 export type PackageModel = {
@@ -24,11 +27,16 @@ export type PackageModel = {
   price?: number
   currency: keyof typeof CURRENCY_TYPE
   currencyName: keyof typeof CURRENCY_TYPE
-  quantityTotal: number
+  quantityStart: number
   quantityRegistered: number
   quantityRemain: number
   rejectReason?: string
   servicePackageApprovalStatus: keyof typeof SERVICE_PACKAGE_APPROVAL_STATUS
+  servicePackageApprovalStatusName?: string
+  packageStatus: PACKAGE_STATUS
+  packageStatusName?: string
+  packageRegisterStatus: PACKAGE_REGISTER_STATUS
+  packageRegisterStatusName?: string
   servicePackageType: keyof typeof PACKAGE_TYPE
   serviceTypeName: string
   registeredUsers?: Array<UserModel>
@@ -36,6 +44,8 @@ export type PackageModel = {
   averageRating?: number
   isRegisteredByCurrentUser?: boolean
   enterprise?: EnterpriseModel
+  avatarUrl?: string
+  reviews?: Array<PackageReviewModel>
 }
 
 export type ResponsePackages = ResponseModel<Array<PackageModel>>

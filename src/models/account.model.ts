@@ -1,3 +1,5 @@
+import { type ResponseModel } from "./helpers/response.model"
+
 export type AccountModel = {
   accountId: string
   fullName: string
@@ -9,5 +11,8 @@ export type AccountModel = {
   isActive?: boolean
   lockedReason?: string
   avatarUrl?: string
+  accountEntityId?: string
   accessToken?: string
 }
+
+export type ResponseAccount = ResponseModel<AccountModel>

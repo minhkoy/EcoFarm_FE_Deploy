@@ -27,9 +27,10 @@ export default function Notification() {
         </figure>
         <p className='absolute bottom-0 -translate-y-8'>
           {capitalize(
-            t('empty.notification', {
-              ns: 'common',
-            }),
+            // t('empty.notification', {
+            //   ns: 'common',
+            // }),
+            'Không có thông báo nào'
           )}
         </p>
       </PopoverContent>

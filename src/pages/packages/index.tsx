@@ -5,7 +5,7 @@ import useFetchPackage from '@/hooks/queries/useFetchPackage'
 import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import MainLayout from '@/layouts/common/main'
 import { type QueryPackages } from '@/models/package.model'
-import { Flex, Button as MantineButton, NumberFormatter, Select, TextInput } from '@mantine/core'
+import { Flex, Button as MantineButton, NumberFormatter, Select, Text, TextInput } from '@mantine/core'
 import {
   Button,
   Card,
@@ -22,7 +22,7 @@ import { useTranslation } from 'next-i18next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { type NextPageWithLayout } from '../_app'
 //import Image from 'next/image'
 
@@ -47,13 +47,16 @@ const PackagesScreen: NextPageWithLayout = () => {
     priceFrom: undefined,
     priceTo: undefined,
     enterpriseId: '',
-    isStart: undefined,
+    isStarted: undefined,
     isEnded: undefined,
   })
   const appDispatch = useAppDispatch()
   const { t } = useTranslation()
   const router = useRouter()
   const { packageData, isLoading } = useFetchPackage()
+  useEffect(() => {
+    appDispatch(setFilterParams(filters));
+  }, [appDispatch, filters])
   const { enterpriseData, isLoading: isLoadingEnterprises } = useFetchEnterprises();
   //const packageData = useMemo(() => queryResult?.data.value, [queryResult])
   // const onChange = useCallback(
@@ -66,7 +69,7 @@ const PackagesScreen: NextPageWithLayout = () => {
   //   [],
   // )
 
-  const onSubmitSearch = () => appDispatch(setFilterParams(filters));
+  const onSubmitSearch = () => setFilters(filters)
 
   if (isLoading) {
     return (
@@ -102,9 +105,13 @@ const PackagesScreen: NextPageWithLayout = () => {
               label: enterprise.fullName,
             })) ?? []}
             onChange={(value) => {
-              appDispatch(setFilterParams({
+              // appDispatch(setFilterParams({
+              //   enterpriseId: value ?? ''
+              // }))
+              setFilters({
+                ...filters,
                 enterpriseId: value ?? ''
-              }))
+              })
             }}
           />
         </div>
@@ -141,11 +148,11 @@ const PackagesScreen: NextPageWithLayout = () => {
         </div>
         <div className='mb-4'>
           <Checkbox
-            isSelected={filters.isStart}
+            isSelected={filters.isStarted}
             onValueChange={(e) => {
               setFilters({
                 ...filters,
-                isStart: e,
+                isStarted: e,
               })
             }}
           >
@@ -194,11 +201,11 @@ const PackagesScreen: NextPageWithLayout = () => {
           )}
         </Select> */}
         <div className=''>
-          {isEmpty(packageData) || !packageData ? (
-            <p>{t('notFound.package', { ns: 'farm-package' })}</p>
+          {!packageData || (isEmpty(packageData) && filters.page === 1) ? (
+            <Text c={'red'} fw={'bold'}>{capitalize('Không tìm thấy gói')}</Text>
           ) : (
             <>
-              <p className='text-primary-600 uppercase font-bold'>
+              <p className='text-)primary-600 uppercase font-bold'>
                 {capitalize(
                   t('info.farm-package', {
                     ns: 'farm-package',
@@ -279,7 +286,7 @@ const PackagesScreen: NextPageWithLayout = () => {
                 <MantineButton color="indigo"
                   disabled={(packageData?.length) ? (packageData.length >= filters.limit! ? false : true) : true}
                   onClick={() => {
-                    setFilterParams({
+                    setFilters({
                       ...filters,
                       page: filters.page! + 1
                     })

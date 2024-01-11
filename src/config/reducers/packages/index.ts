@@ -5,7 +5,7 @@ import { merge } from 'lodash-es'
 const initialState: QueryPackages = {
   enterpriseId: '',
   isEnded: undefined,
-  isStart: undefined,
+  isStarted: undefined,
   priceFrom: 0,
   priceTo: 0,
   keyword: '',

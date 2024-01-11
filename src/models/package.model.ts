@@ -56,7 +56,7 @@ export type QueryPackages = QueryRequest<{
   enterpriseId?: string
   priceFrom?: number
   priceTo?: number
-  isStart?: boolean
+  isStarted?: boolean
   isEnded?: boolean
 }>
 

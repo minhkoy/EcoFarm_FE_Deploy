@@ -56,9 +56,7 @@ export default function useSignIn() {
 
             break;
           default:
-            void router.replace(COMMON_LINK.HOMEPAGE, undefined, {
-              locale: router.locale,
-            })
+            void router.push(`/${COMMON_LINK.HOMEPAGE}`)
         }
       } else {
         ToastHelper.error(

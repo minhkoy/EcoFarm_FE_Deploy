@@ -33,7 +33,7 @@ const CreateProductScreen: NextPageWithLayout = () => {
   })
 
   const { packageData } = useFetchPackage();
-  const { mutate } = useCreateProduct();
+  const { mutate, isPending } = useCreateProduct();
   const appDispatch = useAppDispatch();
   useEffect(() => {
     if (accountInfo?.accountEntityId) {
@@ -168,6 +168,7 @@ const CreateProductScreen: NextPageWithLayout = () => {
           <Button
             color="teal"
             variant="light"
+            loading={isPending}
             onClick={() => {
               const validateResult = addProductForm.validate();
               if (validateResult.hasErrors) {

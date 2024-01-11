@@ -2,9 +2,9 @@ import { type CreatePackageSchemaType } from "@/config/schema";
 import useCreatePackage from "@/hooks/mutations/packages/useCreatePackage";
 import SellerLayout from "@/layouts/seller/sellerLayout";
 import { type NextPageWithLayout } from "@/pages/_app";
-import { FileInput, NumberInput } from "@mantine/core";
+import { FileInput, Input, NumberInput, Textarea } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
-import { Button, Checkbox, Input, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea } from "@nextui-org/react";
+import { Button, Checkbox, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 import { Calendar, Upload } from "lucide-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -210,7 +210,7 @@ const CreatePackageScreen: NextPageWithLayout = () => {
               />
             </TableCell>
           </TableRow>
-          <TableRow>
+          {/* <TableRow>
             <TableCell>Các ảnh khác</TableCell>
             <TableCell>
               <FileInput
@@ -221,7 +221,7 @@ const CreatePackageScreen: NextPageWithLayout = () => {
                 rightSection={<Upload />}
               />
             </TableCell>
-          </TableRow>
+          </TableRow> */}
         </TableBody>
       </Table>
       <div className="flex flex-row justify-center gap-3">

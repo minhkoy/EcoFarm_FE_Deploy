@@ -1,6 +1,7 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay";
 import TextTitle from "@/components/ui/texts/TextTitle";
 import { setAddressFilterParams } from "@/config/reducers/address";
+import { type RemoveFromCartSchemaType } from "@/config/schema/cart";
 import { createOrderSchema, type CreateOrderSchemaType } from "@/config/schema/order";
 import useRemoveFromCart from "@/hooks/mutations/cart/useRemoveFromCart";
 import useCreateOrder from "@/hooks/mutations/orders/useCreateOrder";
@@ -10,12 +11,13 @@ import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import MainLayout from "@/layouts/common/main";
 import { type CartDetail } from "@/models/cart.model";
 import { PAYMENT_METHOD } from "@/utils/constants/enums";
-import { Button, Card, Checkbox, Flex, Image, Modal, NumberFormatter, NumberInput, Select, Table, Text, TextInput } from "@mantine/core";
+import { Button, Card, Checkbox, Flex, Grid, Image, Modal, NumberFormatter, NumberInput, Select, Table, Text, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
+import { TrashIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { type NextPageWithLayout } from "../_app";
 
 const CartScreen: NextPageWithLayout = () => {
@@ -33,23 +35,89 @@ const CartScreen: NextPageWithLayout = () => {
     },
     validate: zodResolver(createOrderSchema()),
   })
+  useEffect(() => {
+    if (!router.isReady) {
+      return;
+    }
+  }, [router.isReady])
   const { mutate: createOrderMutate, isPending: isPendingCreateOrder, rawData: rawCreateOrderResult } = useCreateOrder();
   const { mutate: removeFromCartMutate, isPending: isPendingRemoveFromCart } = useRemoveFromCart();
   const { addressData, isLoading: isLoadingAddress } = useFetchAddresses();
   const [quantities, setQuantities] = useState<Array<number>>(new Array<number>(cartData?.products?.length ?? 0).fill(1));
   const [selected, setSelected] = useState<Array<boolean>>(new Array<boolean>(cartData?.products?.length ?? 0).fill(true));
   const [isOpenOrderModal, { open, close }] = useDisclosure(false);
+  const [isOpenConfirmDeleteModal, { open: openConfirmDeleteModal, close: closeConfirmDeleteModal }] = useDisclosure(false);
   if (isLoading) {
     return (
       <DefaultOverlay />
     )
   }
-  if (!cartData || cartData.products!.length < 1) {
+  if (!cartData?.products || cartData.products.length < 1) {
     return (
-      <TextTitle>Giỏ hàng của bạn đang trống</TextTitle>
+      <TextTitle>Giỏ hàng của bạn đang trống. Vui lòng thêm các sản phẩm khác vào giỏ.</TextTitle>
     )
   }
 
+  const products = cartData.products!;
+  const totalSelectedQuantity = quantities.length > 0 ? quantities.reduce((accumulator, currentValue, index) => {
+    console.log(index)
+    console.log(accumulator)
+    if (!selected[index]) return accumulator;
+    return accumulator + currentValue;
+  }, 0) : 0;
+  const productSelectedCount = selected.reduce((accumulator, currentValue) => {
+    if (currentValue) return accumulator + 1;
+    return accumulator;
+  }, 0)
+
+  const confirmDeleteModal = (
+    <Modal
+      title={<Text c={'teal'} fw={'bold'}>Xóa sản phẩm</Text>}
+      opened={isOpenConfirmDeleteModal}
+      onClose={closeConfirmDeleteModal}
+      size={'sm'}
+    >
+      <Flex direction={'column'} gap={3}>
+        <Text>Bạn có chắc chắn muốn xóa {productSelectedCount} sản phẩm này khỏi giỏ hàng?</Text>
+        <Flex direction={'row'} gap={3} justify={'center'}>
+          <Button
+            color="red"
+            onClick={() => {
+              const request: RemoveFromCartSchemaType = {
+                productIds: products.filter((product, index) => product.productId !== undefined && selected[index] === true).map((product) => product.productId!) ?? [],
+                cartId: cartData.id!
+              }
+              console.log(request);
+              // const newSelected = [...selected];
+              // const newQuantities = [...quantities];
+              // const newProducts = [...cartData.products!];
+              // for (let i = 0; i < newSelected.length; i++) {
+              //   if (newSelected[i]) {
+              //     newSelected.splice(i, 1);
+              //     newQuantities.splice(i, 1);
+              //     newProducts.splice(i, 1);
+              //     i--;
+              //   }
+              // }
+              // setSelected(newSelected);
+              // setQuantities(newQuantities);
+              removeFromCartMutate(request);
+              closeConfirmDeleteModal();
+            }}
+            loading={isPendingRemoveFromCart}
+          >
+            Xóa
+          </Button>
+          <Button
+            color="gray"
+            onClick={closeConfirmDeleteModal}
+          >
+            Hủy
+          </Button>
+        </Flex>
+      </Flex>
+    </Modal>
+  )
   const submitOrderModal = (
     <Modal
       title={<Text c={'teal'} fw={'bold'}>Đặt hàng</Text>}
@@ -131,12 +199,33 @@ const CartScreen: NextPageWithLayout = () => {
     </Modal>
   )
 
-  const products = cartData.products!;
   return (
     <Flex direction={'column'} gap={3}>
-      <Flex direction={'row'} justify={'center'}>
+      {/* <Flex direction={'row'} justify={'center'}>
         <TextTitle>Giỏ hàng của bạn</TextTitle>
-      </Flex>
+      </Flex> */}
+      <Grid columns={3}>
+        <Grid.Col span={1}></Grid.Col>
+        <Grid.Col span={1}>
+          <TextTitle>Giỏ hàng của bạn</TextTitle>
+        </Grid.Col>
+        <Grid.Col span={1}>
+          <Button
+            leftSection={<TrashIcon />}
+            color="red"
+            mt={3}
+            disabled={!selected.includes(true)}
+            onClick={() => {
+              openConfirmDeleteModal();
+            }}
+          >
+            Xóa các sản phẩm chọn
+          </Button>
+          {
+            confirmDeleteModal
+          }
+        </Grid.Col>
+      </Grid>
       <Card shadow="md" m={5}>
         <Table>
           <Table.Thead>
@@ -223,12 +312,13 @@ const CartScreen: NextPageWithLayout = () => {
                 </Text>
               </Table.Td>
               <Table.Td fw={'bold'}>
-                {quantities.length > 0 ? quantities.reduce((accumulator, currentValue, index) => {
+                {/* {quantities.length > 0 ? quantities.reduce((accumulator, currentValue, index) => {
                   console.log(index)
                   console.log(accumulator)
                   if (!selected[index]) return accumulator;
                   return accumulator + currentValue;
-                }, 0) : 0}
+                }, 0) : 0} */}
+                {totalSelectedQuantity}
               </Table.Td>
               <Table.Td>
                 <Text fw={'bold'} c={'teal'}>

@@ -33,7 +33,7 @@ export const middleware = (req: NextRequest) => {
         }
         if (accountType === ACCOUNT_TYPE.CUSTOMER && req.url.includes('seller')) {
           console.log('test')
-          return NextResponse.rewrite(new URL("/error/forbidden", req.url));//, req.url));
+          return NextResponse.redirect(new URL("/error/forbidden", req.url));//, req.url));
         }
         else
           return res

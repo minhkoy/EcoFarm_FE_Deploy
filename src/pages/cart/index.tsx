@@ -58,7 +58,7 @@ const CartScreen: NextPageWithLayout = () => {
     )
   }
 
-  const products = cartData.products!;
+  const products = cartData.products;
   const totalSelectedQuantity = quantities.length > 0 ? quantities.reduce((accumulator, currentValue, index) => {
     console.log(index)
     console.log(accumulator)

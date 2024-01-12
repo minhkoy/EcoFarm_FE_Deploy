@@ -14,7 +14,7 @@ import { type ActivityModel } from '@/models/activity.model'
 import { type NextPageWithLayout } from '@/pages/_app'
 import { getQueryUrlValue } from '@/utils/helpers/CommonHelper'
 import { dateFormat } from '@/utils/helpers/DateHelper'
-import { Flex, Modal, NumberFormatter, Rating, Switch, Table, Text, Timeline } from '@mantine/core'
+import { Flex, Grid, Modal, NumberFormatter, Rating, Switch, Table, Text, Timeline } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Button, Card, Image, Table as NextUITable, TableBody, TableCell, TableColumn, TableHeader, TableRow, Textarea } from '@nextui-org/react'
 import { ActivitySquareIcon, Check, Play, Star } from 'lucide-react'
@@ -82,10 +82,6 @@ const PackageDetailScreen: NextPageWithLayout = () => {
   const { mutate: createPackageReviewMutate, isPending } = useCreatePackageReview()
   const addingNewReview = () => createPackageReviewMutate(newReview)
 
-  const activityDetailModal = (
-    <></>
-  )
-
   if (isLoading) {
     return (
       <DefaultOverlay />
@@ -113,7 +109,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
           <Text title="Hoạt động">{activity.title}</Text>
           <Text>{activity.shortDescription}</Text>
           <Text>{activity.description}</Text> */}
-          <Table >
+          <Table>
             <Table.Tr>
               <Table.Td fw={'bold'}>Tiêu đề</Table.Td>
               <Table.Td>{activity.title}</Table.Td>
@@ -126,6 +122,19 @@ const PackageDetailScreen: NextPageWithLayout = () => {
               <Table.Td fw={'bold'}>Nội dung</Table.Td>
               <Table.Td>{activity.description}</Table.Td>
             </Table.Tr>
+            <Grid columns={3} justify="center">
+              {
+                activity.medias?.map((media) => (
+                  <Grid.Col span={1}>
+                    <Image
+                      src={media.imageUrl}
+                      className='rounded-md'
+                      alt={activity.title}
+                    />
+                  </Grid.Col>
+                ))
+              }
+            </Grid>
           </Table>
         </Flex>
       </Modal>

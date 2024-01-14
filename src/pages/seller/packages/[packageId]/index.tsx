@@ -201,13 +201,15 @@ const SellerPackageDetailScreen: NextPageWithLayout = (props) => {
               <Table.Td>{activity.description}</Table.Td>
             </Table.Tr>
           </Table>
-          <Grid columns={3} justify="center">
+          <Grid columns={2} justify="center">
             {
               activity.medias?.map((media) => (
                 <Grid.Col span={1}>
                   <Image
-                    src={media.imageUrl ?? '/assets/brands/EcoFarm.svg'}
+                    src={media.imageUrl ?? '/assets/brands/logo.png'}
                     className='rounded-md'
+                    width={'300'}
+                    height={'200'}
                     alt='EcoFarm'
                   />
                 </Grid.Col>
@@ -325,7 +327,7 @@ const SellerPackageDetailScreen: NextPageWithLayout = (props) => {
               <Flex direction={'column'} gap={5} justify={'center'} >
                 <Image
                   height={1000}
-                  src={packageData.avatarUrl ?? '/assets/brands/EcoFarm.svg'}
+                  src={packageData.avatarUrl ?? '/assets/brands/logo.png'}
                   className=''
                   alt='EcoFarm'
                   width={500}

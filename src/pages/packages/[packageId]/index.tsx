@@ -122,20 +122,20 @@ const PackageDetailScreen: NextPageWithLayout = () => {
               <Table.Td fw={'bold'}>Nội dung</Table.Td>
               <Table.Td>{activity.description}</Table.Td>
             </Table.Tr>
-            <Grid columns={3} justify="center">
-              {
-                activity.medias?.map((media) => (
-                  <Grid.Col span={1}>
-                    <Image
-                      src={media.imageUrl}
-                      className='rounded-md'
-                      alt={activity.title}
-                    />
-                  </Grid.Col>
-                ))
-              }
-            </Grid>
           </Table>
+          <Grid columns={2} justify="center">
+            {
+              activity.medias?.map((media) => (
+                <Grid.Col span={1}>
+                  <Image
+                    src={media.imageUrl}
+                    className='rounded-md'
+                    alt={activity.title}
+                  />
+                </Grid.Col>
+              ))
+            }
+          </Grid>
         </Flex>
       </Modal>
     )
@@ -146,7 +146,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
         <div className=''>
           <Image
             height={1000}
-            src={packageData.avatarUrl ?? '/assets/brands/EcoFarm.svg'}
+            src={packageData.avatarUrl ?? '/assets/brands/logo.png'}
             className=''
             alt='EcoFarm'
             width={500}

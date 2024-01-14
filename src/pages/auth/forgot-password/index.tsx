@@ -83,7 +83,7 @@ const ForgotPassScreen: NextPageWithLayout = () => {
       </Tooltip>
       <CardHeader className='flex h-1/3 flex-col items-center justify-between pt-5 sm:h-fit'>
         <Image
-          src='/assets/brands/EcoFarm.svg'
+          src='/assets/brands/logo.png'
           alt='logo'
           width={150}
           height={150}

@@ -226,7 +226,7 @@ const PackagesScreen: NextPageWithLayout = () => {
                   >
                     <CardBody className='overflow-visible p-0'>
                       <Image
-                        src={_package.avatarUrl ?? '/assets/brands/EcoFarm.svg'}
+                        src={_package.avatarUrl ?? '/assets/brands/logo.png'}
                         alt='Logo'
                         shadow='sm'
                         radius='lg'

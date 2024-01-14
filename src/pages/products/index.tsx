@@ -159,7 +159,7 @@ const ProductList: NextPageWithLayout = () => {
                       >
                         <CardBody className='overflow-visible p-0'>
                           <Image
-                            src={_product.medias?.length ? _product.medias[0]?.imageUrl : '/assets/brands/EcoFarm.svg' ?? '/assets/brands/EcoFarm.svg'}
+                            src={_product.medias?.length ? _product.medias[0]?.imageUrl : '/assets/brands/logo.png' ?? '/assets/brands/logo.png'}
                             alt='Logo'
                             shadow='sm'
                             radius='lg'

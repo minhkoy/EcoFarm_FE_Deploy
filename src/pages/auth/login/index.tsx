@@ -75,7 +75,7 @@ const LoginScreen: NextPageWithLayout = () => {
           Eco Farm
         </h3>
         <Image
-          src='/assets/brands/EcoFarm.svg'
+          src='/assets/brands/logo.png'
           alt='logo'
           width={150}
           height={150}

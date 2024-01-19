@@ -1,7 +1,7 @@
 import { axiosClient } from '@/config/lib/axiosConfig'
 import { type CreatePackageSchemaType, type UpdatePackageSchemaType } from '@/config/schema'
 import { type ResponseModel } from '@/models/helpers/response.model'
-import { type QueryPackages, type QuerySinglePackage, type ResponsePackage, type ResponsePackages } from '@/models/package.model'
+import { type QueryMyRegisteredPackages, type QueryPackages, type QuerySinglePackage, type ResponsePackage, type ResponsePackages } from '@/models/package.model'
 import { type AxiosPromise } from 'axios'
 
 const controller = '/FarmingPackage'
@@ -17,6 +17,11 @@ export const getSinglePackage = async (
 ): AxiosPromise<ResponsePackage> =>
   axiosClient.get(`${controller}/Get`, { params })
 
+
+export const getMyRegisteredPackages = async (
+  params: QueryMyRegisteredPackages
+): AxiosPromise<ResponsePackages> =>
+  axiosClient.get(`${controller}/GetListMyRegisteredPackage`, { params })
 //Post 
 
 export const createPackage = async (

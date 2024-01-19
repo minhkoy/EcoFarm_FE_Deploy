@@ -17,12 +17,13 @@ export default function DropdownUser() {
   const { t } = useTranslation(['common'])
   // const token = getCookie(ACCESS_TOKEN)
   const [isOpen, setIsOpen] = useState(false)
-  const { logOut, accountInfo } = useAuth()
+  const { logOut, accountInfo, isFetching } = useAuth()
+
   console.log(accountInfo)
-  if (pathname.includes('seller') && accountInfo?.accountType === ACCOUNT_TYPE.CUSTOMER) {
+  if (!isFetching && pathname.includes('seller') && accountInfo?.accountType === ACCOUNT_TYPE.CUSTOMER) {
     void replace('/error/forbidden');
   }
-  if (!pathname.includes('seller') && accountInfo?.accountType === ACCOUNT_TYPE.SELLER) {
+  if (!isFetching && !pathname.includes('seller') && accountInfo?.accountType === ACCOUNT_TYPE.SELLER) {
     void replace('/error/forbidden');
   }
   return (

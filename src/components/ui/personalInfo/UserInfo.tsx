@@ -20,7 +20,7 @@ const data = [
   { link: '/user/profile', label: 'Thông tin cá nhân', icon: <PersonStandingIcon className='inline' /> },
   { link: '/user/profile/addresses', label: 'Địa chỉ', icon: <HomeIcon className='inline' /> },
   { link: '/user/profile/orders', label: 'Đơn hàng của bạn', icon: <ListOrderedIcon className='inline' /> },
-  { link: '/user/profile/your-packages', label: 'Các gói farming bạn đăng ký', icon: <PiggyBankIcon className='inline' /> },
+  { link: '/user/profile/my-packages', label: 'Các gói farming bạn đăng ký', icon: <PiggyBankIcon className='inline' /> },
 ];
 
 export function UserInfo() {

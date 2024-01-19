@@ -30,6 +30,7 @@ const SellerPackageListScreen: NextPageWithLayout = () => {
       ...filterPackageParams,
       enterpriseId: accountInfo?.accountEntityId
     }));
+    console.log('OK!!')
   }, [accountInfo?.accountEntityId, appDispatch, filterPackageParams])
   const { packageData, isLoading } = useFetchPackage();
   //appDispatch(setFilterParams(filterPackageParams));

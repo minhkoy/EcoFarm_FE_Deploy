@@ -6,12 +6,13 @@ import { enterpriseSlice } from './enterprise'
 import { orderSlice } from './orders'
 import { singlePackageSlice } from './package'
 import { packageReviewsSlice } from './packageReviews'
-import { packageSlice } from './packages'
+import { myPackageSlice, packageSlice } from './packages'
 import { productSlice } from './products'
 
 const rootReducers = combineReducers({
   // Add reducers here
   [packageSlice.name]: packageSlice.reducer,
+  [myPackageSlice.name]: myPackageSlice.reducer,
   [authSlice.name]: authSlice.reducer,
   [singlePackageSlice.name]: singlePackageSlice.reducer,
   [packageReviewsSlice.name]: packageReviewsSlice.reducer,

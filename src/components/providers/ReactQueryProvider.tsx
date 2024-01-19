@@ -22,6 +22,7 @@ export default function ReactQueryProvider({
           queries: {
             staleTime: 1000 * 60 * 1,
             refetchIntervalInBackground: true,
+            //refetchOnWindowFocus: true,
             placeholderData: keepPreviousData,
             retryDelay: 2000,
             retry(failureCount) {

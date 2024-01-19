@@ -12,7 +12,7 @@ export default function useFetchProducts() {
   // const keywords = useAppSelector((state) => state.package.keyword)
 
   const { data, isLoading } = useQuery({
-    staleTime: 1000 * 60 * 5,
+    //staleTime: Infinity,
     enabled: true,
     queryKey: [...queryKey, params],
     queryFn: () =>

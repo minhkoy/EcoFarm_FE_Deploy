@@ -4,6 +4,7 @@ import TextTitle from "@/components/ui/texts/TextTitle"
 import { setAddressFilterParams } from "@/config/reducers/address"
 import { createAddressSchema, type CreateAddressSchemaType } from "@/config/schema/address"
 import useCreateAddress from "@/hooks/mutations/address/useCreateAddress"
+import useSetMainAddress from "@/hooks/mutations/address/useSetMainAddress"
 import useFetchAddresses from "@/hooks/queries/useFetchAddresses"
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch"
 import MainLayout from "@/layouts/common/main"
@@ -21,6 +22,7 @@ const UserAddressScreen: NextPageWithLayout = () => {
   const { addressData, isLoading, refetch: refetchAddresses } = useFetchAddresses()
   const queryClient = useQueryClient();
   const { mutate: createAddressMutate, data: newAddressData, isPending } = useCreateAddress();
+  const { mutate: setMainAddressMutate, isPending: isPendingSetMain } = useSetMainAddress();
   const newAddressForm = useForm<CreateAddressSchemaType>({
     initialValues: {
       addressDescription: '',
@@ -126,7 +128,11 @@ const UserAddressScreen: NextPageWithLayout = () => {
                     <Flex direction={'row'} gap={3}>
                       <Button
                         color="teal"
+                        loading={isPendingSetMain}
                         leftSection={<SettingsIcon />}
+                        onClick={() => {
+                          setMainAddressMutate(address.id)
+                        }}
                       >
                         Đặt làm mặc định
                       </Button>

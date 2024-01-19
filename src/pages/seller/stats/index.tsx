@@ -6,7 +6,10 @@ import { Flex } from "@mantine/core";
 const SellerStatsScreen: NextPageWithLayout = () => {
   return (
     <Flex direction={'column'} justify={'center'}>
-      <TextTitle>Thống kê cho người bán</TextTitle>
+      <Flex direction={'row'} justify={'center'}>
+        <TextTitle>Thống kê cho người bán</TextTitle>
+      </Flex>
+
     </Flex>
   )
 }

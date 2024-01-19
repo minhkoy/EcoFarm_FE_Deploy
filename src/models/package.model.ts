@@ -64,3 +64,10 @@ export type QuerySinglePackage = {
   id?: string
   code?: string
 }
+
+export type QueryMyRegisteredPackages = QueryRequest<{
+  keyword?: string
+  enterpriseId?: string
+  isActive?: boolean
+  isFinished?: boolean
+}>

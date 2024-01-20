@@ -4,7 +4,8 @@ import useFetchProducts from "@/hooks/queries/useFetchProducts";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import MainLayout from "@/layouts/common/main";
 import { type QueryProducts } from "@/models/product.model";
-import { Button, Flex, Grid, NumberFormatter, TextInput } from "@mantine/core";
+import { SORTING_PRODUCT_TYPE_NAME } from "@/utils/constants/enums";
+import { Button, Flex, Grid, NumberFormatter, Select, TextInput } from "@mantine/core";
 import { Card, CardBody, CardFooter, Image, Input } from "@nextui-org/react";
 import { isEmpty } from "lodash-es";
 import { useRouter } from "next/navigation";
@@ -107,7 +108,35 @@ const ProductList: NextPageWithLayout = () => {
                   })
                 }}
               />
+
             </div>
+            <Select
+              m={3}
+              label="Sắp xếp theo"
+              placeholder={'Sắp xếp theo'}
+              data={SORTING_PRODUCT_TYPE_NAME.map((item) => ({
+                value: item.type.toString(),
+                label: item.typeName,
+              }))}
+              //value={filterOrderParams.status?.toString()}
+              //clearable
+              //value={ORDER_STATUS_NAME[filterOrderParams.status]}
+              onChange={(val) => {
+                //console.log(val);
+                if (!val) {
+                  //   setFilterOrderParams({
+                  //     ...filterOrderParams,
+                  //     status: 0
+                  //   })
+                  //   return;
+                  // }
+                  // setFilterOrderParams({
+                  //   ...filterOrderParams,
+                  //   status: val ? Number(val) : 0
+                  // })
+                }
+              }}
+            />
           </div>
           <div className="mb-4">
             {/* <Input

@@ -5,6 +5,7 @@ import useFetchPackage from '@/hooks/queries/useFetchPackage'
 import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import MainLayout from '@/layouts/common/main'
 import { type QueryPackages } from '@/models/package.model'
+import { SORTING_PACKAGE_TYPE, SORTING_PACKAGE_TYPE_NAME } from '@/utils/constants/enums'
 import { Flex, Button as MantineButton, NumberFormatter, Select, Text, TextInput } from '@mantine/core'
 import {
   Button,
@@ -49,6 +50,7 @@ const PackagesScreen: NextPageWithLayout = () => {
     enterpriseId: '',
     isStarted: undefined,
     isEnded: undefined,
+    sortingPackageOrder: SORTING_PACKAGE_TYPE.Newest,
   })
   const appDispatch = useAppDispatch()
   const { t } = useTranslation()
@@ -173,6 +175,30 @@ const PackagesScreen: NextPageWithLayout = () => {
             Đã kết thúc
             {/* {capitalize(t('query-param.is-ended', { ns: 'farm-package' }))} */}
           </Checkbox>
+          <Select
+            m={3}
+            label={'Sắp xếp theo'}
+            placeholder={'Sắp xếp theo'}
+            data={SORTING_PACKAGE_TYPE_NAME.map((item) => ({
+              value: item.type.toString(),
+              label: item.typeName,
+            }))}
+            value={filters.sortingPackageOrder?.toString()}
+            onOptionSubmit={(val) => {
+              //console.log(val);
+              if (!val) {
+                setFilters({
+                  ...filters,
+                  sortingPackageOrder: undefined
+                })
+                return;
+              }
+              setFilters({
+                ...filters,
+                sortingPackageOrder: val ? Number(val) : 0
+              })
+            }}
+          />
         </div>
         <div className='mb-4 object-center'>
           <Button

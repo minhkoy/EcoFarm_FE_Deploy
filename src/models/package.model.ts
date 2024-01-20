@@ -58,6 +58,7 @@ export type QueryPackages = QueryRequest<{
   priceTo?: number
   isStarted?: boolean
   isEnded?: boolean
+  sortingPackageOrder?: number
 }>
 
 export type QuerySinglePackage = {

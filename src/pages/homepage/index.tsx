@@ -1,4 +1,6 @@
+import TextTitle from '@/components/ui/texts/TextTitle'
 import MainLayout from '@/layouts/common/main'
+import { Card, Flex } from '@mantine/core'
 import { type GetServerSideProps } from 'next'
 import config from 'next-i18next.config.mjs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -14,7 +16,19 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 }
 
 const HomepageScreen: NextPageWithLayout = () => {
-  return <div className='container'> Homepage</div>
+  return (
+    <Flex direction={'column'} gap={3}>
+      <Flex direction={'row'} justify={'center'}>
+        <TextTitle>Chào mừng đến với EcoFarm!</TextTitle>
+      </Flex>
+      <Card shadow="sm" m={5}>
+        <TextTitle>Các gói farming đang được quan tâm nhiều</TextTitle>
+      </Card>
+      <Card shadow="sm" m={5}>
+        <TextTitle>Các sản phẩm bán chạy</TextTitle>
+      </Card>
+    </Flex>
+  )
 }
 
 HomepageScreen.getLayout = function getLayout(page) {

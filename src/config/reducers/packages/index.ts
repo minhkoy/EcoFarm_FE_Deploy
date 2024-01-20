@@ -1,5 +1,6 @@
 import { type QueryMyRegisteredPackages, type QueryPackages } from '@/models/package.model'
 import { EFX } from '@/utils/constants/constants'
+import { SORTING_PACKAGE_TYPE } from '@/utils/constants/enums'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { merge } from 'lodash-es'
 
@@ -12,6 +13,7 @@ const initialQueryPackagesState: QueryPackages = {
   keyword: '',
   page: 1,
   limit: 10,
+  sortingPackageOrder: SORTING_PACKAGE_TYPE.Newest
 }
 
 const initQueryMyRegisteredPackagesState: QueryMyRegisteredPackages = {

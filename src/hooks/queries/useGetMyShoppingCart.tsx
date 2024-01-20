@@ -6,6 +6,7 @@ export const queryKeys = ['cart', 'getMyCart']
 export default function useGetMyShoppingCart() {
   const result = useQuery({
     //enabled,
+    staleTime: 1000 * 6,
     queryKey: [...queryKeys],
     queryFn: GetMyShoppingCart,
   })

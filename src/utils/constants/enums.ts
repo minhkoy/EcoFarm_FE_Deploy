@@ -42,6 +42,39 @@ export enum PACKAGE_REGISTER_STATUS {
   OpenForRegister = 0,
   ClosedForRegister = 1,
 }
+
+export enum SORTING_PACKAGE_TYPE {
+  MostRegister = 0,
+  MostRegisterInWeek,
+  Newest,
+  MostComment,
+  MostCommentInWeek,
+  MostRecentActivity,
+  MostRating,
+}
+
+export enum SORTING_PRODUCT_TYPE {
+  MostSold = 0,
+  MostSoldInWeek,
+  Newest,
+}
+
+export const SORTING_PACKAGE_TYPE_NAME = [
+  { type: SORTING_PACKAGE_TYPE.MostRegister, typeName: 'Nhiều lượt đăng ký nhất' },
+  { type: SORTING_PACKAGE_TYPE.MostRegisterInWeek, typeName: 'Nhiều lượt đăng ký trong tuần' },
+  { type: SORTING_PACKAGE_TYPE.Newest, typeName: 'Mới nhất' },
+  { type: SORTING_PACKAGE_TYPE.MostComment, typeName: 'Nhiều đánh giá nhất' },
+  { type: SORTING_PACKAGE_TYPE.MostCommentInWeek, typeName: 'Nhiều đánh giá trong tuần' },
+  { type: SORTING_PACKAGE_TYPE.MostRecentActivity, typeName: 'Hoạt động gần đây' },
+  { type: SORTING_PACKAGE_TYPE.MostRating, typeName: 'Đánh giá tốt nhất' },
+]
+
+export const SORTING_PRODUCT_TYPE_NAME = [
+  { type: SORTING_PRODUCT_TYPE.MostSold, typeName: 'Nhiều lượt mua nhất' },
+  { type: SORTING_PRODUCT_TYPE.MostSoldInWeek, typeName: 'Nhiều lượt mua trong tuần' },
+  { type: SORTING_PRODUCT_TYPE.Newest, typeName: 'Mới nhất' },
+]
+
 export const PACKAGE_TYPE = {
   Tourism: 'Tourism',
   Farming: 'Farming',
@@ -102,3 +135,4 @@ export const ORDER_STATUS_NAME = [
   { status: ORDER_STATUS.RejectedBySeller, statusName: 'Nhà cung cấp/ chủ trang trại đã từ chối' },
   { status: ORDER_STATUS.CancelledByCustomer, statusName: 'Đã hủy bởi khách hàng' },
 ] //as const
+

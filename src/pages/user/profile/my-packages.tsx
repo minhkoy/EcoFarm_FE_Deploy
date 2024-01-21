@@ -51,7 +51,6 @@ const YourPackagesScreen: NextPageWithLayout = () => {
           <Flex direction={'row'} justify={'center'}>
             <TextTitle>Các gói farming bạn đăng ký</TextTitle>
           </Flex>
-          {packageData.length}
           <Grid columns={3}>
             {packageData.map((pkg) => (
               <Grid.Col span={1}>

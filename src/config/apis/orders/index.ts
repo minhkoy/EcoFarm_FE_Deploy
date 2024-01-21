@@ -16,3 +16,15 @@ export const createOrder = async (
 export const approveOrder = async (
   orderId: string
 ): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/Approve/${orderId}`)
+
+export const markPreparingOrder = async (
+  orderId: string
+): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/MarkPreparing/${orderId}`)
+
+export const markCompletePrepareOrder = async (
+  orderId: string
+): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/MarkPreparingCompleted/${orderId}`)
+
+export const markReceivedOrder = async (
+  orderId: string
+): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/MarkReceived/${orderId}`)

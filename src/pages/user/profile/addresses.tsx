@@ -130,6 +130,7 @@ const UserAddressScreen: NextPageWithLayout = () => {
                         color="teal"
                         loading={isPendingSetMain}
                         leftSection={<SettingsIcon />}
+                        disabled={address.isPrimary}
                         onClick={() => {
                           setMainAddressMutate(address.id)
                         }}

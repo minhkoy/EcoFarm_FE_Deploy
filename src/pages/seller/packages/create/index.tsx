@@ -3,7 +3,7 @@ import useCreatePackage from "@/hooks/mutations/packages/useCreatePackage";
 import SellerLayout from "@/layouts/seller/sellerLayout";
 import { type NextPageWithLayout } from "@/pages/_app";
 import { FileInput, Input, NumberInput, Textarea } from "@mantine/core";
-import { DatePickerInput } from "@mantine/dates";
+import { DateTimePicker } from "@mantine/dates";
 import { Button, Checkbox, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 import { Calendar, Upload } from "lucide-react";
 import { useRouter } from "next/router";
@@ -134,10 +134,10 @@ const CreatePackageScreen: NextPageWithLayout = () => {
           <TableRow>
             <TableCell>Thời gian bắt đầu dự kiến</TableCell>
             <TableCell>
-              <DatePickerInput
+              <DateTimePicker
                 radius='md'
                 rightSection={<Calendar />}
-                valueFormat="DD-MM-YYYY"
+                valueFormat="DD-MM-YYYY HH:mm:ss"
                 onChange={(date) => {
                   setPackageRequest({
                     ...packageRequest,
@@ -152,10 +152,10 @@ const CreatePackageScreen: NextPageWithLayout = () => {
           <TableRow>
             <TableCell>Thời gian kết thúc dự kiến</TableCell>
             <TableCell>
-              <DatePickerInput
+              <DateTimePicker
                 radius={'md'}
                 rightSection={<Calendar />}
-                valueFormat="DD-MM-YYYY"
+                valueFormat="DD-MM-YYYY HH:mm:ss"
                 onChange={(date) => {
                   setPackageRequest({
                     ...packageRequest,

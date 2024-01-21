@@ -1,9 +1,10 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay";
-import TextTitle from "@/components/ui/texts/TextTitle";
 import { setOrderFilterParams } from "@/config/reducers/orders";
 import { setFilterParams } from "@/config/reducers/products";
 import useAuth from "@/hooks/auth/useAuth";
 import useApproveOrder from "@/hooks/mutations/orders/useApproveOrder";
+import useMarkCompletePrepareOrder from "@/hooks/mutations/orders/useMarkCompletePrepareOrder";
+import useMarkPreparingOrder from "@/hooks/mutations/orders/useMarkPreparingOrder";
 import useFetchOrders from "@/hooks/queries/useFetchOrders";
 import useFetchProducts from "@/hooks/queries/useFetchProducts";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
@@ -47,9 +48,11 @@ const SellerOrderListScreen: NextPageWithLayout = () => {
       enterpriseId: accountInfo?.accountEntityId
     }))
   }, [accountInfo?.accountEntityId, appDispatch, filterOrderParams])
-  const { orderData, isLoading } = useFetchOrders();
+  const { orderData, isLoading, refetchOrder } = useFetchOrders();
   const { productData, isLoading: isLoadingProduct } = useFetchProducts();
   const { mutate: approveOrderMutate, } = useApproveOrder();
+  const { mutateAsync: markPreparingOrderMutate } = useMarkPreparingOrder();
+  const { mutate: markCompletePrepareOrderMutate } = useMarkCompletePrepareOrder();
 
   const onApproveOrder = (order: OrderModel | undefined) => {
     if (!order) return;
@@ -179,7 +182,42 @@ const SellerOrderListScreen: NextPageWithLayout = () => {
             {
               order.status === ORDER_STATUS.SellerConfirmed && (
                 <>
-                  <Button color="teal" w={'100%'}>Bắt đầu chuẩn bị hàng</Button>
+                  <Button color="teal" w={'100%'}
+                    onClick={() => {
+                      void markPreparingOrderMutate(order.orderId);
+                      void refetchOrder();
+                      closeDetailModal();
+                    }}
+                  >
+                    Bắt đầu chuẩn bị hàng</Button>
+                </>
+              )
+            }
+            {
+              order.status === ORDER_STATUS.Preparing && (
+                <>
+                  <Button color="teal" w={'100%'}
+                    onClick={() => {
+                      markCompletePrepareOrderMutate(order.orderId);
+                      closeDetailModal();
+                    }}
+                  >
+                    Hoàn thành chuẩn bị hàng
+                  </Button>
+                </>
+              )
+            }
+            {
+              order.status === ORDER_STATUS.Shipped && (
+                <>
+                  <Button color="teal" w={'100%'} disabled>Đã giao hàng</Button>
+                </>
+              )
+            }
+            {
+              order.status === ORDER_STATUS.Received && (
+                <>
+                  <Button color="teal" w={'100%'}>Đánh dấu hoàn thành đơn</Button>
                 </>
               )
             }
@@ -207,12 +245,6 @@ const SellerOrderListScreen: NextPageWithLayout = () => {
           <Grid columns={3}>
             <Grid.Col span={3}>
               <TextInput m={3}
-                // onKeyDown={(e) => {
-                //   if (e.key === 'Enter') {
-
-                //   }
-
-                // }}           
                 placeholder={'Mã order/ Note ...'}
                 onChange={(e) => {
                   setFilterOrderParams({
@@ -275,124 +307,7 @@ const SellerOrderListScreen: NextPageWithLayout = () => {
                 }}
               />
             </Grid.Col>
-            <Grid.Col span={3}>
-              <Card
-                m={5} padding={3}
-                shadow="md" radius={'md'} withBorder
-              >
-                <Flex direction={'column'} gap={3}>
-                  <Flex direction={'row'} justify={'space-between'}>
-                    <TextTitle>Các hóa đơn cần xác nhận</TextTitle>
-                    <Button color="teal"
-                      onClick={() => {
-                        setFilterOrderParams({
-                          ...filterOrderParams,
-                          status: ORDER_STATUS.WaitingSellerConfirm
-                        })
-                      }}
-                    >
-                      Xem tất cả
-                    </Button>
-                  </Flex>
-                  <Grid columns={3}>
-                    {
-                      orderData?.filter((order) => order.status === ORDER_STATUS.WaitingSellerConfirm)
-                        .map((item) => (
-                          <Grid.Col span={1}>
-                            <Card shadow="sm" padding="lg" radius="md" withBorder
-                              m={5}
-                              onClick={() => {
-                                setSelectedOrder(item);
-                                openDetailModal();
 
-                              }}
-                            >
-                              <Flex direction={'column'} justify={'space-between'}>
-                                <Text c={'teal'} fw={'bold'}>{item.orderCode}</Text>
-                                <Text>{dateFormat(new Date(item.createdAt), EFX.DATETIME_FORMAT, "vi")}</Text>
-                                <span>
-                                  <Text fw={'bold'} className="inline">Tài khoản tạo: </Text>
-                                  <Text fw={'bold'} c={'teal'}
-                                    component="a"
-                                  // onClick={(e) => {
-                                  //   e.preventDefault();
-                                  //   void router.push(`/user/${item.userId}`)
-                                  // }}
-                                  >{item.createdBy}</Text>
-                                </span>
-                                <span>
-                                  <Text fw={'bold'} className="inline">Trạng thái </Text>
-                                  <Text fw={'bold'} c={!item.status ? '' : ORDER_STATUS_COLORS.get(item.status)}>{item.statusName}</Text>
-                                </span>
-                              </Flex>
-                            </Card>
-                          </Grid.Col>
-                        ))
-                    }
-                  </Grid>
-                </Flex>
-
-              </Card>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              <Card
-                m={5} padding={3}
-                shadow="md" radius={'md'} withBorder
-              >
-                <Flex direction={'column'} gap={3}>
-                  <Flex direction={'row'} justify={'space-between'}>
-                    <TextTitle>Các hóa đơn đã xác nhận, chưa chuẩn bị hàng</TextTitle>
-                    <Button color="teal"
-                      onClick={() => {
-                        setFilterOrderParams({
-                          ...filterOrderParams,
-                          status: ORDER_STATUS.SellerConfirmed
-                        })
-                      }}
-                    >
-                      Xem tất cả
-                    </Button>
-                  </Flex>
-                  <Grid columns={3}>
-                    {
-                      orderData?.filter((order) => order.status === ORDER_STATUS.SellerConfirmed)
-                        .map((item) => (
-                          <Grid.Col span={1}>
-                            <Card shadow="sm" padding="lg" radius="md" withBorder
-                              m={5}
-                              onClick={() => {
-                                setSelectedOrder(item);
-                                openDetailModal();
-
-                              }}
-                            >
-                              <Flex direction={'column'} justify={'space-between'}>
-                                <Text c={'teal'} fw={'bold'}>{item.orderCode}</Text>
-                                <Text>{dateFormat(new Date(item.createdAt), EFX.DATETIME_FORMAT, "vi")}</Text>
-                                <span>
-                                  <Text fw={'bold'} className="inline">Tài khoản tạo: </Text>
-                                  <Text fw={'bold'} c={'teal'}
-                                    component="a"
-                                  // onClick={(e) => {
-                                  //   e.preventDefault();
-                                  //   void router.push(`/user/${item.userId}`)
-                                  // }}
-                                  >{item.createdBy}</Text>
-                                </span>
-                                <span>
-                                  <Text fw={'bold'} className="inline">Trạng thái </Text>
-                                  <Text fw={'bold'} c={!item.status ? '' : ORDER_STATUS_COLORS.get(item.status)}>{item.statusName}</Text>
-                                </span>
-                              </Flex>
-                            </Card>
-                          </Grid.Col>
-                        ))
-                    }
-                  </Grid>
-                </Flex>
-
-              </Card>
-            </Grid.Col>
             {
               orderData?.map((item: OrderModel) => (
                 <Grid.Col span={1}>

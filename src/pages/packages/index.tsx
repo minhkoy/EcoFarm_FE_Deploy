@@ -6,17 +6,16 @@ import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import MainLayout from '@/layouts/common/main'
 import { type QueryPackages } from '@/models/package.model'
 import { SORTING_PACKAGE_TYPE, SORTING_PACKAGE_TYPE_NAME } from '@/utils/constants/enums'
-import { Flex, Button as MantineButton, NumberFormatter, Select, Text, TextInput } from '@mantine/core'
+import { Flex, Button as MantineButton, NumberFormatter, NumberInput, Select, Text, TextInput } from '@mantine/core'
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
   Checkbox,
-  Image,
-  Input
+  Image
 } from '@nextui-org/react'
-import { capitalize, isEmpty, toNumber } from 'lodash-es'
+import { capitalize, isEmpty } from 'lodash-es'
 import { StarIcon } from 'lucide-react'
 import { type GetServerSideProps } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -78,6 +77,8 @@ const PackagesScreen: NextPageWithLayout = () => {
       <DefaultOverlay />
     )
   }
+
+  const maxPrice = 100000000 //100 trieu //packageData?.reduce((max, p) => p.price ?? 0 > max ? p.price ?? 0 : max, 0) ?? 0;
   return (
     <div className='grid grid-cols-3 gap-4'>
       <form className='col-span-3 flex flex-col bg-primary p-4 sm:col-span-1'
@@ -118,34 +119,48 @@ const PackagesScreen: NextPageWithLayout = () => {
           />
         </div>
         <div className='mb-4'>
-          <p>{capitalize(t('query-param.range-price', { ns: 'farm-package' }))}</p>
-          <div className=' flex flex-row justify-center gap-3'>
-            <Input
-              type='number'
-              pattern='[0-9]'
+          <Text size='sm' fw={'bold'}>Khoảng giá (VND)</Text>
+          <div className='flex flex-row justify-between'>
+            <NumberInput
+              placeholder={'Từ giá'}
+              thousandSeparator
+              onChange={(e) => {
+                setFilters({
+                  ...filters,
+                  priceFrom: Number(e),
+                })
+              }}
+            />
+            <NumberInput
+              placeholder={'Đến giá'}
+              thousandSeparator
+              onChange={(e) => {
+                setFilters({
+                  ...filters,
+                  priceTo: Number(e),
+                })
+              }}
+            />
+            {/* <Text size='sm' fw={'bold'}>Khoảng giá</Text>
+            <RangeSlider
+              color='orange'
+              labelAlwaysOn
               min={0}
-              placeholder={capitalize(t('query-param.from-price', { ns: 'farm-package' }))}
-              onKeyDown={(e) => {
-                if (e.key === '.') {
-                  e.preventDefault();
-                }
-              }}
-              onChange={(e) => {
+              max={maxPrice}
+              step={1000}
+              minRange={1000}
+              defaultValue={[2000, maxPrice]}
+              onChangeEnd={(e) => {
                 setFilters({
                   ...filters,
-                  priceFrom: toNumber(e.target.value),
+                  priceFrom: e[0],
+                  priceTo: e[1]
                 })
               }}
-            />
-            <Input type='number'
-              placeholder={capitalize(t('query-param.to-price', { ns: 'farm-package' }))}
-              onChange={(e) => {
-                setFilters({
-                  ...filters,
-                  priceTo: toNumber(e.target.value),
-                })
-              }}
-            />
+              label={(value) => {
+                return <NumberFormatter thousandSeparator value={value} suffix=' VND' />
+              }} 
+            /> */}
           </div>
         </div>
         <div className='mb-4'>

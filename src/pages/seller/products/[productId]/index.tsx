@@ -1,4 +1,5 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay"
+import TextTitle from "@/components/ui/texts/TextTitle"
 import { setFilterParams } from "@/config/reducers/products"
 import useFetchOrders from "@/hooks/queries/useFetchOrders"
 import useFetchProducts from "@/hooks/queries/useFetchProducts"
@@ -151,6 +152,15 @@ const SellerProductDetailScreen: NextPageWithLayout = () => {
           <Text fw={'bold'} size="xl" c={'teal'}
             className="uppercase">Các đơn hàng</Text>
         </Flex>
+      </Card>
+      <Card shadow="sm" padding="lg" radius="md" withBorder
+      >
+        <TextTitle>Mô tả</TextTitle>
+        <Text
+
+        >
+          {data?.description}
+        </Text>
       </Card>
     </Flex>
     // <div className="flex flex-col gap-3 mb-5">

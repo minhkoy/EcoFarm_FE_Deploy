@@ -8,7 +8,7 @@ const queryKey = ['orders', 'getListOrders']
 export default function useFetchOrders(timeout?: number) {
   const [params] = useDebounce(useAppSelector((state) => state.orders, shallowEqual), timeout ?? 500)
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     staleTime: 1000,
     queryKey: [...queryKey, params],
     queryFn: () =>
@@ -20,5 +20,6 @@ export default function useFetchOrders(timeout?: number) {
   return {
     orderData: data?.data.value,
     isLoading: isLoading,
+    refetchOrder: refetch,
   }
 }

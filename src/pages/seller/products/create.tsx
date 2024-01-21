@@ -7,7 +7,7 @@ import useFetchPackage from "@/hooks/queries/useFetchPackage";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import SellerLayout from "@/layouts/seller/sellerLayout";
 import { type NextPageWithLayout } from "@/pages/_app";
-import { Button, FileInput, Flex, Input, NumberInput, Select, Table, Textarea } from "@mantine/core";
+import { Button, FileInput, Flex, NumberInput, Select, Table, TextInput, Textarea } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { Upload } from "lucide-react";
 import { useRouter } from "next/router";
@@ -52,21 +52,21 @@ const CreateProductScreen: NextPageWithLayout = () => {
           <Table.Tr>
             <Table.Td fw={'bold'}>Tên sản phẩm</Table.Td>
             <Table.Td>
-              <Input
+              <TextInput
                 placeholder={'Tên sản phẩm'}
                 {...addProductForm.getInputProps('name')}
               >
-              </Input>
+              </TextInput>
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td fw={'bold'}>Mã sản phẩm</Table.Td>
             <Table.Td>
-              <Input
+              <TextInput
                 placeholder={'Mã sản phẩm'}
                 {...addProductForm.getInputProps('code')}
               >
-              </Input>
+              </TextInput>
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
@@ -106,7 +106,12 @@ const CreateProductScreen: NextPageWithLayout = () => {
             <Table.Td>
               <Select
                 placeholder={'Gói farming liên quan'}
-
+                searchable
+                onSearchChange={(value) => {
+                  appDispatch(setFilterParams({
+                    keyword: value
+                  }))
+                }}
                 {...addProductForm.getInputProps('packageId')}
                 data={packageData?.map((item) => ({ value: item.id, label: item.name }))}
               />

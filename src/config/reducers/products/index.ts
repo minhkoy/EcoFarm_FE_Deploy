@@ -20,10 +20,10 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setFilterParams: (state, action: PayloadAction<typeof initialState>) => {
+    setProductFilterParams: (state, action: PayloadAction<typeof initialState>) => {
       state = merge(state, action.payload)
     },
   },
 })
 
-export const { setFilterParams } = productSlice.actions
+export const { setProductFilterParams } = productSlice.actions

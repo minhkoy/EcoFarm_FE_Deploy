@@ -35,7 +35,7 @@
 
 // export default SellerProductScreen;
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay";
-import { setFilterParams } from "@/config/reducers/products";
+import { setProductFilterParams } from "@/config/reducers/products";
 import useAuth from "@/hooks/auth/useAuth";
 import useFetchProducts from "@/hooks/queries/useFetchProducts";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
@@ -68,7 +68,7 @@ const SellerProductListScreen: NextPageWithLayout = () => {
   const appDispatch = useAppDispatch();
   useEffect(() => {
     if (accountInfo && !isFetching) {
-      appDispatch(setFilterParams({
+      appDispatch(setProductFilterParams({
         ...filterProductParams,
         enterpriseId: accountInfo?.accountEntityId
       }));
@@ -84,7 +84,7 @@ const SellerProductListScreen: NextPageWithLayout = () => {
   }
 
   const onSubmitSearch = () => {
-    appDispatch(setFilterParams(filterProductParams));
+    appDispatch(setProductFilterParams(filterProductParams));
   }
   // if (!accountInfo || accountInfo.accountType !== ACCOUNT_TYPE.SELLER) {
   //   return (
@@ -170,7 +170,7 @@ const SellerProductListScreen: NextPageWithLayout = () => {
             value={filterProductParams.page}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                appDispatch(setFilterParams(filterProductParams))
+                appDispatch(setProductFilterParams(filterProductParams))
               }
             }}
             onChange={(e) => {

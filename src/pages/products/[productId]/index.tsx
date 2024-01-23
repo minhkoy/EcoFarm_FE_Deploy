@@ -1,6 +1,6 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay"
 import { setAddressFilterParams } from "@/config/reducers/address"
-import { setFilterParams } from "@/config/reducers/products"
+import { setProductFilterParams } from "@/config/reducers/products"
 import { createOrderSchema, type CreateOrderSchemaType } from "@/config/schema/order"
 import useAddProductToCart from "@/hooks/mutations/cart/useAddNewProduct"
 import useCreateOrder from "@/hooks/mutations/orders/useCreateOrder"
@@ -53,7 +53,7 @@ const ProductDetailScreen: NextPageWithLayout = () => {
   // }, [query.productId])
   const appDispatch = useAppDispatch()
   if (productId) {
-    appDispatch(setFilterParams({
+    appDispatch(setProductFilterParams({
       id: productId
     }))
   }

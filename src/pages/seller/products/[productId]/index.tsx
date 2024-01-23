@@ -1,6 +1,6 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay"
 import TextTitle from "@/components/ui/texts/TextTitle"
-import { setFilterParams } from "@/config/reducers/products"
+import { setProductFilterParams } from "@/config/reducers/products"
 import useFetchOrders from "@/hooks/queries/useFetchOrders"
 import useFetchProducts from "@/hooks/queries/useFetchProducts"
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch"
@@ -29,7 +29,7 @@ const SellerProductDetailScreen: NextPageWithLayout = () => {
   const appDispatch = useAppDispatch()
   useEffect(() => {
     if (productId) {
-      appDispatch(setFilterParams({
+      appDispatch(setProductFilterParams({
         id: productId
       }))
     }

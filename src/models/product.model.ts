@@ -38,6 +38,7 @@ export type QueryProducts = QueryRequest<{
   maximumQuantity?: number;
   minimumPrice?: number;
   maximumPrice?: number;
+  sortingProductOrder?: number;
 }>
 
 export type ProductMedia = {

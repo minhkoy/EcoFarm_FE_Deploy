@@ -1,7 +1,9 @@
 import TextTitle from "@/components/ui/texts/TextTitle";
 import { setFilterParams } from "@/config/reducers/packages";
+import { setProductFilterParams } from "@/config/reducers/products";
 import useAuth from "@/hooks/auth/useAuth";
 import useFetchPackage from "@/hooks/queries/useFetchPackage";
+import useFetchProducts from "@/hooks/queries/useFetchProducts";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import SellerLayout from "@/layouts/seller/sellerLayout";
 import { SORTING_PACKAGE_TYPE } from "@/utils/constants/enums";
@@ -16,11 +18,16 @@ const SellerHomepage: NextPageWithLayout = () => {
   const appDispatch = useAppDispatch();
   const { accountInfo } = useAuth();
   const { packageData, isLoading: isLoadingPackages } = useFetchPackage();
+  const { productData, isLoading: isLoadingProducts } = useFetchProducts();
   useEffect(() => {
     if (!router.isReady) return;
     appDispatch(setFilterParams({
       enterpriseId: accountInfo?.accountEntityId,
       sortingPackageOrder: SORTING_PACKAGE_TYPE.Newest
+    }))
+    appDispatch(setProductFilterParams({
+      enterpriseId: accountInfo?.accountEntityId,
+
     }))
   }, [accountInfo?.accountEntityId, appDispatch, router.isReady])
   return (
@@ -74,6 +81,31 @@ const SellerHomepage: NextPageWithLayout = () => {
               }}
             >Xem tất cả</Button>
           </Flex>
+          <Carousel withIndicators height={300}
+            slideSize={'20%'}
+            slideGap={'md'}
+            align={'start'}
+            slidesToScroll={5}>
+            {
+              productData?.map((item) => {
+                return (
+                  <Carousel.Slide>
+                    <Card shadow="sm" m={5} key={item.id}
+                      className="flex flex-col items-center gap-3"
+                      onClick={() => {
+                        void router.push(`/seller/products/${item.id}`);
+                      }}
+                    >
+                      <Image src={item.medias?.length ? item.medias[0]?.imageUrl : ''} alt={item.name}
+                        height={50}
+                      />
+                      <Text c={'blue'} mb={3}>{item.name}</Text>
+                    </Card>
+                  </Carousel.Slide>
+                )
+              })
+            }
+          </Carousel>
         </Card>
         <Card shadow="sm" m={5}>
           <TextTitle>Các đơn hàng</TextTitle>

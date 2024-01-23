@@ -1,4 +1,5 @@
 import DefaultOverlay from '@/components/ui/overlay/DefaultOverlay'
+import { setEnterpriseFilterParams } from '@/config/reducers/enterprise'
 import { setFilterParams } from '@/config/reducers/packages'
 import useFetchEnterprises from '@/hooks/queries/useFetchEnterprises'
 import useFetchPackage from '@/hooks/queries/useFetchPackage'
@@ -103,6 +104,12 @@ const PackagesScreen: NextPageWithLayout = () => {
           <Select
             label='Nhà cung cấp/ Chủ trang trại'
             placeholder='Nhà cung cấp/ Chủ trang trại'
+            searchable
+            onSearchChange={(val) => {
+              appDispatch(setEnterpriseFilterParams({
+                keyword: val
+              }))
+            }}
             data={enterpriseData?.map((enterprise) => ({
               value: enterprise.enterpriseId,
               label: enterprise.fullName,

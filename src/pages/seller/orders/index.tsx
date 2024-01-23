@@ -1,6 +1,6 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay";
 import { setOrderFilterParams } from "@/config/reducers/orders";
-import { setFilterParams } from "@/config/reducers/products";
+import { setProductFilterParams } from "@/config/reducers/products";
 import useAuth from "@/hooks/auth/useAuth";
 import useApproveOrder from "@/hooks/mutations/orders/useApproveOrder";
 import useMarkCompletePrepareOrder from "@/hooks/mutations/orders/useMarkCompletePrepareOrder";
@@ -43,7 +43,7 @@ const SellerOrderListScreen: NextPageWithLayout = () => {
       ...filterOrderParams,
       //enterpriseId: accountInfo?.accountEntityId
     }));
-    appDispatch(setFilterParams({
+    appDispatch(setProductFilterParams({
       keyword: '',
       enterpriseId: accountInfo?.accountEntityId
     }))
@@ -300,7 +300,7 @@ const SellerOrderListScreen: NextPageWithLayout = () => {
                   label: `${item.code ?? 'Không có mã sản phẩm'} - ${item.name!}`,
                 }))}
                 onSearchChange={(val) => {
-                  appDispatch(setFilterParams({
+                  appDispatch(setProductFilterParams({
                     keyword: val,
                     //enterpriseId: accountInfo?.accountEntityId
                   }))

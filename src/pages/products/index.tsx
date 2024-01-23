@@ -1,5 +1,5 @@
 import DefaultOverlay from "@/components/ui/overlay/DefaultOverlay";
-import { setFilterParams } from "@/config/reducers/products";
+import { setProductFilterParams } from "@/config/reducers/products";
 import useFetchProducts from "@/hooks/queries/useFetchProducts";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import MainLayout from "@/layouts/common/main";
@@ -32,10 +32,10 @@ const ProductList: NextPageWithLayout = () => {
   const appDispatch = useAppDispatch()
   const { productData, isLoading } = useFetchProducts()
   useEffect(() => {
-    appDispatch(setFilterParams(filters))
+    appDispatch(setProductFilterParams(filters))
 
   }, [appDispatch, filters])
-  const onSubmitSearch = () => appDispatch(setFilterParams(filters));
+  const onSubmitSearch = () => appDispatch(setProductFilterParams(filters));
   if (isLoading) {
     return (
       <DefaultOverlay />
@@ -56,7 +56,7 @@ const ProductList: NextPageWithLayout = () => {
               type='text'
               placeholder='Tên sản phẩm ...'
               onChange={(e) => {
-                appDispatch(setFilterParams({
+                appDispatch(setProductFilterParams({
                   keyword: e.target.value
                 }));
               }}
@@ -241,7 +241,7 @@ const ProductList: NextPageWithLayout = () => {
               value={filters.page}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  appDispatch(setFilterParams(filters))
+                  appDispatch(setProductFilterParams(filters))
                 }
               }}
               onChange={(e) => {

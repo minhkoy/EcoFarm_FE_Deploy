@@ -217,7 +217,7 @@ const PackagesScreen: NextPageWithLayout = () => {
               }
               setFilters({
                 ...filters,
-                sortingPackageOrder: val ? Number(val) : 0
+                sortingPackageOrder: val ? Number(val) : SORTING_PACKAGE_TYPE.Newest
               })
             }}
           />

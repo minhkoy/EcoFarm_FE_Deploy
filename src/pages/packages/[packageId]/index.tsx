@@ -1,4 +1,5 @@
 import DefaultOverlay from '@/components/ui/overlay/DefaultOverlay'
+import TextTitle from '@/components/ui/texts/TextTitle'
 import { setActivityFilterParams } from '@/config/reducers/activity'
 import { setPackageId } from '@/config/reducers/package'
 import { type CreatePackageReviewSchemaType } from '@/config/schema'
@@ -12,7 +13,6 @@ import { useAppDispatch } from '@/hooks/redux/useAppDispatch'
 import MainLayout from '@/layouts/common/main'
 import { type ActivityModel } from '@/models/activity.model'
 import { type NextPageWithLayout } from '@/pages/_app'
-import { getQueryUrlValue } from '@/utils/helpers/CommonHelper'
 import { dateFormat } from '@/utils/helpers/DateHelper'
 import { Flex, Grid, Modal, NumberFormatter, Rating, Switch, Table, Text, Timeline } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
@@ -20,20 +20,20 @@ import { Button, Card, Image, Table as NextUITable, TableBody, TableCell, TableC
 import { ActivitySquareIcon, Check, Play, Star } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 
 const PackageDetailScreen: NextPageWithLayout = () => {
   const router = useRouter()
   const newReviewRef = useRef<HTMLParagraphElement>(null)
-  const packageId = useMemo(() => getQueryUrlValue(router.query, 0), [router.query])
+  const packageId = router.query.packageId as string
   const [isAddingNewReview, setIsAddingNewReview] = useState(false);
   const [isRatingPoints, setIsRatingPoints] = useState(false);
   const [activityDetailWatching, setActivityDetailWatching] = useState<ActivityModel | null>(null)
   const [newReview, setNewReview] = useState<CreatePackageReviewSchemaType>({
     rating: 0,
     content: '',
-    packageId: packageId!,
+    packageId: packageId,
   });
   const [isViewingActivityModal, { open: openViewingActivityModal, close: closeViewingActivityModal }] = useDisclosure(false)
   //const packageId = useMemo(() => getQueryUrlValue(query, 0), [query])
@@ -311,7 +311,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
                 <div className='flex gap-3'>
                   <div className='flex flex-col'>
                     <Link className='text-primary-400 font-bold text-lg'
-                      href={`/user/${review.userId}`}>{review.userFullname}</Link>
+                      href={`/user/${review.userId}`}>{review.userFullname ?? review.username}</Link>
                     <span className='text-gray-400 text-sm'>{dateFormat(new Date(review.createdAt!), 'P', 'vi')}</span>
                   </div>
                   <div className='flex-1'>
@@ -341,6 +341,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
                         onChange={(value) => {
                           setNewReview({
                             ...newReview,
+                            packageId: packageId,
                             rating: value
                           })
                         }}
@@ -410,6 +411,9 @@ const PackageDetailScreen: NextPageWithLayout = () => {
             )
           }
         </div>
+      </Card>
+      <Card className='ml-3 mr-3 p-4'>
+        <TextTitle>Các gói farming tương tự</TextTitle>
       </Card>
     </div>
   )

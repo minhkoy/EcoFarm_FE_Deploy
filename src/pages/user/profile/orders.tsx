@@ -13,6 +13,7 @@ import { ORDER_STATUS } from "@/utils/constants/enums";
 import { dateFormat } from "@/utils/helpers/DateHelper";
 import { Button, Card, Flex, Grid, Modal, NumberFormatter, NumberInput, Table, Text, type TableData } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { CheckIcon, Undo2Icon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -137,13 +138,20 @@ const OrderScreen: NextPageWithLayout = () => {
               </Table.Td>
             </Table.Tr>
           </Table>
-          <Flex direction={'row'} gap={3} justify={'center'}>
+          <Flex direction={'row'} gap={3} justify={'space-between'}>
             <Button color="teal"
               disabled={order.status !== ORDER_STATUS.Shipped}
+              leftSection={<CheckIcon />}
               onClick={() => {
                 receivedOrderMutate(order.orderId);
                 closeDetailModal();
               }}>Xác nhận đã nhận hàng
+            </Button>
+            <Button color="red"
+              disabled={order.status === ORDER_STATUS.Shipped || order.status === ORDER_STATUS.Received}
+              leftSection={<Undo2Icon />}
+            >
+              Hủy đơn hàng
             </Button>
           </Flex>
         </Flex>

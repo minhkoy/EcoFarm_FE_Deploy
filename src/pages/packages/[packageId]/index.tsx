@@ -183,7 +183,7 @@ const PackageDetailScreen: NextPageWithLayout = () => {
               </TableRow>
               <TableRow key={5}>
                 <TableCell>Thời gian đóng đăng ký</TableCell>
-                <TableCell>{dateFormat(new Date(packageData.closeRegisterTime), 'P', 'vi')}</TableCell>
+                <TableCell>{packageData?.closeRegisterTime ? dateFormat(new Date(packageData.closeRegisterTime), 'P', 'vi') : 'Chưa đóng đăng ký'}</TableCell>
               </TableRow>
               {/* {
                 packageData?.closeRegisterTime ? (

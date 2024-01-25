@@ -27,7 +27,8 @@ const SellerHomepage: NextPageWithLayout = () => {
     }))
     appDispatch(setProductFilterParams({
       enterpriseId: accountInfo?.accountEntityId,
-
+      sortingProductOrder: SORTING_PACKAGE_TYPE.Newest,
+      id: ''
     }))
   }, [accountInfo?.accountEntityId, appDispatch, router.isReady])
   return (

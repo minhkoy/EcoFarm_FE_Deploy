@@ -8,6 +8,7 @@ import { singlePackageSlice } from './package'
 import { packageReviewsSlice } from './packageReviews'
 import { myPackageSlice, packageSlice } from './packages'
 import { productSlice } from './products'
+import { enterpriseStatsSlice } from './stats/enterprises'
 
 const rootReducers = combineReducers({
   // Add reducers here
@@ -21,6 +22,7 @@ const rootReducers = combineReducers({
   [orderSlice.name]: orderSlice.reducer,
   [addressSlice.name]: addressSlice.reducer,
   [enterpriseSlice.name]: enterpriseSlice.reducer,
+  [enterpriseStatsSlice.name]: enterpriseStatsSlice.reducer,
 })
 
 export default rootReducers

@@ -50,7 +50,6 @@ axiosClient.interceptors.response.use(
   },
   async (error) => {
     if (axios.isAxiosError(error)) {
-      debugger;
       switch (error.response?.status) {
         case ERROR_CODES.UNAUTHORIZED:
           ToastHelper.error(

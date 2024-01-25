@@ -10,7 +10,7 @@ export default function useFetchPackage(timeout?: number) {
   const [params] = useDebounce(useAppSelector((state) => state.package, shallowEqual), timeout ?? 500)
 
   const { data, isLoading } = useQuery({
-    //staleTime: 1000,
+    staleTime: 1000 * 5,
     queryKey: [...queryKey, params],
     queryFn: () =>
       getListPackages({

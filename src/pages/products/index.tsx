@@ -4,7 +4,7 @@ import useFetchProducts from "@/hooks/queries/useFetchProducts";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import MainLayout from "@/layouts/common/main";
 import { type QueryProducts } from "@/models/product.model";
-import { SORTING_PRODUCT_TYPE_NAME } from "@/utils/constants/enums";
+import { SORTING_PRODUCT_TYPE, SORTING_PRODUCT_TYPE_NAME } from "@/utils/constants/enums";
 import { Button, Flex, Grid, NumberFormatter, Select, TextInput } from "@mantine/core";
 import { Card, CardBody, CardFooter, Image, Input } from "@nextui-org/react";
 import { isEmpty } from "lodash-es";
@@ -25,7 +25,8 @@ const ProductList: NextPageWithLayout = () => {
     packageId: '',
     id: '',
     code: '',
-    enterpriseId: ''
+    enterpriseId: '',
+    sortingProductOrder: SORTING_PRODUCT_TYPE.Newest
   })
 
   const router = useRouter()
@@ -87,7 +88,7 @@ const ProductList: NextPageWithLayout = () => {
             </div>
           </div>
           <div className="mb-4">
-            <div className=' flex flex-row justify-center gap-3'>
+            {/* <div className=' flex flex-row justify-center gap-3'>
               <Input
                 type='number'
                 placeholder='Số lượng còn lại từ ...'
@@ -109,7 +110,7 @@ const ProductList: NextPageWithLayout = () => {
                 }}
               />
 
-            </div>
+            </div> */}
             <Select
               m={3}
               label="Sắp xếp theo"
@@ -118,23 +119,13 @@ const ProductList: NextPageWithLayout = () => {
                 value: item.type.toString(),
                 label: item.typeName,
               }))}
-              //value={filterOrderParams.status?.toString()}
-              //clearable
-              //value={ORDER_STATUS_NAME[filterOrderParams.status]}
               onChange={(val) => {
                 //console.log(val);
-                if (!val) {
-                  //   setFilterOrderParams({
-                  //     ...filterOrderParams,
-                  //     status: 0
-                  //   })
-                  //   return;
-                  // }
-                  // setFilterOrderParams({
-                  //   ...filterOrderParams,
-                  //   status: val ? Number(val) : 0
-                  // })
-                }
+                setFilters({
+                  ...filters,
+                  sortingProductOrder: val ? Number(val) : SORTING_PRODUCT_TYPE.Newest
+                })
+
               }}
             />
           </div>

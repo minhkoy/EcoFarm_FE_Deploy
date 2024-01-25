@@ -1,5 +1,5 @@
 import useGetMyAccountInfo from "@/hooks/queries/useGetMyAccountInfo";
-import SellerLayout from "@/layouts/seller/sellerLayout";
+import MainLayout from "@/layouts/common/main";
 import { ACCESS_TOKEN } from "@/utils/constants/enums";
 import { Button, Card, Flex, Grid, Input } from "@mantine/core";
 import * as signalR from "@microsoft/signalr";
@@ -93,9 +93,9 @@ const ChatScreen: NextPageWithLayout = () => {
 ChatScreen.getLayout = function getLayout(page) {
   //const { data: myAccountInfoResponse } = useGetMyAccountInfo();
   return (
-    <SellerLayout>
+    <MainLayout>
       {page}
-    </SellerLayout>
+    </MainLayout>
   )
 }
 export default ChatScreen;

@@ -13,8 +13,8 @@ export default function useFetchProducts() {
 
   const { data, isLoading } = useQuery({
     //staleTime: Infinity,
-    enabled: true,
-    staleTime: 1000 * 30,
+    staleTime: 1000,
+    //enabled: false,
     queryKey: [...queryKey, params],
     queryFn: () =>
       getListProducts({

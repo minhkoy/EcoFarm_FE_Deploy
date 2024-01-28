@@ -2,12 +2,10 @@ import { z } from "zod";
 
 export const createOrderSchema = () => { //<T extends TFunction>(t: T) => {
   return z.object({
-    productId: z.string()
-      .min(1, 'Không được để trống trường này.'),
-    quantity: z.number()
-      .min(1, 'Số lượng phải từ 1 trở lên.'),
+    productId: z.string(),
+    quantity: z.number(),
     note: z.string().nullable(),
-    addressId: z.string().nullable(),
+    addressId: z.string(),
     paymentMethod: z.number().nullable(),
     cartProducts: z.array(z.object({
       productId: z.string(),

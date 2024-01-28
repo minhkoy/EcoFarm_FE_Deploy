@@ -1,6 +1,7 @@
 import DropdownUser from '@/components/features/navbar/DropdownUser'
 import Notification from '@/components/features/navbar/Notification'
 import { SwitchTheme } from '@/components/ui/switch/SwitchTheme'
+import useGetMyShoppingCart from '@/hooks/queries/useGetMyShoppingCart'
 import {
   Link,
   Navbar,
@@ -14,12 +15,17 @@ import { HomeIcon, MessagesSquareIcon, PackageIcon, ShoppingCartIcon, VeganIcon 
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import SidebarMenu from './component/SidebarMenu'
 
 const Header = () => {
   const { pathname } = useRouter()
   const { t } = useTranslation(['common'])
+  const { cartData } = useGetMyShoppingCart();
+  const [cartCount, setCartCount] = useState(0);
+  useEffect(() => {
+    setCartCount(cartData?.products?.length ?? 0);
+  }, [cartData?.products?.length]);
   const items = useMemo(
     () => [
       {
@@ -42,7 +48,7 @@ const Header = () => {
       },
       {
         id: 'cart',
-        label: 'Giỏ hàng',
+        label: `Giỏ hàng (${cartCount})`,
         href: '/cart',
         icon: <ShoppingCartIcon />,
       },
@@ -53,7 +59,7 @@ const Header = () => {
         icon: <MessagesSquareIcon />
       }
     ],
-    [t],
+    [cartCount],
   )
   return (
     <Navbar

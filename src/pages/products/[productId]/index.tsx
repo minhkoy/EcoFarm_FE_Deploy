@@ -27,7 +27,7 @@ const ProductDetailScreen: NextPageWithLayout = () => {
   const { addressData, isLoading: isLoadingAddress } = useFetchAddresses();
   const newOrderForm = useForm<CreateOrderSchemaType>({
     initialValues: {
-      productId: productId,
+      productId: '',
       quantity: 1,
       note: '',
       addressId: (addressData && addressData.length > 0) ? addressData[0]?.id : '',
@@ -42,15 +42,6 @@ const ProductDetailScreen: NextPageWithLayout = () => {
   //---- FORM END ---- //
 
   const [isOpenOrderModal, { open: openOrderModal, close: closeOrderModal }] = useDisclosure(false);
-  // const productId = useMemo(() => {
-  //   if (isArray(query.productId)) {
-  //     return isUndefined(query.productId[0])
-  //       ? ''
-  //       : query.productId[0]
-  //   } else {
-  //     return isUndefined(query.productId) ? '' : query.productId
-  //   }
-  // }, [query.productId])
   const appDispatch = useAppDispatch()
   if (productId) {
     appDispatch(setProductFilterParams({
@@ -89,7 +80,18 @@ const ProductDetailScreen: NextPageWithLayout = () => {
       <Form form={newOrderForm}>
         <Flex justify={'center'} direction={'column'} gap={3}>
           <NumberInput label="Số lượng"
-            {...newOrderForm.getInputProps('quantity')}
+            min={1}
+            defaultValue={1}
+            max={data?.quantityRemain ?? 1}
+            onChange={(value) => {
+              newOrderForm.setFieldValue('cartProducts',
+                [{
+                  productId: productId,
+                  quantity: Number(value)
+                }]
+              )
+            }}
+          //{...newOrderForm.getInputProps('cartProducts[0].quantity')}
           />
           <Textarea label='Ghi chú'
             {...newOrderForm.getInputProps('note')}
@@ -101,7 +103,7 @@ const ProductDetailScreen: NextPageWithLayout = () => {
               <Select
                 data={addressData?.map((address) => ({
                   value: address.id,
-                  label: `${address.receiverName} - ${address.addressPhone} - ${address.addressDescription}`
+                  label: `${address.receiverName} - ${address.addressPhone} - ${address.addressDescription} ${address.isPrimary ? '(Mặc định)' : ''}`
                   //label: address.addressDescription
                 }))}
                 checkIconPosition="right"

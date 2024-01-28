@@ -14,7 +14,7 @@ import { PAYMENT_METHOD } from "@/utils/constants/enums";
 import { Button, Card, Checkbox, Flex, Grid, Image, Modal, NumberFormatter, NumberInput, Select, Table, Text, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { TrashIcon } from "lucide-react";
+import { Trash2Icon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -24,6 +24,7 @@ const CartScreen: NextPageWithLayout = () => {
   const router = useRouter();
   const appDispatch = useAppDispatch();
   const { cartData, isLoading } = useGetMyShoppingCart();
+  const { addressData, isLoading: isLoadingAddress } = useFetchAddresses();
   const orderForm = useForm<CreateOrderSchemaType>({
     initialValues: {
       productId: '',
@@ -35,18 +36,25 @@ const CartScreen: NextPageWithLayout = () => {
     },
     validate: zodResolver(createOrderSchema()),
   })
+  const [quantities, setQuantities] = useState<Array<number>>([]);
+  const [selected, setSelected] = useState<Array<boolean>>([]);
   useEffect(() => {
     if (!router.isReady) {
       return;
     }
-  }, [router.isReady])
+    setQuantities(new Array<number>(cartData?.products?.length ?? 0).fill(1));
+    setSelected(new Array<boolean>(cartData?.products?.length ?? 0).fill(false));
+  }, [cartData?.products?.length, router.isReady])
   const { mutate: createOrderMutate, isPending: isPendingCreateOrder, rawData: rawCreateOrderResult } = useCreateOrder();
   const { mutate: removeFromCartMutate, isPending: isPendingRemoveFromCart } = useRemoveFromCart();
-  const { addressData, isLoading: isLoadingAddress } = useFetchAddresses();
-  const [quantities, setQuantities] = useState<Array<number>>(new Array<number>(cartData?.products?.length ?? 0).fill(1));
-  const [selected, setSelected] = useState<Array<boolean>>(new Array<boolean>(cartData?.products?.length ?? 0).fill(true));
+
   const [isOpenOrderModal, { open, close }] = useDisclosure(false);
+  const [isOpenConfirmDeleteOneModal, { open: openConfirmDeleteOneModal, close: closeConfirmDeleteOneModal }] = useDisclosure(false);
   const [isOpenConfirmDeleteModal, { open: openConfirmDeleteModal, close: closeConfirmDeleteModal }] = useDisclosure(false);
+  const [selectedItem, setSelectedItem] = useState({
+    item: undefined as CartDetail | undefined,
+    index: 0
+  })
   if (isLoading) {
     return (
       <DefaultOverlay />
@@ -70,6 +78,49 @@ const CartScreen: NextPageWithLayout = () => {
     return accumulator;
   }, 0)
 
+  const confirmDeleteOneProductModal = (cartDetail: CartDetail | undefined, index: number) => (
+    (!cartDetail) ? <></> :
+      <Modal
+        title={<Text c={'teal'} fw={'bold'}>Xóa sản phẩm</Text>}
+        opened={isOpenConfirmDeleteOneModal}
+        onClose={closeConfirmDeleteOneModal}
+        size={'sm'}
+
+      >
+        <Flex direction={'column'} gap={5}>
+          <Text className="inline">Bạn có muốn xóa sản phẩm <b>{cartDetail.productName ?? 'này'}</b> khỏi giỏ hàng?</Text>
+          <Flex direction={'row'} justify={'right'} gap={3}>
+            <Button
+              color="red"
+              leftSection={<Trash2Icon />}
+              onClick={() => {
+                const newSelected = [...selected];
+                const newQuantities = [...quantities];
+                const newProducts = [...cartData.products!];
+                newSelected.splice(index, 1);
+                newQuantities.splice(index, 1);
+                newProducts.splice(index, 1);
+                setSelected(newSelected);
+                setQuantities(newQuantities);
+                removeFromCartMutate({
+                  productIds: [cartDetail.productId!],
+                  cartId: cartData.id!
+                });
+                closeConfirmDeleteOneModal();
+              }}
+            >
+              Xóa
+            </Button>
+            <Button
+              color="gray"
+              onClick={closeConfirmDeleteOneModal}
+            >
+              Hủy
+            </Button>
+          </Flex>
+        </Flex>
+      </Modal>
+  )
   const confirmDeleteModal = (
     <Modal
       title={<Text c={'teal'} fw={'bold'}>Xóa sản phẩm</Text>}
@@ -136,7 +187,7 @@ const CartScreen: NextPageWithLayout = () => {
             <Select
               data={addressData?.map((address) => ({
                 value: address.id,
-                label: `${address.receiverName} - ${address.addressPhone} - ${address.addressDescription}`
+                label: `${address.receiverName} - ${address.addressPhone} - ${address.addressDescription} ${address.isPrimary ? '(Mặc định)' : ''}`
               }))}
               checkIconPosition="right"
               label="Địa chỉ"
@@ -247,6 +298,7 @@ const CartScreen: NextPageWithLayout = () => {
                 }}
               />
             </Table.Th>
+            <Table.Th></Table.Th>
           </Table.Thead>
           <Table.Tbody>
             {
@@ -298,9 +350,28 @@ const CartScreen: NextPageWithLayout = () => {
                         }}
                       />
                     </Table.Td>
+                    <Table.Td>
+                      <Button
+                        //rightSection={<Trash2Icon />}
+                        color="red"
+                        onClick={() => {
+                          setSelectedItem({
+                            item: item,
+                            index: index
+                          });
+                          openConfirmDeleteOneModal();
+                        }}
+                        loading={isPendingRemoveFromCart}
+                      >
+                        <Trash2Icon />
+                      </Button>
+                    </Table.Td>
                   </Table.Tr>
                 )
               })
+            }
+            {
+              confirmDeleteOneProductModal(selectedItem.item, selectedItem.index)
             }
             <Table.Tr>
               <Table.Td colSpan={3}>

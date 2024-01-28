@@ -5,8 +5,8 @@ import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import MainLayout from "@/layouts/common/main";
 import { type QueryProducts } from "@/models/product.model";
 import { SORTING_PRODUCT_TYPE, SORTING_PRODUCT_TYPE_NAME } from "@/utils/constants/enums";
-import { Button, Flex, Grid, NumberFormatter, Select, TextInput } from "@mantine/core";
-import { Card, CardBody, CardFooter, Image, Input } from "@nextui-org/react";
+import { Button, Flex, Grid, NumberFormatter, NumberInput, Select, Text, TextInput } from "@mantine/core";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { isEmpty } from "lodash-es";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ const ProductList: NextPageWithLayout = () => {
   return (
     <>
       <div className='grid grid-cols-3 gap-4'>
-        <form className='col-span-3 flex flex-col bg-primary p-4 sm:col-span-1'
+        <form className='col-span-3 flex flex-col bg-yellow-50 shadow-md p-4 sm:col-span-1'
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               onSubmitSearch();
@@ -53,8 +53,8 @@ const ProductList: NextPageWithLayout = () => {
           }}
         >
           <div className='mb-4'>
-            <Input
-              type='text'
+            <TextInput
+              label="Tên sản phẩm"
               placeholder='Tên sản phẩm ...'
               onChange={(e) => {
                 appDispatch(setProductFilterParams({
@@ -64,24 +64,28 @@ const ProductList: NextPageWithLayout = () => {
             />
           </div>
           <div className="mb-4">
+            <Text fw={'bold'} size="sm">Khoảng giá</Text>
             <div className=' flex flex-row justify-center gap-3'>
-              <Input
-                type='number'
+              <NumberInput
+                min={0}
+                //label="Khoảng giá"
+                //type='number'
                 placeholder='Từ giá ...'
                 onChange={(e) => {
                   setFilters({
                     ...filters,
-                    minimumPrice: Number(e.target.value)
+                    minimumPrice: Number(e)
                   })
                 }}
               />
-              <Input
-                type='number'
+              <NumberInput
+                //type='number'
+                min={0}
                 placeholder='Đến giá ...'
                 onChange={(e) => {
                   setFilters({
                     ...filters,
-                    maximumPrice: Number(e.target.value)
+                    maximumPrice: Number(e)
                   })
                 }}
               />
@@ -119,6 +123,7 @@ const ProductList: NextPageWithLayout = () => {
                 value: item.type.toString(),
                 label: item.typeName,
               }))}
+              value={filters.sortingProductOrder?.toString()}
               onChange={(val) => {
                 //console.log(val);
                 setFilters({
@@ -141,14 +146,14 @@ const ProductList: NextPageWithLayout = () => {
                         }}
                     /> */}
             <Button
-              color='primary'
+              color='teal'
               onClick={onSubmitSearch}
             >
               Tìm kiếm
             </Button>
           </div>
         </form>
-        <div className='col-span-3 bg-primary p-4 sm:col-span-2'>
+        <div className='col-span-3 p-4 sm:col-span-2'>
           <div className=''>
             {isEmpty(productData) || !productData ? (
               //<p>{t('notFound.package', { ns: 'farm-package' })}</p>
@@ -163,14 +168,14 @@ const ProductList: NextPageWithLayout = () => {
                   }),
                 )} */}
                   {/* {t('info', { ns: 'product', total: productData.length, })} */}
-                  Thông tin {productData.length} sản phẩm
+                  Thông tin các sản phẩm
                 </p>
                 <Grid columns={3}>
                   {productData?.map((_product, index) => (
                     <Grid.Col span={1}>
                       <Card
                         className='m-2 w-56'
-                        shadow='md'
+                        shadow='lg'
                         key={index}
                         isPressable
                         onPress={() => {

@@ -25,6 +25,10 @@ export const markCompletePrepareOrder = async (
   orderId: string
 ): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/MarkPreparingCompleted/${orderId}`)
 
+//--For USER--//
+export const cancelOrder = async (
+  orderId: string
+): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/Cancel/${orderId}`)
 export const markReceivedOrder = async (
   orderId: string
 ): AxiosPromise<ResponseOrder> => axiosClient.patch(`${controller}/MarkReceived/${orderId}`)

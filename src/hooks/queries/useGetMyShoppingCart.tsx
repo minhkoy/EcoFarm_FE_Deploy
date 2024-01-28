@@ -14,5 +14,6 @@ export default function useGetMyShoppingCart() {
   return {
     cartData: result.data?.data.value,
     isLoading: result.isLoading,
+    refetch: result.refetch,
   }
 }

@@ -82,7 +82,7 @@ const PackagesScreen: NextPageWithLayout = () => {
   const maxPrice = 100000000 //100 trieu //packageData?.reduce((max, p) => p.price ?? 0 > max ? p.price ?? 0 : max, 0) ?? 0;
   return (
     <div className='grid grid-cols-3 gap-4'>
-      <form className='col-span-3 flex flex-col bg-primary p-4 sm:col-span-1'
+      <form className='col-span-3 flex flex-col bg-yellow-50 shadow-md p-4 sm:col-span-1'
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             onSubmitSearch();
@@ -232,7 +232,7 @@ const PackagesScreen: NextPageWithLayout = () => {
         </div>
       </form>
 
-      <div className='col-span-3 bg-primary p-4 sm:col-span-2'>
+      <div className='col-span-3 p-4 sm:col-span-2'>
         {/* <Select
           items={SELECT_LIMIT}
           label='Limit'
@@ -253,19 +253,16 @@ const PackagesScreen: NextPageWithLayout = () => {
             <Text c={'red'} fw={'bold'}>{capitalize('Không tìm thấy gói')}</Text>
           ) : (
             <>
-              <p className='text-)primary-600 uppercase font-bold'>
+              <p className='text-primary-600 uppercase font-bold'>
                 {capitalize(
-                  t('info.farm-package', {
-                    ns: 'farm-package',
-                    total: packageData.length,
-                  }),
+                  'Thông tin các gói farming'
                 )}
               </p>
               <div className='grid grid-cols-3 justify-start gap-2'>
                 {packageData?.map((_package, index) => (
                   <Card
                     className='m-2 w-56'
-                    shadow='md'
+                    shadow='lg'
                     key={index}
                     isPressable
                     onPress={() => {
@@ -286,7 +283,7 @@ const PackagesScreen: NextPageWithLayout = () => {
                           t('has-price', { ns: 'farm-package', name: _package.name, price: _package.price })
                         )} */}
                     </CardBody>
-                    <CardFooter className='m-2 justify-between text-small'>
+                    <CardFooter className='m-2 flex justify-between text-small'>
                       <div className='m-2'>
                         <b>{_package.name}</b>
                         <p className='text-default-500'>
@@ -295,8 +292,8 @@ const PackagesScreen: NextPageWithLayout = () => {
                       </div>
                       <div className='m-2'>
                         <span className='font-bold'>
-                          {_package.averageRating}
                           <StarIcon className='h-4 w-4 text-yellow-500' />
+                          {_package.averageRating}
                         </span>
                       </div>
                     </CardFooter>
